@@ -1,0 +1,49 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.1.0'
+	id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com.siukatech.poc'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+//repositories {
+//	mavenCentral()
+//}
+repositories {
+	mavenLocal()
+	mavenCentral()
+	maven {
+		name = 'platformSnapshot'
+		allowInsecureProtocol = true
+		credentials(PasswordCredentials)
+		url = uri("$platformSnapshotUri")
+	}
+}
+
+
+dependencies {
+	implementation 'com.siukatech.poc:react-backend-parent:0.0.1-SNAPSHOT'
+
+//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
+//	implementation 'org.springframework.boot:spring-boot-starter-web'
+//
+//	implementation 'org.modelmapper:modelmapper:3.1.1'
+//	implementation 'org.hibernate:hibernate-validator:6.0.13.Final'
+////	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2'
+
+//	implementation 'org.projectlombok:lombok:1.18.26'
+	annotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+	runtimeOnly 'org.postgresql:postgresql:42.6.0'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation 'com.h2database:h2:2.1.214'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
