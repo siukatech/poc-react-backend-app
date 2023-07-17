@@ -1,21 +1,19 @@
 package com.siukatech.poc.react.backend.app.web.controller.extended;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.siukatech.poc.react.backend.parent.business.service.AuthService;
 import com.siukatech.poc.react.backend.parent.web.annotation.v1.PublicApiV1Controller;
-import jakarta.servlet.http.HttpServletRequest;
+import com.siukatech.poc.react.backend.parent.web.model.auth.LoginForm;
+import com.siukatech.poc.react.backend.parent.web.model.auth.RefreshTokenForm;
+import com.siukatech.poc.react.backend.parent.web.model.auth.TokenRes;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientProperties;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.client.RestTemplate;
-
-import java.net.URISyntaxException;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Slf4j
 @PublicApiV1Controller
@@ -46,7 +44,8 @@ public class AuthController extends com.siukatech.poc.react.backend.parent.web.c
 
 
     @GetMapping(value = "/auth/login/{clientName}")
-    public void auth(HttpServletResponse response, @PathVariable String clientName) {
+    public void doAuthCodeLogin(HttpServletResponse response
+            , @PathVariable String clientName) {
 //        OAuth2ClientProperties.Registration registration = this.oAuth2ClientProperties.getRegistration().get(clientName);
 //        OAuth2ClientProperties.Provider provider = this.oAuth2ClientProperties.getProvider().get(clientName);
 ////        response_type=code&client_id=react-backend-client-01&scope=openid&redirect_uri=http://localhost:3000/redirect
@@ -64,11 +63,12 @@ public class AuthController extends com.siukatech.poc.react.backend.parent.web.c
 //                ;
 //        response.setHeader("Location", authUrl);
 //        response.setStatus(302);
-        super.auth(response, clientName);
+        super.doAuthCodeLogin(response, clientName);
     }
 
     @PostMapping(value = "/auth/token/{clientName}/{code}")
-    public ResponseEntity<?> token(@PathVariable String clientName, @PathVariable String code) {
+    public ResponseEntity<?> doAuthCodeToken(@PathVariable String clientName
+            , @PathVariable String code) {
 //        OAuth2ClientProperties.Registration registration = this.oAuth2ClientProperties.getRegistration().get(clientName);
 //        OAuth2ClientProperties.Provider provider = this.oAuth2ClientProperties.getProvider().get(clientName);
 ////        response_type=code&client_id=react-backend-client-01&scope=openid&redirect_uri=http://localhost:3000/redirect
@@ -91,7 +91,7 @@ public class AuthController extends com.siukatech.poc.react.backend.parent.web.c
 //        tokenReq.add("code", code);
 //        HttpEntity<?> httpEntity = new HttpEntity<>(tokenReq, httpHeaders);
 //
-//        logger.debug("token - clientName: [" + clientName
+//        logger.debug("doAuthCodeToken - clientName: [" + clientName
 //                + "], code: [" + code
 //                + "], tokenReq: [" + tokenReq
 //                + "], httpHeaders: [" + httpHeaders
@@ -99,20 +99,32 @@ public class AuthController extends com.siukatech.poc.react.backend.parent.web.c
 //                + "], oauth2ClientRestTemplate.getMessageConverters.size: [" + oauth2ClientRestTemplate.getMessageConverters().size()
 //                + "]");
 //        oauth2ClientRestTemplate.getMessageConverters().stream().forEach(httpMessageConverter -> {
-//            logger.debug("token - httpMessageConverter.getClass.getName: [" + httpMessageConverter.getClass().getName() + "]");
+//            logger.debug("doAuthCodeToken - httpMessageConverter.getClass.getName: [" + httpMessageConverter.getClass().getName() + "]");
 //        });
 //
 //        ResponseEntity<TokenRes> responseEntity = oauth2ClientRestTemplate.exchange(tokenUrl
 //                , HttpMethod.POST, httpEntity, TokenRes.class);
 //
-//        logger.debug("token - clientName: [" + clientName
+//        logger.debug("doAuthCodeToken - clientName: [" + clientName
 //                + "], code: [" + code
 //                + "], tokenReq: [" + tokenReq
 //                + "], responseEntity: [" + responseEntity
 //                + "]");
 //
 //        return ResponseEntity.ok(responseEntity.getBody());
-        return super.token(clientName, code);
+        return super.doAuthCodeToken(clientName, code);
+    }
+
+    @PostMapping(value = "/auth/login/{clientName}")
+    public ResponseEntity<?> doPasswordLogin(@PathVariable String clientName
+            , @RequestBody LoginForm loginForm) {
+        return super.doPasswordLogin(clientName, loginForm);
+    }
+
+    @PostMapping(value = "/auth/refresh-token/{clientName}")
+    public ResponseEntity<?> doAuthTokenRefresh(@PathVariable String clientName
+            , @RequestBody RefreshTokenForm refreshTokenForm) {
+        return super.doAuthTokenRefresh(clientName, refreshTokenForm);
     }
 
 }

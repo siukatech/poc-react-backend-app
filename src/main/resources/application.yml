@@ -28,6 +28,7 @@ spring:
     continue-on-error: true
 
 # properties for react-backend-parent
+# scope: openid is required to keycloak
   security:
     oauth2:
       client:
@@ -36,7 +37,7 @@ spring:
             client-id: ${client-id}
             client-secret: ${client-secret}
             authorization-grant-type: authorization_code
-            scope: openid
+            scope: openid,profile,email
             redirect-uri: ${oauth2-client-redirect-uri}
 
         provider:
