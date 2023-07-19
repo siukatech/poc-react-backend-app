@@ -90,11 +90,11 @@ The [redirect-uri] most likely is the frontend url, e.g. https://frontend/redire
   - config: Application configuration
   - data: ms-project specific data layer
   - web
-    - controller: Web controller
+    - controller
       - encrypted
         - EncryptedItemController: expose protected api to encrypt
       - extended
-        - AuthController: 
+        - AuthController: Handle OAuth2 flows
         - MyController: Expose the `my-key-info` api for decryption when calling `/encrypted` api
       - I18nController: i18n data
     - model: Form models and request models
