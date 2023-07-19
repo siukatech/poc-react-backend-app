@@ -31,34 +31,34 @@ public class UserController extends com.siukatech.poc.react.backend.parent.web.c
 
 ////    @PostMapping("/users/my/public-key")
 ////    public ResponseEntity<?> getMyPublicKey(Authentication authentication) {
-////        String userId = authentication.getName();
-////        final String finalUserId = userId;
-////        UserEntity userEntity = userRepository.findByUserId(userId)
-////                .orElseThrow(() -> new EntityNotFoundException("No such user [" + finalUserId + "]"));
+////        String loginId = authentication.getName();
+////        final String finalLoginId = loginId;
+////        UserEntity userEntity = userRepository.findByLoginId(loginId)
+////                .orElseThrow(() -> new EntityNotFoundException("No such user [" + finalLoginId + "]"));
 ////        ;
 ////        String publicKeyBase64 = userEntity.getPublicKey();
 ////        return ResponseEntity.ok(publicKeyBase64);
 ////    }
-//    @PostMapping("/users/{targetUserId}/public-key")
-//    public ResponseEntity<?> getPublicKey(@PathVariable String targetUserId) {
-//        return super.getPublicKey(targetUserId);
+//    @PostMapping("/users/{targetLoginId}/public-key")
+//    public ResponseEntity<?> getPublicKey(@PathVariable String targetLoginId) {
+//        return super.getPublicKey(targetLoginId);
 //    }
 
 
-//    @PostMapping("/users/{userId}")
+//    @PostMapping("/users/{loginId}")
 //    public ResponseEntity<?> getPublicKey(Authentication authentication
-//            , @PathVariable(name = "userId") String reqUserId) {
-//        String userId = authentication.getName();
-//        final String finalUserId = userId;
-//        UserEntity userEntity = userRepository.findByUserId(userId)
-//                .orElseThrow(() -> new EntityNotFoundException("No such user [" + finalUserId + "]"));
+//            , @PathVariable(name = "loginId") String reqLoginId) {
+//        String loginId = authentication.getName();
+//        final String finalLoginId = loginId;
+//        UserEntity userEntity = userRepository.findByLoginId(loginId)
+//                .orElseThrow(() -> new EntityNotFoundException("No such user [" + finalLoginId + "]"));
 //        ;
 //        String publicKeyBase64 = userEntity.getPublicKey();
 //        return ResponseEntity.ok(publicKeyBase64);
 //    }
-    @PostMapping("/users/{targetUserId}/user-info")
-    public ResponseEntity<?> getUserInfo(@PathVariable(name = "targetUserId") String reqUserId) {
-        return super.getUserInfo(reqUserId);
+    @PostMapping("/users/{targetLoginId}/user-info")
+    public ResponseEntity<?> getUserInfo(@PathVariable(name = "targetLoginId") String reqLoginId) {
+        return super.getUserInfo(reqLoginId);
     }
 
 }
