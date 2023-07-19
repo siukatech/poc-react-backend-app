@@ -5,6 +5,7 @@ import com.siukatech.poc.react.backend.parent.web.annotation.v1.PublicApiV1Contr
 import com.siukatech.poc.react.backend.parent.web.model.auth.LoginForm;
 import com.siukatech.poc.react.backend.parent.web.model.auth.RefreshTokenForm;
 import com.siukatech.poc.react.backend.parent.web.model.auth.TokenRes;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -14,6 +15,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.client.RestTemplate;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 @PublicApiV1Controller
@@ -26,20 +33,22 @@ public class AuthController extends com.siukatech.poc.react.backend.parent.web.c
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 //    private final OAuth2ClientProperties oAuth2ClientProperties;
-//    private final RestTemplate oauth2ClientRestTemplate;
+    private final RestTemplate oauth2ClientRestTemplate;
 //    private final ObjectMapper objectMapper;
 
     public AuthController(
 //            OAuth2ClientProperties oAuth2ClientProperties
-//            , RestTemplate oauth2ClientRestTemplate
+//            ,
+            RestTemplate oauth2ClientRestTemplate
+            ,
 //            , ObjectMapper objectMapper
             AuthService authService
     ) {
+        super(authService);
 //        super(oAuth2ClientProperties, oauth2ClientRestTemplate, objectMapper);
 ////        this.oAuth2ClientProperties = oAuth2ClientProperties;
-////        this.oauth2ClientRestTemplate = oauth2ClientRestTemplate;
+        this.oauth2ClientRestTemplate = oauth2ClientRestTemplate;
 ////        this.objectMapper = objectMapper;
-        super(authService);
     }
 
 
@@ -127,4 +136,40 @@ public class AuthController extends com.siukatech.poc.react.backend.parent.web.c
         return super.doAuthTokenRefresh(clientName, refreshTokenForm);
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity<?> doAuthLogout(HttpServletRequest request) throws URISyntaxException {
+//        try {
+//            String requestURL = request.getRequestURL().toString();
+//            String requestURI = request.getRequestURI();
+//            String hostName = requestURL.substring(0, requestURL.lastIndexOf(requestURI));
+//            String logoutApi = hostName + "/logout";
+//            logger.debug("doAuthLogout - logoutApi: [{}]"
+//                            + ", request.getLocalName: [{}]"
+//                            + ", request.getLocalPort: [{}]"
+//                            + ", request.getServerName: [{}]"
+//                            + ", request.getServerPort: [{}]"
+//                            + ", request.getPathInfo: [{}]"
+//                            + ", request.getRequestURI: [{}]"
+//                            + ", request.getProtocol: [{}]"
+//                            + ", request.getRequestURL: [{}]"
+//                    , logoutApi
+//                    , request.getLocalName()
+//                    , request.getLocalPort()
+//                    , request.getServerName()
+//                    , request.getServerPort()
+//                    , request.getPathInfo()
+//                    , request.getRequestURI()
+//                    , request.getProtocol()
+//                    , request.getRequestURL().toString()
+//            );
+//            Map map = this.oauth2ClientRestTemplate.postForObject(new URI(logoutApi), null, HashMap.class);
+//
+//        }
+//        catch (Exception e) {
+//            logger.error("doAuthLogout", e);
+//        }
+//
+//        return ResponseEntity.ok("OK");
+        return super.doAuthLogout(request);
+    }
 }
