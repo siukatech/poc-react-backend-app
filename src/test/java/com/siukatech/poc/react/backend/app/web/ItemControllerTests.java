@@ -38,7 +38,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(controllers = {ItemController.class})
 @AutoConfigureMockMvc(addFilters = false)
-public class ItemControllerUnitTests extends AbstractUnitTests {
+public class ItemControllerTests extends AbstractUnitTests {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 

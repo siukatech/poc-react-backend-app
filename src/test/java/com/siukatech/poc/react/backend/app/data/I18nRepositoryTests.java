@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 //        , "logging.level.org.springframework.data: TRACE"
 //})
 ////@ComponentScan(basePackages = {"com.siukatech.poc.react.backend.app.data.entity"})
-public class I18nRepositoryUnitTests extends AbstractJpaTests {
+public class I18nRepositoryTests extends AbstractJpaTests {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 

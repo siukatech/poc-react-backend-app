@@ -18,7 +18,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-public class ItemRepositoryUnitTests extends AbstractJpaTests {
+public class ItemRepositoryTests extends AbstractJpaTests {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 

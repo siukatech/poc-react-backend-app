@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class I18nServiceUnitTests extends AbstractUnitTests {
+public class I18nServiceTests extends AbstractUnitTests {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 

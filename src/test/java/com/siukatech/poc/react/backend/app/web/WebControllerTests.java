@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(controllers = WebController.class)
 @AutoConfigureMockMvc(addFilters = false)
-public class WebControllerUnitTests extends AbstractUnitTests {
+public class WebControllerTests extends AbstractUnitTests {
     @Autowired
     private MockMvc mockMvc;
 

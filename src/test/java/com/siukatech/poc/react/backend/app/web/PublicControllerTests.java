@@ -1,8 +1,8 @@
 package com.siukatech.poc.react.backend.app.web;
 
 import com.siukatech.poc.react.backend.app.AbstractUnitTests;
-import com.siukatech.poc.react.backend.app.web.controller.ProtectedController;
-import com.siukatech.poc.react.backend.parent.web.annotation.v1.ProtectedApiV1Controller;
+import com.siukatech.poc.react.backend.app.web.controller.PublicController;
+import com.siukatech.poc.react.backend.parent.web.annotation.v1.PublicApiV1Controller;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -19,9 +19,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(controllers = ProtectedController.class)
+@WebMvcTest(controllers = PublicController.class)
 @AutoConfigureMockMvc(addFilters = false)
-public class ProtectedControllerUnitTests extends AbstractUnitTests {
+public class PublicControllerTests extends AbstractUnitTests {
     @Autowired
     private MockMvc mockMvc;
 
@@ -31,7 +31,7 @@ public class ProtectedControllerUnitTests extends AbstractUnitTests {
 
         // when
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get(ProtectedApiV1Controller.REQUEST_MAPPING_URI_PREFIX
+                .get(PublicApiV1Controller.REQUEST_MAPPING_URI_PREFIX
                         + "/test/{test}", "Hello :)")
                 .with(csrf())
                 .accept(MediaType.APPLICATION_JSON)
