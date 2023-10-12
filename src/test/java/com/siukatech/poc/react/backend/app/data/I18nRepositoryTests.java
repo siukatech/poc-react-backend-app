@@ -33,7 +33,7 @@ public class I18nRepositoryTests extends AbstractJpaTests {
     private I18nEntity prepareI18nEntity_basic() {
         I18nEntity i18nEntity = new I18nEntity();
         i18nEntity.setId(1L);
-        i18nEntity.setCode("testing.title");
+        i18nEntity.setMessageKey("testing.title");
         i18nEntity.setMessageEn("Testing title En");
         i18nEntity.setMessageZh("Testing title Zh");
         i18nEntity.setMessageCn("Testing title Cn");
@@ -64,7 +64,7 @@ public class I18nRepositoryTests extends AbstractJpaTests {
     public void findAll_basic() {
         List<I18nEntity> i18nEntityList = i18nRepository.findAll();
         assertThat(i18nEntityList).filteredOn(i18nEntity -> {
-            return i18nEntity.getCode().equals("testing.title");
+            return i18nEntity.getMessageKey().equals("testing.title");
         });
     }
 

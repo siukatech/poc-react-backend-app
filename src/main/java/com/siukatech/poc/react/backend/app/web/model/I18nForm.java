@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper=false)
 public class I18nForm extends AbstractForm {
     protected Long id;
-    protected String code;
+    protected String messageKey;
     protected String messageEn;
     protected String messageZh;
     protected String messageCn;

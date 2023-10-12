@@ -60,8 +60,8 @@ public class I18nController {
 //        Locale locale = Locale.forLanguageTag(langTag);
 //        logger.debug("listI18ns - langTag: [" + langTag + "], locale: [" + locale + "]");
 //        //List<I18nDto> i18nDtoList = i18nEntityList.stream().map(i18nEntity -> modelMapper.map(i18nEntity, I18nDto.class)).collect(Collectors.toList());
-//        //Map<String, List<String>> i18nMapList = i18nEntityList.stream().collect(Collectors.groupingBy(I18nEntity::getCode, Collectors.mapping(I18nEntity::getMessageEn, Collectors.toList())));
-//        Map<String, String> i18nMap = i18nEntityList.stream().collect(Collectors.toMap(i18nEntity -> i18nEntity.getCode()
+//        //Map<String, List<String>> i18nMapList = i18nEntityList.stream().collect(Collectors.groupingBy(I18nEntity::getMessageKey, Collectors.mapping(I18nEntity::getMessageEn, Collectors.toList())));
+//        Map<String, String> i18nMap = i18nEntityList.stream().collect(Collectors.toMap(i18nEntity -> i18nEntity.getMessageKey()
 //                , i18nEntity -> {
 //                    if (Locale.TRADITIONAL_CHINESE.equals(locale))
 //                        return i18nEntity.getMessageZh();

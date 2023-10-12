@@ -27,7 +27,22 @@ public class ItemService {
 
     public List<ItemDto> findItemAll() {
         List<ItemEntity> itemEntityList = this.itemRepository.findAll();
-        List<ItemDto> itemDtoList = itemEntityList.stream().map(itemEntity -> this.modelMapper.map(itemEntity, ItemDto.class)).collect(Collectors.toList());
+        List<ItemDto> itemDtoList = itemEntityList.stream().map(itemEntity -> this.modelMapper.map(itemEntity, ItemDto.class))
+//                .sorted((a1, a2) -> a1.getLastModifiedDatetime().isAfter(a2.getLastModifiedDatetime()) ? 1 : -1) // ascending order
+                .sorted((a1, a2) -> a1.getLastModifiedDatetime().isAfter(a2.getLastModifiedDatetime()) ? -1 : 1) // descending order
+                .collect(Collectors.toList());
+        return itemDtoList;
+    }
+
+    public List<ItemDto> findItemAllByUserId(Long userId) {
+        List<ItemEntity> itemEntityList = this.itemRepository
+//                .findAllByUserIdOrderByLastModifiedDatetimeDesc(userId)
+                .findAll()
+                ;
+        List<ItemDto> itemDtoList = itemEntityList.stream().map(itemEntity -> this.modelMapper.map(itemEntity, ItemDto.class))
+//                .sorted((a1, a2) -> a1.getLastModifiedDatetime().isAfter(a2.getLastModifiedDatetime()) ? 1 : -1) // ascending order
+                .sorted((a1, a2) -> a1.getLastModifiedDatetime().isAfter(a2.getLastModifiedDatetime()) ? -1 : 1) // descending order
+                .collect(Collectors.toList());
         return itemDtoList;
     }
 

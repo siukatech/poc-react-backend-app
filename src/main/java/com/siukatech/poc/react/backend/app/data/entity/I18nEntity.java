@@ -1,7 +1,6 @@
 package com.siukatech.poc.react.backend.app.data.entity;
 
 import com.siukatech.poc.react.backend.parent.data.entity.AbstractEntity;
-import com.siukatech.poc.react.backend.parent.data.listener.AbstractEntityToPersistListener;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,7 +14,7 @@ public class I18nEntity extends AbstractEntity {
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    private Long id;
     @Column
-    private String code;
+    private String messageKey;
     @Column
     private String messageEn;
     @Column

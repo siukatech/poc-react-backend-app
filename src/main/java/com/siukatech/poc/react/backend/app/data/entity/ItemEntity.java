@@ -21,4 +21,6 @@ public class ItemEntity extends AbstractEntity {
     protected String name;
     @Column(name = "purchased_date")
     protected LocalDate purchasedDate;
+    @Column(name = "user_id")
+    protected Long userId;
 }

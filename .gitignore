@@ -70,3 +70,6 @@ generated.proto/
 ### Mac ###
 .DS_Store
 
+### Project ###
+start*.sh
+

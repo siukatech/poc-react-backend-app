@@ -96,7 +96,7 @@ public class I18nControllerTests extends AbstractUnitTests {
     public void setup(TestInfo testInfo) {
 //        I18nEntity i18nEntity = new I18nEntity();
 //        i18nEntity.setId(1L);
-//        i18nEntity.setCode("testing.title");
+//        i18nEntity.setMessageKey("testing.title");
 //        i18nEntity.setMessageEn("Testing title En");
 //        i18nEntity.setMessageZh("Testing title Zh");
 //        i18nEntity.setMessageCn("Testing title Cn");
@@ -116,7 +116,7 @@ public class I18nControllerTests extends AbstractUnitTests {
     public void teardown(TestInfo testInfo) {
 //        I18nEntity i18nEntity = new I18nEntity();
 //        i18nEntity.setId(1L);
-//        i18nEntity.setCode("testing.title");
+//        i18nEntity.setMessageKey("testing.title");
 //        i18nEntity.setMessageEn("Testing title En");
 //        i18nEntity.setMessageZh("Testing title Zh");
 //        i18nEntity.setMessageCn("Testing title Cn");
@@ -159,7 +159,7 @@ public class I18nControllerTests extends AbstractUnitTests {
     private I18nForm prepareI18nForm() {
         I18nForm i18nForm = new I18nForm();
         i18nForm.setId(2L);
-        i18nForm.setCode("testing.title.2");
+        i18nForm.setMessageKey("testing.title.2");
         i18nForm.setMessageEn("Testing");
         i18nForm.setMessageEn("Testing title En");
         i18nForm.setMessageZh("Testing title Zh");
@@ -170,7 +170,7 @@ public class I18nControllerTests extends AbstractUnitTests {
     private I18nDto convertToI18nDto(I18nForm i18nForm, String langTag) {
 //        ModelMapper mapper = new ModelMapper();
         I18nDto i18nDto = new I18nDto();
-        i18nDto.setCode(i18nForm.getCode());
+        i18nDto.setKey(i18nForm.getMessageKey());
         switch (langTag) {
             case "zh-TW":
                 i18nDto.setMessage(i18nForm.getMessageZh());
