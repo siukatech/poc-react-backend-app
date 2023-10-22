@@ -2,12 +2,11 @@ package com.siukatech.poc.react.backend.app.config;
 
 import com.siukatech.poc.react.backend.app.data.entity.I18nEntity;
 import com.siukatech.poc.react.backend.app.data.entity.ItemEntity;
+import com.siukatech.poc.react.backend.app.data.entity.MerchantEntity;
 import com.siukatech.poc.react.backend.app.web.model.I18nForm;
 import com.siukatech.poc.react.backend.app.web.model.ItemForm;
+import com.siukatech.poc.react.backend.app.web.model.MerchantForm;
 import com.siukatech.poc.react.backend.parent.EnableReactBackendParent;
-import com.siukatech.poc.react.backend.parent.global.GlobalConfigImport;
-import com.siukatech.poc.react.backend.parent.security.SecurityConfigImport;
-import com.siukatech.poc.react.backend.parent.web.WebConfigImport;
 import jakarta.annotation.PostConstruct;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
@@ -15,7 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 
 @Configuration
 //@Import({
@@ -128,6 +126,11 @@ public class AppConfig {
         } catch (Exception e) {
             logger.error("configModelMapper - e.getMessage: [" + e.getMessage() + "]", e);
         }
+        this.modelMapper.addMappings(new PropertyMap<MerchantForm, MerchantEntity>() {
+            protected void configure() {
+                skip().setId(null);
+            }
+        });
 
     }
 

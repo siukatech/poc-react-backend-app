@@ -7,14 +7,13 @@ import java.time.LocalDateTime;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class NotiDto {
-
-    private String subject;
-    private String message;
+public class MerchantDto {
+    private Long id;
+    private String mid;
+    private String name;
+    private String website;
+    private String description;
     private String status;
-    private String relType;
-    private Long relId;
-    private Long userId;
     private String createdBy;
     private LocalDateTime createdDatetime;
     private String lastModifiedBy;
