@@ -83,6 +83,18 @@ The [redirect-uri] most likely is the frontend url, e.g. https://frontend/redire
 
 
 
+## bootJar / build
+### Exclude files in bootJar
+Add `bootJar` section in `build.gradle` and specify `exclude` file list.  
+```groovy
+// '*' or '**' can be used as wildcard
+bootJar {
+  exclude('application*.properties', 'application*.yml')
+}
+```
+
+
+
 # Design
 ## Package
 - main/java

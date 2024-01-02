@@ -22,6 +22,10 @@ repositories {
 	}
 }
 
+bootJar {
+//	exclude('application-a*','x.yml')
+	exclude('application*.properties', 'application*.yml')
+}
 
 dependencies {
 	implementation 'com.siukatech.poc:react-backend-parent:0.0.1-SNAPSHOT'
