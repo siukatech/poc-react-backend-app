@@ -1,8 +1,10 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.1.0'
-	id 'io.spring.dependency-management' version '1.1.0'
+//	id 'org.springframework.boot' version '3.1.0'
+//	id 'io.spring.dependency-management' version '1.1.0'
+	id 'org.springframework.boot' version '3.2.1'
 }
+apply plugin: 'io.spring.dependency-management'
 
 group = 'com.siukatech.poc'
 version = '0.0.1-SNAPSHOT'
@@ -46,6 +48,14 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	testImplementation 'com.h2database:h2:2.1.214'
+}
+
+// after upgrade to springboot >= 3.2.1
+// this can be fixed by update build.gradle or adding maven plugin
+// https://stackoverflow.com/a/77691302
+// https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-6.x#parameter-name-retention
+tasks.withType(JavaCompile).configureEach {
+	options.compilerArgs.add("-parameters")
 }
 
 tasks.named('test') {
