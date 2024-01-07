@@ -67,9 +67,9 @@ public class AttachmentHelper extends AbstractHelper {
         return attachmentForm;
     }
 
-    public AttachmentDto convertToAttachmentDto(AttachmentForm attachmentForm) {
+    public AttachmentDto convertToAttachmentDto(AttachmentEntity attachmentEntity) {
         ModelMapper mapper = new ModelMapper();
-        AttachmentDto attachmentDto = mapper.map(attachmentForm, AttachmentDto.class);
+        AttachmentDto attachmentDto = mapper.map(attachmentEntity, AttachmentDto.class);
         return attachmentDto;
     }
 

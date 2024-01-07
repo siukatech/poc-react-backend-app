@@ -7,6 +7,7 @@ import com.siukatech.poc.react.backend.app.AbstractWebTests;
 import com.siukatech.poc.react.backend.app.business.dto.AttachmentDto;
 import com.siukatech.poc.react.backend.app.business.form.AttachmentForm;
 import com.siukatech.poc.react.backend.app.business.service.AttachmentService;
+import com.siukatech.poc.react.backend.app.data.entity.AttachmentEntity;
 import com.siukatech.poc.react.backend.app.global.helper.AttachmentHelper;
 import com.siukatech.poc.react.backend.app.web.controller.AttachmentController;
 import com.siukatech.poc.react.backend.parent.security.authentication.MyAuthenticationToken;
@@ -94,7 +95,7 @@ public class AttachmentControllerTests extends AbstractWebTests {
     public void listAttachments_basic() throws Exception {
         // given
         AttachmentDto attachmentDto = this.attachmentHelper.convertToAttachmentDto(
-                this.attachmentHelper.prepareAttachmentForm_basic());
+                this.attachmentHelper.prepareAttachmentEntity_basic());
         when(attachmentService.findAttachmentAllByUserId(anyLong())).thenReturn(List.of(attachmentDto));
 
         // when
@@ -118,14 +119,14 @@ public class AttachmentControllerTests extends AbstractWebTests {
     public void getAttachmentById_basic() throws Exception {
         // given
 
-        AttachmentForm attachmentForm = this.attachmentHelper.prepareAttachmentForm_basic();
-        AttachmentDto attachmentDto = this.attachmentHelper.convertToAttachmentDto(attachmentForm);
+        AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic();
+        AttachmentDto attachmentDto = this.attachmentHelper.convertToAttachmentDto(attachmentEntity);
         when(this.attachmentService.findAttachmentById(any(UUID.class))).thenReturn(attachmentDto);
 
         // when
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .get(ProtectedApiV1Controller.REQUEST_MAPPING_URI_PREFIX
-                        + "/attachments/{id}", attachmentForm.getId())
+                        + "/attachments/{id}", attachmentEntity.getId())
                 .with(authentication(prepareMyAuthenticationToken_basic()))
                 .with(csrf())
                 .accept(MediaType.APPLICATION_JSON);
@@ -142,7 +143,8 @@ public class AttachmentControllerTests extends AbstractWebTests {
     public void uploadAttachment_basic() throws Exception {
         // given
         AttachmentForm attachmentForm = this.attachmentHelper.prepareAttachmentForm_basic();
-        AttachmentDto attachmentDto = this.attachmentHelper.convertToAttachmentDto(attachmentForm);
+        AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic();
+        AttachmentDto attachmentDto = this.attachmentHelper.convertToAttachmentDto(attachmentEntity);
         Map<String, String> attachmentDtoFieldMap = this.objectMapper.convertValue(
                 attachmentDto, new TypeReference<Map<String, String>>() {
                 });
