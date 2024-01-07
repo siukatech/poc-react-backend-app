@@ -16,6 +16,7 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -48,9 +49,10 @@ public class I18nServiceTests extends AbstractUnitTests {
         i18nEntity.setId(1L);
         i18nEntity.setMessageKey("testing.title");
         i18nEntity.setMessageEn("Testing title En");
-        i18nEntity.setMessageZh("Testing title Zh");
-        i18nEntity.setMessageCn("Testing title Cn");
+        i18nEntity.setMessageTc("Testing title Tc");
+        i18nEntity.setMessageSc("Testing title Sc");
         i18nEntity.setVersionNo(1L);
+        i18nEntity.setLastModifiedDatetime(LocalDateTime.now());
         when(this.i18nRepository.findAll()).thenReturn(List.of(i18nEntity));
 
         // when
@@ -63,13 +65,13 @@ public class I18nServiceTests extends AbstractUnitTests {
         assertThat(i18nMapZh).containsKey("testing.title");
         assertThat(i18nMapCn).containsKey("testing.title");
         assertThat(i18nMapEn.get("testing.title")).contains(" En");
-        assertThat(i18nMapZh.get("testing.title")).contains(" Zh");
-        assertThat(i18nMapCn.get("testing.title")).contains(" Cn");
+        assertThat(i18nMapZh.get("testing.title")).contains(" Tc");
+        assertThat(i18nMapCn.get("testing.title")).contains(" Sc");
         assertThat(i18nMapEn).containsValue("Testing title En");
-        assertThat(i18nMapZh).containsValue("Testing title Zh");
-        assertThat(i18nMapCn).containsValue("Testing title Cn");
+        assertThat(i18nMapZh).containsValue("Testing title Tc");
+        assertThat(i18nMapCn).containsValue("Testing title Sc");
 //        assertThat(i18nMapCn).doesNotContainValue(" En");
-//        assertThat(i18nMapCn).doesNotContainValue(" Zh");
+//        assertThat(i18nMapCn).doesNotContainValue(" Tc");
     }
 
 }

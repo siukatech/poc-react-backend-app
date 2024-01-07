@@ -18,7 +18,7 @@ public class I18nEntity extends AbstractEntity {
     @Column
     private String messageEn;
     @Column
-    private String messageZh;
+    private String messageTc;
     @Column
-    private String messageCn;
+    private String messageSc;
 }

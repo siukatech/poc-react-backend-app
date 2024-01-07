@@ -35,8 +35,8 @@ public class I18nRepositoryTests extends AbstractJpaTests {
         i18nEntity.setId(1L);
         i18nEntity.setMessageKey("testing.title");
         i18nEntity.setMessageEn("Testing title En");
-        i18nEntity.setMessageZh("Testing title Zh");
-        i18nEntity.setMessageCn("Testing title Cn");
+        i18nEntity.setMessageTc("Testing title Tc");
+        i18nEntity.setMessageSc("Testing title Sc");
         i18nEntity.setVersionNo(1L);
         return i18nEntity;
     }

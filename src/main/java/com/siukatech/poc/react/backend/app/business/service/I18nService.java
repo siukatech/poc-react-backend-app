@@ -27,8 +27,26 @@ public class I18nService {
         this.i18nRepository = i18nRepository;
     }
 
+    public Map<String, Map<String, String>> findI18nMap() {
+        List<I18nEntity> i18nEntityList = this.i18nRepository.findAll();
+        Map<String, String> i18nMapEn = findI18nMap(i18nEntityList, Locale.ENGLISH.toLanguageTag());
+        Map<String, String> i18nMapTc = findI18nMap(i18nEntityList, Locale.TRADITIONAL_CHINESE.toLanguageTag());
+        Map<String, String> i18nMapSc = findI18nMap(i18nEntityList, Locale.SIMPLIFIED_CHINESE.toLanguageTag());
+        Map<String, Map<String, String>> i18nMap = Map.of(
+                Locale.ENGLISH.toLanguageTag(), i18nMapEn
+                , Locale.TRADITIONAL_CHINESE.toLanguageTag(), i18nMapTc
+                , Locale.SIMPLIFIED_CHINESE.toLanguageTag(), i18nMapSc
+        );
+        return i18nMap;
+    }
+
     public Map<String, String> findI18nMap(String langTag) {
         List<I18nEntity> i18nEntityList = this.i18nRepository.findAll();
+        Map<String, String> i18nMap = findI18nMap(i18nEntityList, langTag);
+        return i18nMap;
+    }
+
+    protected Map<String, String> findI18nMap(List<I18nEntity> i18nEntityList, String langTag) {
         Locale locale = Locale.forLanguageTag(langTag);
         logger.debug("findI18nMap - langTag: [" + langTag + "], locale: [" + locale + "]");
         //List<I18nDto> i18nDtoList = i18nEntityList.stream().map(i18nEntity -> modelMapper.map(i18nEntity, I18nDto.class)).collect(Collectors.toList());
@@ -36,9 +54,9 @@ public class I18nService {
         Map<String, String> i18nMap = i18nEntityList.stream().collect(Collectors.toMap(i18nEntity -> i18nEntity.getMessageKey()
                 , i18nEntity -> {
                     if (Locale.TRADITIONAL_CHINESE.equals(locale))
-                        return i18nEntity.getMessageZh();
+                        return i18nEntity.getMessageTc();
                     else if (Locale.SIMPLIFIED_CHINESE.equals(locale))
-                        return i18nEntity.getMessageCn();
+                        return i18nEntity.getMessageSc();
                     else
                         return i18nEntity.getMessageEn();
                 }

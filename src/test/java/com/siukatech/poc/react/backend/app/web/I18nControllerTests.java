@@ -98,8 +98,8 @@ public class I18nControllerTests extends AbstractUnitTests {
 //        i18nEntity.setId(1L);
 //        i18nEntity.setMessageKey("testing.title");
 //        i18nEntity.setMessageEn("Testing title En");
-//        i18nEntity.setMessageZh("Testing title Zh");
-//        i18nEntity.setMessageCn("Testing title Cn");
+//        i18nEntity.setMessageZh("Testing title Tc");
+//        i18nEntity.setMessageCn("Testing title Sc");
 //        i18nEntity.setVersionNo(1L);
 //        this.i18nRepository.save(i18nEntity);
         //
@@ -118,10 +118,75 @@ public class I18nControllerTests extends AbstractUnitTests {
 //        i18nEntity.setId(1L);
 //        i18nEntity.setMessageKey("testing.title");
 //        i18nEntity.setMessageEn("Testing title En");
-//        i18nEntity.setMessageZh("Testing title Zh");
-//        i18nEntity.setMessageCn("Testing title Cn");
+//        i18nEntity.setMessageZh("Testing title Tc");
+//        i18nEntity.setMessageCn("Testing title Sc");
 //        i18nEntity.setVersionNo(1L);
 //        this.i18nRepository.delete(i18nEntity);
+    }
+
+    private I18nForm prepareI18nForm() {
+        I18nForm i18nForm = new I18nForm();
+        i18nForm.setId(2L);
+        i18nForm.setMessageKey("testing.title.2");
+        i18nForm.setMessageEn("Testing");
+        i18nForm.setMessageEn("Testing title En");
+        i18nForm.setMessageTc("Testing title Tc");
+        i18nForm.setMessageSc("Testing title Sc");
+        return i18nForm;
+    }
+
+    private I18nDto convertToI18nDto(I18nForm i18nForm, String langTag) {
+//        ModelMapper mapper = new ModelMapper();
+        I18nDto i18nDto = new I18nDto();
+        i18nDto.setKey(i18nForm.getMessageKey());
+        switch (langTag) {
+            case "zh-TW":
+                i18nDto.setMessage(i18nForm.getMessageTc());
+            case "zh-CN":
+                i18nDto.setMessage(i18nForm.getMessageSc());
+            default:
+                i18nDto.setMessage(i18nForm.getMessageEn());
+        }
+        return i18nDto;
+    }
+
+    @Test
+    public void listI18ns() throws Exception {
+        // given
+        Map<String, String> i18nMapEn = Map.of("testing.title", "Testing title En");
+        Map<String, String> i18nMapZh = Map.of("testing.title", "Testing title Tc");
+        Map<String, String> i18nMapCn = Map.of("testing.title", "Testing title Sc");
+        String langTagEn = Locale.ENGLISH.toLanguageTag();
+        String langTagZh = Locale.TRADITIONAL_CHINESE.toLanguageTag();
+        String langTagCn = Locale.SIMPLIFIED_CHINESE.toLanguageTag();
+        Map<String, Map<String, String>> i18nMap = Map.of(
+                langTagEn, i18nMapEn
+                , langTagZh, i18nMapZh
+                , langTagCn, i18nMapCn
+        );
+        when(i18nService.findI18nMap()).thenReturn(i18nMap);
+
+        // when
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+//                .request(HttpMethod.GET.name()
+//                        , new URI(PublicApiV1Controller.REQUEST_MAPPING_URI_PREFIX + "/i18n/en"))
+                .get(PublicApiV1Controller.REQUEST_MAPPING_URI_PREFIX
+                        + "/i18n")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .headers(httpHeaders)
+                .with(csrf())
+                .accept(MediaType.APPLICATION_JSON)
+                ;
+
+        // then
+        MvcResult mvcResult = this.mockMvc.perform(requestBuilder)
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString(" En")))
+                .andExpect(content().string(containsString(" Tc")))
+                .andExpect(content().string(containsString(" Sc")))
+                .andReturn();
+
     }
 
     @Test
@@ -154,32 +219,6 @@ public class I18nControllerTests extends AbstractUnitTests {
         // result
 //        logger.debug("listI18ns_en - mvcResult.getResponse.getContentAsString: [" + mvcResult.getResponse().getContentAsString() + "]");
 
-    }
-
-    private I18nForm prepareI18nForm() {
-        I18nForm i18nForm = new I18nForm();
-        i18nForm.setId(2L);
-        i18nForm.setMessageKey("testing.title.2");
-        i18nForm.setMessageEn("Testing");
-        i18nForm.setMessageEn("Testing title En");
-        i18nForm.setMessageZh("Testing title Zh");
-        i18nForm.setMessageCn("Testing title Cn");
-        return i18nForm;
-    }
-
-    private I18nDto convertToI18nDto(I18nForm i18nForm, String langTag) {
-//        ModelMapper mapper = new ModelMapper();
-        I18nDto i18nDto = new I18nDto();
-        i18nDto.setKey(i18nForm.getMessageKey());
-        switch (langTag) {
-            case "zh-TW":
-                i18nDto.setMessage(i18nForm.getMessageZh());
-            case "zh-CN":
-                i18nDto.setMessage(i18nForm.getMessageCn());
-            default:
-                i18nDto.setMessage(i18nForm.getMessageEn());
-        }
-        return i18nDto;
     }
 
     @Test
