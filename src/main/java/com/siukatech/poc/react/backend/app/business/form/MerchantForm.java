@@ -7,8 +7,8 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class MerchantForm extends AbstractForm {
-    protected Long id;
+public class MerchantForm extends AbstractForm<Long> {
+
     @NotNull
     protected String mid;
     @NotNull

@@ -9,8 +9,7 @@ import java.time.LocalDate;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class ItemForm extends AbstractForm {
-    protected Long id;
+public class ItemForm extends AbstractForm<Long> {
 
     @NotNull
     protected String name;

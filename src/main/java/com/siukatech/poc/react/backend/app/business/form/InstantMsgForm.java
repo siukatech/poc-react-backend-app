@@ -7,8 +7,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class InstantMsgForm extends AbstractForm {
-    protected Long id;
+public class InstantMsgForm extends AbstractForm<Long> {
 
     @NotNull
     protected String subject;

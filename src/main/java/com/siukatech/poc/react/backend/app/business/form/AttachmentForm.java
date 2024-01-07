@@ -14,9 +14,7 @@ import java.util.UUID;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class AttachmentForm extends AbstractForm {
-
-    protected UUID id;
+public class AttachmentForm extends AbstractForm<UUID> {
 
     @NotNull
     private MultipartFile multipartFile;

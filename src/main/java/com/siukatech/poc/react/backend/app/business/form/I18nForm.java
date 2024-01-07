@@ -6,8 +6,8 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class I18nForm extends AbstractForm {
-    protected Long id;
+public class I18nForm extends AbstractForm<Long> {
+
     protected String messageKey;
     protected String messageEn;
     protected String messageTc;
