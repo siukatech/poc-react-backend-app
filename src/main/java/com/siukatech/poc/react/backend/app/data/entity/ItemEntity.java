@@ -13,10 +13,11 @@ import java.time.LocalDate;
 @Getter
 @Entity(name = "items")
 //@AttributeOverride(name = "id", column = @Column(name = "id"))
-public class ItemEntity extends AbstractEntity {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
+public class ItemEntity extends AbstractEntity<Long> {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column
     protected String name;
     @Column(name = "purchased_date")

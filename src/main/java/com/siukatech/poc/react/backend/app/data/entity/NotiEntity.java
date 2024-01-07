@@ -1,8 +1,7 @@
 package com.siukatech.poc.react.backend.app.data.entity;
 
 import com.siukatech.poc.react.backend.parent.data.entity.AbstractEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -10,7 +9,11 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @Entity(name = "notis")
-public class NotiEntity extends AbstractEntity {
+public class NotiEntity extends AbstractEntity<Long> {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column
     private String subject;

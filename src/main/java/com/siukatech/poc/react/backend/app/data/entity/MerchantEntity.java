@@ -1,15 +1,19 @@
 package com.siukatech.poc.react.backend.app.data.entity;
 
 import com.siukatech.poc.react.backend.parent.data.entity.AbstractEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
 @Entity(name = "merchants")
-public class MerchantEntity extends AbstractEntity {
+public class MerchantEntity extends AbstractEntity<Long> {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column
     private String mid;
     @Column
