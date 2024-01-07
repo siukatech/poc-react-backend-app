@@ -5,6 +5,7 @@ import com.siukatech.poc.react.backend.app.data.entity.MerchantEntity;
 import com.siukatech.poc.react.backend.app.data.repository.MerchantRepository;
 import com.siukatech.poc.react.backend.app.business.form.MerchantForm;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,10 +14,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class MerchantService {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final ModelMapper modelMapper;
     private final MerchantRepository merchantRepository;
 
@@ -51,7 +52,7 @@ public class MerchantService {
     public MerchantDto createMerchant(MerchantForm merchantForm) {
         // This converts MerchantForm to blank new MerchantEntity
         MerchantEntity merchantReq = this.modelMapper.map(merchantForm, MerchantEntity.class);
-        logger.debug("createMerchant - before save - merchantForm.getId: [" + merchantForm.getId()
+        log.debug("createMerchant - before save - merchantForm.getId: [" + merchantForm.getId()
                 + "], merchantForm: [" + merchantForm
                 + "], merchantReq.getId: [" + merchantReq.getId()
                 + "], merchantReq: [" + merchantReq
@@ -60,7 +61,7 @@ public class MerchantService {
         Long createdMerchantId = merchantReq.getId();
         MerchantDto merchantDto = this.findMerchantById(createdMerchantId);
         //
-        logger.debug("createMerchant - after save - createdMerchantId: [" + createdMerchantId
+        log.debug("createMerchant - after save - createdMerchantId: [" + createdMerchantId
                 + "], merchantForm.getId: [" + merchantForm.getId()
                 + "], merchantForm: [" + merchantForm
                 + "], merchantReq.getId: [" + merchantReq.getId()
@@ -82,7 +83,7 @@ public class MerchantService {
         // This maps merchantForm's values to merchantReq
         this.modelMapper.map(merchantForm, merchantReq);
         //
-        logger.debug("updateMerchant - before save - merchantEntity.getId: [" + merchantEntity.getId()
+        log.debug("updateMerchant - before save - merchantEntity.getId: [" + merchantEntity.getId()
                 + "], merchantEntity: [" + merchantEntity
                 + "], merchantReq.getId: [" + merchantReq.getId()
                 + "], merchantReq: [" + merchantReq
@@ -91,7 +92,7 @@ public class MerchantService {
         Long updatedMerchantId = merchantReq.getId();
         MerchantDto merchantDto = this.findMerchantById(updatedMerchantId);
         //
-        logger.debug("updateMerchant - after save - updatedMerchantId: [" + updatedMerchantId
+        log.debug("updateMerchant - after save - updatedMerchantId: [" + updatedMerchantId
                 + "], merchantForm.getId: [" + merchantForm.getId()
                 + "], merchantForm: [" + merchantForm
                 + "], merchantReq.getId: [" + merchantReq.getId()

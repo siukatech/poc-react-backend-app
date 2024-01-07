@@ -21,7 +21,6 @@ import java.util.Map;
 @PublicApiV1Controller
 public class I18nController {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     //    private final ModelMapper modelMapper;
 ////    private final I18nRepository i18nRepository;
     private final I18nService i18nService;
@@ -57,7 +56,7 @@ public class I18nController {
     public ResponseEntity<?> listI18ns(@PathVariable(required = true) String langTag) {
 //        List<I18nEntity> i18nEntityList = this.i18nRepository.findAll();
 //        Locale locale = Locale.forLanguageTag(langTag);
-//        logger.debug("listI18ns - langTag: [" + langTag + "], locale: [" + locale + "]");
+//        log.debug("listI18ns - langTag: [" + langTag + "], locale: [" + locale + "]");
 //        //List<I18nDto> i18nDtoList = i18nEntityList.stream().map(i18nEntity -> modelMapper.map(i18nEntity, I18nDto.class)).collect(Collectors.toList());
 //        //Map<String, List<String>> i18nMapList = i18nEntityList.stream().collect(Collectors.groupingBy(I18nEntity::getMessageKey, Collectors.mapping(I18nEntity::getMessageEn, Collectors.toList())));
 //        Map<String, String> i18nMap = i18nEntityList.stream().collect(Collectors.toMap(i18nEntity -> i18nEntity.getMessageKey()
@@ -79,9 +78,9 @@ public class I18nController {
 
     @PostMapping(value = "/i18n")
     public ResponseEntity<?> createI18n(@RequestBody I18nForm i18nForm) {
-        logger.debug("createI18n");
+        log.debug("createI18n");
 //        I18nEntity i18nReq = this.modelMapper.map(i18nForm, I18nEntity.class);
-//        logger.debug("createI18n - i18nReq: [" + i18nReq + "]");
+//        log.debug("createI18n - i18nReq: [" + i18nReq + "]");
 //        this.i18nRepository.save(i18nReq);
 //        i18nForm.setId(i18nReq.getId());
 //        return ResponseEntity.status(HttpStatus.CREATED).body(i18nForm);
@@ -95,7 +94,7 @@ public class I18nController {
 //        I18nEntity i18nReq = new I18nEntity();
 //        this.modelMapper.map(i18nEntity, i18nReq);
 //        this.modelMapper.map(i18nForm, i18nReq);
-//        logger.debug("updateI18n - i18nEntity: [" + i18nEntity + "], i18nReq: [" + i18nReq + "]");
+//        log.debug("updateI18n - i18nEntity: [" + i18nEntity + "], i18nReq: [" + i18nReq + "]");
 //        this.i18nRepository.save(i18nReq);
 //        i18nForm.setId(i18nReq.getId());
 //        return ResponseEntity.status(HttpStatus.OK).body(i18nForm);

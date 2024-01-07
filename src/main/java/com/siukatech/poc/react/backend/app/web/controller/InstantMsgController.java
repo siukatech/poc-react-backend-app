@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 @Slf4j
 @ProtectedApiV1Controller
 public class InstantMsgController {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     private final InstantMsgService instantMsgService;
 
     public InstantMsgController(InstantMsgService instantMsgService) {

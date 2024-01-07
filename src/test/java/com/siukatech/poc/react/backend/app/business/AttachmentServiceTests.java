@@ -9,6 +9,7 @@ import com.siukatech.poc.react.backend.app.data.entity.AttachmentEntity;
 import com.siukatech.poc.react.backend.app.data.entity.I18nEntity;
 import com.siukatech.poc.react.backend.app.data.repository.AttachmentRepository;
 import com.siukatech.poc.react.backend.app.global.helper.AttachmentHelper;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,11 +32,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
+@Slf4j
 @ExtendWith(MockitoExtension.class)
 @Import({AttachmentHelper.class})
 public class AttachmentServiceTests extends AbstractUnitTests {
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @InjectMocks
     private AttachmentService attachmentService;

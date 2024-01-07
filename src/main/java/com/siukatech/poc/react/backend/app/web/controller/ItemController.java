@@ -18,7 +18,6 @@ import java.util.List;
 @ProtectedApiV1Controller
 public class ItemController {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 //    private final ModelMapper modelMapper;
 ////    private final ItemRepository itemRepository;
     private final ItemService itemService;
@@ -39,11 +38,11 @@ public class ItemController {
 ////        try {
 ////            boolean isExisted = this.modelMapper.getTypeMaps().stream()
 ////                    .anyMatch(typeMap -> {
-////                        logger.debug("ItemController - typeMap.getName: [" + typeMap.getName()
+////                        log.debug("ItemController - typeMap.getName: [" + typeMap.getName()
 ////                                + "], typeMap.getMappings.size: [" + typeMap.getMappings().size()
 ////                                + "]");
 ////                        typeMap.getMappings().stream().forEach(mapping -> {
-////                            logger.debug("ItemController - mapping.getSourceType.getName: [" + mapping.getSourceType().getName()
+////                            log.debug("ItemController - mapping.getSourceType.getName: [" + mapping.getSourceType().getName()
 ////                                    + "], mapping.getPath: [" + mapping.getPath()
 ////                                    + "], mapping.toString: [" + mapping.toString()
 ////                                    + "]");
@@ -51,14 +50,14 @@ public class ItemController {
 ////                        boolean result = typeMap.equals(this.skipItemFormItemEntityModifiedFieldsMap);
 ////                        return result;
 ////                    });
-////            logger.debug("ItemController - isExisted: [" + isExisted
+////            log.debug("ItemController - isExisted: [" + isExisted
 ////                    + "]");
 ////            if (!isExisted) {
 ////                this.modelMapper.addMappings(this.skipItemFormItemEntityModifiedFieldsMap);
 ////            }
 ////        }
 ////        catch ( Exception e ) {
-////            logger.error("ItemController - e.getMessage: [" + e.getMessage() + "]", e);
+////            log.error("ItemController - e.getMessage: [" + e.getMessage() + "]", e);
 ////        }
         //
 //        this.itemRepository = itemRepository;
@@ -91,7 +90,7 @@ public class ItemController {
 
     @PostMapping(value = "/items")
     public ResponseEntity<?> createItem(@Valid @RequestBody ItemForm itemForm) {
-        logger.debug("createItem - start");
+        log.debug("createItem - start");
         //
 //        try {
 //            Thread.sleep((5 * 1000));
@@ -108,7 +107,7 @@ public class ItemController {
         //
         ItemDto itemDto = this.itemService.createItem(itemForm);
         //
-        logger.debug("createItem - end");
+        log.debug("createItem - end");
         return ResponseEntity.status(HttpStatus.CREATED).body(itemDto);
     }
 
@@ -116,7 +115,7 @@ public class ItemController {
     public ResponseEntity<?> updateItem(@Valid @RequestBody ItemForm itemForm, @PathVariable(required = true) Long targetItemId) {
 //        ItemEntity itemEntity = this.itemRepository.findById(targetItemId).orElseThrow(() -> new EntityNotFoundException("targetItemId: %s".formatted(targetItemId)));
 //        ItemEntity itemReq = this.prepareEntityBeforeSave(itemForm, itemEntity);
-//        logger.debug("updateItem - before save - itemEntity.getId: [" + itemEntity.getId()
+//        log.debug("updateItem - before save - itemEntity.getId: [" + itemEntity.getId()
 //                + "], itemEntity: [" + itemEntity
 //                + "], itemReq.getId: [" + itemReq.getId()
 //                + "], itemReq: [" + itemReq
@@ -152,7 +151,7 @@ public class ItemController {
 ////            itemReq.setLastupdateDatetime(itemEntity.getLastupdateDatetime());
 //        }
 ////        itemReq.setLastupdatedBy(DEFAULT_USER);
-//        logger.debug("prepareEntityBeforeSave - itemEntity.getId: [" + itemEntity.getId()
+//        log.debug("prepareEntityBeforeSave - itemEntity.getId: [" + itemEntity.getId()
 //                + "], itemEntity: [" + itemEntity
 //                + "], itemReq.getId: [" + itemReq.getId()
 //                + "], itemReq: [" + itemReq

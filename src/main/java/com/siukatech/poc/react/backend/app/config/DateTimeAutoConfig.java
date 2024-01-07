@@ -35,17 +35,17 @@ import java.time.format.DateTimeFormatter;
 //@Configuration
 //@AutoConfiguration(before = {JacksonAutoConfiguration.class})
 public class DateTimeAutoConfig {
-    private final Logger logger = LoggerFactory.getLogger(DateTimeAutoConfig.class);
+
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer() {
-        logger.debug("jackson2ObjectMapperBuilderCustomizer - test");
+        log.debug("jackson2ObjectMapperBuilderCustomizer - test");
         return new Jackson2ObjectMapperBuilderCustomizer() {
             @Override
             public void customize(Jackson2ObjectMapperBuilder jacksonObjectMapperBuilder) {
                 final String dateFormat = "dd/MM/yyyy";
                 final String timeFormat = "hh:mm:ss a";
                 final String dateTimeFormat = dateFormat + " " + timeFormat;
-                logger.debug("jackson2ObjectMapperBuilderCustomizer - customize: [{}]", dateTimeFormat);
+                log.debug("jackson2ObjectMapperBuilderCustomizer - customize: [{}]", dateTimeFormat);
                 jacksonObjectMapperBuilder
                         .serializers(new LocalDateSerializer(DateTimeFormatter.ofPattern(dateFormat)))
                         .deserializers(new LocalDateDeserializer(DateTimeFormatter.ofPattern(dateFormat)))

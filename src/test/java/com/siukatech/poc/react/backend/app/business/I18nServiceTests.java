@@ -5,6 +5,7 @@ import com.siukatech.poc.react.backend.app.AbstractUnitTests;
 import com.siukatech.poc.react.backend.app.business.service.I18nService;
 import com.siukatech.poc.react.backend.app.data.entity.I18nEntity;
 import com.siukatech.poc.react.backend.app.data.repository.I18nRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,10 +25,9 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
+@Slf4j
 @ExtendWith(MockitoExtension.class)
 public class I18nServiceTests extends AbstractUnitTests {
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @InjectMocks
     private I18nService i18nService;

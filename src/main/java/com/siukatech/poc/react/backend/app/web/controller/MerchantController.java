@@ -18,7 +18,6 @@ import java.util.List;
 @ProtectedApiV1Controller
 public class MerchantController {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final MerchantService merchantService;
 
     public MerchantController(MerchantService merchantService) {
@@ -40,11 +39,11 @@ public class MerchantController {
 
     @PostMapping(value = "/merchants")
     public ResponseEntity<?> createMerchant(@Valid @RequestBody MerchantForm merchantForm) {
-        logger.debug("createMerchant - start");
+        log.debug("createMerchant - start");
         //
         MerchantDto merchantDto = this.merchantService.createMerchant(merchantForm);
         //
-        logger.debug("createMerchant - end");
+        log.debug("createMerchant - end");
         return ResponseEntity.status(HttpStatus.CREATED).body(merchantDto);
     }
 

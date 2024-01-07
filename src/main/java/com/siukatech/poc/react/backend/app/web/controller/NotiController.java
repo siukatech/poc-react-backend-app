@@ -21,7 +21,7 @@ import java.util.List;
 @Slf4j
 @ProtectedApiV1Controller
 public class NotiController {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     private final NotiService notiService;
 
     public NotiController(NotiService notiService) {

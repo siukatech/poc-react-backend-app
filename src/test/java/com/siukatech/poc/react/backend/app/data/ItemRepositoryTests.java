@@ -5,6 +5,7 @@ import com.siukatech.poc.react.backend.app.AbstractJpaTests;
 import com.siukatech.poc.react.backend.app.business.dto.ItemDto;
 import com.siukatech.poc.react.backend.app.data.entity.ItemEntity;
 import com.siukatech.poc.react.backend.app.data.repository.ItemRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,10 +18,9 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Slf4j
 @DataJpaTest
 public class ItemRepositoryTests extends AbstractJpaTests {
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private ItemRepository itemRepository;

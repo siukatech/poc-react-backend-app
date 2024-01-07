@@ -7,6 +7,7 @@ import com.siukatech.poc.react.backend.app.business.form.AttachmentForm;
 import com.siukatech.poc.react.backend.app.data.entity.AttachmentEntity;
 import com.siukatech.poc.react.backend.app.data.repository.AttachmentRepository;
 import com.siukatech.poc.react.backend.app.global.helper.AttachmentHelper;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.tika.Tika;
 import org.junit.jupiter.api.AfterEach;
@@ -29,10 +30,9 @@ import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Slf4j
 @DataJpaTest
 public class AttachmentRepositoryTests extends AbstractJpaTests {
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private AttachmentRepository attachmentRepository;
@@ -55,7 +55,7 @@ public class AttachmentRepositoryTests extends AbstractJpaTests {
     public void findAll_basic() {
         List<AttachmentEntity> attachmentEntityList = attachmentRepository.findAll();
         assertThat(attachmentEntityList).filteredOn(attachmentEntity -> {
-            logger.debug("findAll_basic - attachmentEntity.getFileContent: [{}]"
+            log.debug("findAll_basic - attachmentEntity.getFileContent: [{}]"
                     , (attachmentEntity.getFileContent() == null ? "NULL" : "NOT-NULL")
             );
             return attachmentEntity.getFileName().contains(AttachmentHelper.RESOURCE_FILE_NAME);

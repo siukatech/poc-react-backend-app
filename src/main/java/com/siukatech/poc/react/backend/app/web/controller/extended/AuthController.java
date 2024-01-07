@@ -27,7 +27,6 @@ public class AuthController extends com.siukatech.poc.react.backend.parent.web.c
 //    @Value("${security.oauth2.client.registration.keycloak.client-secret}")
 //    private String clientSceret;
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     //    private final OAuth2ClientProperties oAuth2ClientProperties;
     private final RestTemplate oauth2ClientRestTemplate;
 //    private final ObjectMapper objectMapper;
@@ -96,7 +95,7 @@ public class AuthController extends com.siukatech.poc.react.backend.parent.web.c
 //        tokenReq.add("code", code);
 //        HttpEntity<?> httpEntity = new HttpEntity<>(tokenReq, httpHeaders);
 //
-//        logger.debug("doAuthCodeToken - clientName: [" + clientName
+//        log.debug("doAuthCodeToken - clientName: [" + clientName
 //                + "], code: [" + code
 //                + "], tokenReq: [" + tokenReq
 //                + "], httpHeaders: [" + httpHeaders
@@ -104,13 +103,13 @@ public class AuthController extends com.siukatech.poc.react.backend.parent.web.c
 //                + "], oauth2ClientRestTemplate.getMessageConverters.size: [" + oauth2ClientRestTemplate.getMessageConverters().size()
 //                + "]");
 //        oauth2ClientRestTemplate.getMessageConverters().stream().forEach(httpMessageConverter -> {
-//            logger.debug("doAuthCodeToken - httpMessageConverter.getClass.getName: [" + httpMessageConverter.getClass().getName() + "]");
+//            log.debug("doAuthCodeToken - httpMessageConverter.getClass.getName: [" + httpMessageConverter.getClass().getName() + "]");
 //        });
 //
 //        ResponseEntity<TokenRes> responseEntity = oauth2ClientRestTemplate.exchange(tokenUrl
 //                , HttpMethod.POST, httpEntity, TokenRes.class);
 //
-//        logger.debug("doAuthCodeToken - clientName: [" + clientName
+//        log.debug("doAuthCodeToken - clientName: [" + clientName
 //                + "], code: [" + code
 //                + "], tokenReq: [" + tokenReq
 //                + "], responseEntity: [" + responseEntity
@@ -139,7 +138,7 @@ public class AuthController extends com.siukatech.poc.react.backend.parent.web.c
 //            String requestURI = request.getRequestURI();
 //            String hostName = requestURL.substring(0, requestURL.lastIndexOf(requestURI));
 //            String logoutApi = hostName + "/logout";
-//            logger.debug("doAuthLogout - logoutApi: [{}]"
+//            log.debug("doAuthLogout - logoutApi: [{}]"
 //                            + ", request.getLocalName: [{}]"
 //                            + ", request.getLocalPort: [{}]"
 //                            + ", request.getServerName: [{}]"
@@ -162,7 +161,7 @@ public class AuthController extends com.siukatech.poc.react.backend.parent.web.c
 //
 //        }
 //        catch (Exception e) {
-//            logger.error("doAuthLogout", e);
+//            log.error("doAuthLogout", e);
 //        }
 //
 //        return ResponseEntity.ok("OK");

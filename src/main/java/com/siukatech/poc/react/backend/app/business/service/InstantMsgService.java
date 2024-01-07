@@ -6,6 +6,7 @@ import com.siukatech.poc.react.backend.app.data.entity.InstantMsgEntity;
 import com.siukatech.poc.react.backend.app.data.entity.NotiEntity;
 import com.siukatech.poc.react.backend.app.data.repository.InstantMsgRepository;
 import com.siukatech.poc.react.backend.app.data.repository.NotiRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,10 +14,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 public class InstantMsgService {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final ModelMapper modelMapper;
     private final InstantMsgRepository instantMsgRepository;
 

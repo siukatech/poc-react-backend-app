@@ -8,6 +8,7 @@ import com.siukatech.poc.react.backend.app.business.service.I18nService;
 import com.siukatech.poc.react.backend.app.web.controller.I18nController;
 import com.siukatech.poc.react.backend.app.business.form.I18nForm;
 import com.siukatech.poc.react.backend.parent.web.annotation.v1.PublicApiV1Controller;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,6 +38,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@Slf4j
 @WebMvcTest(
         controllers = {I18nController.class}
 //        ,
@@ -54,10 +56,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 //@Import(I18nController.class)
 //@ContextConfiguration(classes = {WebSecurityConfig.class})
 public class I18nControllerTests extends AbstractWebTests {
+
 //    @MockBean
 //    @Autowired
 //    public I18nRepository i18nRepository;
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     //    @Autowired
 //    private WebApplicationContext webApplicationContext;
@@ -218,7 +220,7 @@ public class I18nControllerTests extends AbstractWebTests {
                 .andReturn();
 
         // result
-//        logger.debug("listI18ns_en - mvcResult.getResponse.getContentAsString: [" + mvcResult.getResponse().getContentAsString() + "]");
+//        log.debug("listI18ns_en - mvcResult.getResponse.getContentAsString: [" + mvcResult.getResponse().getContentAsString() + "]");
 
     }
 
@@ -227,7 +229,7 @@ public class I18nControllerTests extends AbstractWebTests {
         // given
         I18nForm i18nForm = this.prepareI18nForm();
         String i18nFormStr = this.objectMapper.writeValueAsString(i18nForm);
-        logger.debug("createI18n_en - i18nFormStr: [{}]", i18nFormStr);
+        log.debug("createI18n_en - i18nFormStr: [{}]", i18nFormStr);
         when(this.i18nService.createI18n(i18nForm))
                 .thenReturn(this.convertToI18nDto(
                         i18nForm, Locale.ENGLISH.toLanguageTag()));
@@ -257,7 +259,7 @@ public class I18nControllerTests extends AbstractWebTests {
         I18nForm i18nForm = this.prepareI18nForm();
         i18nForm.setMessageEn(i18nForm.getMessageEn() + ", updated");
         String i18nFormStr = this.objectMapper.writeValueAsString(i18nForm);
-        logger.debug("updateI18n_en - i18nFormStr: [{}]", i18nFormStr);
+        log.debug("updateI18n_en - i18nFormStr: [{}]", i18nFormStr);
         when(this.i18nService.updateI18n(i18nForm, i18nForm.getId()))
                 .thenReturn(this.convertToI18nDto(
                         i18nForm, Locale.ENGLISH.toLanguageTag()));

@@ -2,6 +2,7 @@ package com.siukatech.poc.react.backend.app;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.slf4j.LoggerFactory;
@@ -13,7 +14,7 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-
+//@Slf4j
 @TestPropertySource(properties = {
         "client-id: XXX"
         , "client-secret: XXX"
@@ -28,7 +29,7 @@ import java.nio.file.Paths;
 })
 public abstract class AbstractUnitTests {
 
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(AbstractUnitTests.class);
+    protected static final org.slf4j.Logger log = LoggerFactory.getLogger(AbstractUnitTests.class);
 
     // The InMemoryClientRegistrationRepository is used to mock the OAuth2 configuration
     @MockBean
@@ -40,7 +41,7 @@ public abstract class AbstractUnitTests {
         //rootLogger.setLevel(Level.ALL);
         rootLogger.setLevel(Level.DEBUG);
 
-        logger.debug("AbstractUnitTests.init............");
+        log.debug("AbstractUnitTests.init............");
 
         // If sub-class has her own init, then super-class's init is required to trigger manually
 //        AbstractTests.init();
@@ -48,7 +49,7 @@ public abstract class AbstractUnitTests {
 
     @AfterAll
     public static void terminate() {
-        logger.debug("AbstractUnitTests.terminate............");
+        log.debug("AbstractUnitTests.terminate............");
     }
 
 }

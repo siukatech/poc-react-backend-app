@@ -6,6 +6,7 @@ import com.siukatech.poc.react.backend.app.business.form.AttachmentForm;
 import com.siukatech.poc.react.backend.app.data.entity.AttachmentEntity;
 import com.siukatech.poc.react.backend.app.data.repository.AttachmentRepository;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.tika.Tika;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -18,10 +19,10 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class AttachmentService {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final ModelMapper modelMapper;
     private final AttachmentRepository attachmentRepository;
 
@@ -79,7 +80,7 @@ public class AttachmentService {
         attachmentReq.setFileContent(multipartFile.getBytes());
         attachmentReq.setFileSize(attachmentReq.getFileContent() == null ? -1 : attachmentReq.getFileContent().length);
 
-        logger.debug("uploadAttachment - before save - attachmentForm.getId: [" + attachmentForm.getId()
+        log.debug("uploadAttachment - before save - attachmentForm.getId: [" + attachmentForm.getId()
                 + "], attachmentForm: [" + attachmentForm
                 + "], attachmentReq.getId: [" + attachmentReq.getId()
                 + "], attachmentReq.getFileName: [" + attachmentReq.getFileName()
@@ -95,7 +96,7 @@ public class AttachmentService {
         //AttachmentDto attachmentDto = this.modelMapper.map(this.attachmentRepository.findById(createdAttachmentId).orElseThrow(() -> new EntityNotFoundException("createdAttachmentId: %s".formatted(createdAttachmentId))), AttachmentDto.class);
         AttachmentDto attachmentDto = this.findAttachmentById(createdAttachmentId);
         //
-        logger.debug("uploadAttachment - after save - createdAttachmentId: [" + createdAttachmentId
+        log.debug("uploadAttachment - after save - createdAttachmentId: [" + createdAttachmentId
                 + "], attachmentForm.getId: [" + attachmentForm.getId()
                 + "], attachmentForm: [" + attachmentForm
                 + "], attachmentReq.getId: [" + attachmentReq.getId()

@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 //@EncryptedApiV1Controller
 public class PaymentController {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private ModelMapper modelMapper;
     private ItemRepository itemRepository;
     private ItemService itemService;
@@ -34,11 +33,11 @@ public class PaymentController {
         try {
             boolean isExisted = this.modelMapper.getTypeMaps().stream()
                     .anyMatch(typeMap -> {
-                        logger.debug("PaymentController - typeMap.getName: [" + typeMap.getName()
+                        log.debug("PaymentController - typeMap.getName: [" + typeMap.getName()
                                 + "], typeMap.getMappings.size: [" + typeMap.getMappings().size()
                                 + "]");
                         typeMap.getMappings().stream().forEach(mapping -> {
-                            logger.debug("PaymentController - mapping.getSourceType.getName: [" + mapping.getSourceType().getName()
+                            log.debug("PaymentController - mapping.getSourceType.getName: [" + mapping.getSourceType().getName()
                                     + "], mapping.getPath: [" + mapping.getPath()
                                     + "], mapping.toString: [" + mapping.toString()
                                     + "]");
@@ -46,14 +45,14 @@ public class PaymentController {
                         boolean result = typeMap.equals(this.skipItemFormItemEntityModifiedFieldsMap);
                         return result;
                     });
-            logger.debug("PaymentController - isExisted: [" + isExisted
+            log.debug("PaymentController - isExisted: [" + isExisted
                     + "]");
             if (!isExisted) {
                 this.modelMapper.addMappings(this.skipItemFormItemEntityModifiedFieldsMap);
             }
         }
         catch ( Exception e ) {
-            logger.error("PaymentController - e.getMessage: [" + e.getMessage() + "]", e);
+            log.error("PaymentController - e.getMessage: [" + e.getMessage() + "]", e);
         }
         this.itemRepository = itemRepository;
         this.itemService = itemService;
@@ -69,7 +68,7 @@ public class PaymentController {
 //        ItemDto itemDto = this.itemRepository.findById(targetItemId)
 //                .map(itemEntity -> this.modelMapper.map(itemEntity, ItemDto.class))
 //                .orElseThrow(() -> new EntityNotFoundException("targetItemId: %s".formatted(targetItemId)));
-        logger.debug("getItemById - targetItemId: [" + targetItemId + "], itemForm: [" + itemForm + "]");
+        log.debug("getItemById - targetItemId: [" + targetItemId + "], itemForm: [" + itemForm + "]");
         ItemDto itemDto = this.itemService.findItemById(targetItemId);
         return ResponseEntity.ok(itemDto);
     }

@@ -5,6 +5,7 @@ import com.siukatech.poc.react.backend.parent.business.form.AbstractForm;
 import com.siukatech.poc.react.backend.parent.data.entity.AbstractEntity;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.Entity;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ClassUtils;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+@Slf4j
 @Configuration
 //@Import({
 //        GlobalConfigImport.class,
@@ -27,9 +29,6 @@ import java.util.Set;
 //})
 @EnableReactBackendParent
 public class AppConfig {
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
 
     /**
      * Dont setup the webMvcConfigurer in child microservices
@@ -106,11 +105,11 @@ public class AppConfig {
 //        try {
 //            boolean isExisted = this.modelMapper.getTypeMaps().stream()
 //                    .anyMatch(typeMap -> {
-//                        logger.debug("configModelMapper - typeMap.getName: [" + typeMap.getName()
+//                        log.debug("configModelMapper - typeMap.getName: [" + typeMap.getName()
 //                                + "], typeMap.getMappings.size: [" + typeMap.getMappings().size()
 //                                + "]");
 //                        typeMap.getMappings().stream().forEach(mapping -> {
-//                            logger.debug("configModelMapper - mapping.getSourceType.getName: [" + mapping.getSourceType().getName()
+//                            log.debug("configModelMapper - mapping.getSourceType.getName: [" + mapping.getSourceType().getName()
 //                                    + "], mapping.getPath: [" + mapping.getPath()
 //                                    + "], mapping.toString: [" + mapping.toString()
 //                                    + "]");
@@ -119,7 +118,7 @@ public class AppConfig {
 //                        boolean result = true;
 //                        return result;
 //                    });
-//            logger.debug("configModelMapper - isExisted: [" + isExisted
+//            log.debug("configModelMapper - isExisted: [" + isExisted
 //                    + "]");
 //            if (!isExisted) {
 //                this.modelMapper.addMappings(new PropertyMap<ItemForm, ItemEntity>() {
@@ -129,7 +128,7 @@ public class AppConfig {
 //                });
 //            }
 //        } catch (Exception e) {
-//            logger.error("configModelMapper - e.getMessage: [" + e.getMessage() + "]", e);
+//            log.error("configModelMapper - e.getMessage: [" + e.getMessage() + "]", e);
 //        }
 //        this.modelMapper.addMappings(new PropertyMap<MerchantForm, MerchantEntity>() {
 //            protected void configure() {
@@ -155,7 +154,7 @@ public class AppConfig {
                     e) {
                 //throw new RuntimeException(e);
                 // do nothing
-                logger.error("configModelMapper - e.getMessage: " + e.getMessage(), e);
+                log.error("configModelMapper - e.getMessage: " + e.getMessage(), e);
             }
         });
 

@@ -5,6 +5,7 @@ import com.siukatech.poc.react.backend.app.data.entity.ItemEntity;
 import com.siukatech.poc.react.backend.app.data.repository.ItemRepository;
 import com.siukatech.poc.react.backend.app.business.form.ItemForm;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,10 +14,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class ItemService {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final ModelMapper modelMapper;
     private final ItemRepository itemRepository;
 
@@ -56,7 +57,7 @@ public class ItemService {
     public ItemDto createItem(ItemForm itemForm) {
         // This converts ItemForm to blank new ItemEntity
         ItemEntity itemReq = this.modelMapper.map(itemForm, ItemEntity.class);
-        logger.debug("createItem - before save - itemForm.getId: [" + itemForm.getId()
+        log.debug("createItem - before save - itemForm.getId: [" + itemForm.getId()
                 + "], itemForm: [" + itemForm
                 + "], itemReq.getId: [" + itemReq.getId()
                 + "], itemReq: [" + itemReq
@@ -68,7 +69,7 @@ public class ItemService {
         //ItemDto itemDto = this.modelMapper.map(this.itemRepository.findById(createdItemId).orElseThrow(() -> new EntityNotFoundException("createdItemId: %s".formatted(createdItemId))), ItemDto.class);
         ItemDto itemDto = this.findItemById(createdItemId);
         //
-        logger.debug("createItem - after save - createdItemId: [" + createdItemId
+        log.debug("createItem - after save - createdItemId: [" + createdItemId
                 + "], itemForm.getId: [" + itemForm.getId()
                 + "], itemForm: [" + itemForm
                 + "], itemReq.getId: [" + itemReq.getId()
@@ -90,7 +91,7 @@ public class ItemService {
         // This maps itemForm's values to itemReq
         this.modelMapper.map(itemForm, itemReq);
         //
-        logger.debug("updateItem - before save - itemEntity.getId: [" + itemEntity.getId()
+        log.debug("updateItem - before save - itemEntity.getId: [" + itemEntity.getId()
                 + "], itemEntity: [" + itemEntity
                 + "], itemReq.getId: [" + itemReq.getId()
                 + "], itemReq: [" + itemReq
@@ -102,7 +103,7 @@ public class ItemService {
         //ItemDto itemDto = this.modelMapper.map(this.itemRepository.findById(updatedItemId).orElseThrow(() -> new EntityNotFoundException("updatedItemId: %s".formatted(updatedItemId))), ItemDto.class);
         ItemDto itemDto = this.findItemById(updatedItemId);
         //
-        logger.debug("updateItem - after save - updatedItemId: [" + updatedItemId
+        log.debug("updateItem - after save - updatedItemId: [" + updatedItemId
                 + "], itemForm.getId: [" + itemForm.getId()
                 + "], itemForm: [" + itemForm
                 + "], itemReq.getId: [" + itemReq.getId()

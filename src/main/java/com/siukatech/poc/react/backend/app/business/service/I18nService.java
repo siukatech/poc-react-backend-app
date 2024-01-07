@@ -5,6 +5,7 @@ import com.siukatech.poc.react.backend.app.data.entity.I18nEntity;
 import com.siukatech.poc.react.backend.app.data.repository.I18nRepository;
 import com.siukatech.poc.react.backend.app.business.form.I18nForm;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,10 +16,10 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class I18nService {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final ModelMapper modelMapper;
     private final I18nRepository i18nRepository;
 
@@ -48,7 +49,7 @@ public class I18nService {
 
     protected Map<String, String> findI18nMap(List<I18nEntity> i18nEntityList, String langTag) {
         Locale locale = Locale.forLanguageTag(langTag);
-        logger.debug("findI18nMap - langTag: [" + langTag + "], locale: [" + locale + "]");
+        log.debug("findI18nMap - langTag: [" + langTag + "], locale: [" + locale + "]");
         //List<I18nDto> i18nDtoList = i18nEntityList.stream().map(i18nEntity -> modelMapper.map(i18nEntity, I18nDto.class)).collect(Collectors.toList());
         //Map<String, List<String>> i18nMapList = i18nEntityList.stream().collect(Collectors.groupingBy(I18nEntity::getCode, Collectors.mapping(I18nEntity::getMessageEn, Collectors.toList())));
         Map<String, String> i18nMap = i18nEntityList.stream().collect(Collectors.toMap(i18nEntity -> i18nEntity.getMessageKey()
@@ -68,9 +69,9 @@ public class I18nService {
     }
 
     public I18nDto createI18n(I18nForm i18nForm) {
-        logger.debug("createI18n - start");
+        log.debug("createI18n - start");
         I18nEntity i18nReq = this.modelMapper.map(i18nForm, I18nEntity.class);
-        logger.debug("createI18n - before save - i18nReq: [" + i18nReq + "]");
+        log.debug("createI18n - before save - i18nReq: [" + i18nReq + "]");
         this.i18nRepository.save(i18nReq);
         i18nForm.setId(i18nReq.getId());
         return this.modelMapper.map(i18nForm, I18nDto.class);
@@ -81,7 +82,7 @@ public class I18nService {
         I18nEntity i18nReq = new I18nEntity();
         this.modelMapper.map(i18nEntity, i18nReq);
         this.modelMapper.map(i18nForm, i18nReq);
-        logger.debug("updateI18n - i18nEntity: [" + i18nEntity + "], i18nReq: [" + i18nReq + "]");
+        log.debug("updateI18n - i18nEntity: [" + i18nEntity + "], i18nReq: [" + i18nReq + "]");
         this.i18nRepository.save(i18nReq);
         i18nForm.setId(i18nReq.getId());
         return this.modelMapper.map(i18nForm, I18nDto.class);

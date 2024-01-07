@@ -5,6 +5,7 @@ import com.siukatech.poc.react.backend.parent.data.entity.UserEntity;
 import com.siukatech.poc.react.backend.parent.data.repository.UserRepository;
 import com.siukatech.poc.react.backend.parent.web.annotation.v1.ProtectedApiV1Controller;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +17,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.security.NoSuchAlgorithmException;
 import java.util.NoSuchElementException;
 
+@Slf4j
 @ProtectedApiV1Controller
 public class UserController extends com.siukatech.poc.react.backend.parent.web.controller.UserController {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 //    private final UserRepository userRepository;
     private UserService userService;
     public UserController(UserService userService

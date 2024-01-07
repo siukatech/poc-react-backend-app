@@ -8,6 +8,7 @@ import com.siukatech.poc.react.backend.app.business.service.ItemService;
 import com.siukatech.poc.react.backend.app.web.controller.ItemController;
 import com.siukatech.poc.react.backend.app.business.form.ItemForm;
 import com.siukatech.poc.react.backend.parent.web.annotation.v1.ProtectedApiV1Controller;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,11 +38,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@Slf4j
 @WebMvcTest(controllers = {ItemController.class})
 @AutoConfigureMockMvc(addFilters = false)
 public class ItemControllerTests extends AbstractWebTests {
-
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private MockMvc mockMvc;
@@ -108,7 +108,7 @@ public class ItemControllerTests extends AbstractWebTests {
         // given
         ItemForm itemForm = this.prepareItemForm();
         String itemFormStr = this.objectMapper.writeValueAsString(itemForm);
-        logger.debug("createItem_basic - itemFormStr: [{}]", itemFormStr);
+        log.debug("createItem_basic - itemFormStr: [{}]", itemFormStr);
         when(this.itemService.createItem(itemForm)).thenReturn(this.convertToItemDto(itemForm));
 
         // when
@@ -134,7 +134,7 @@ public class ItemControllerTests extends AbstractWebTests {
         ItemForm itemForm = this.prepareItemForm();
         itemForm.setName(itemForm.getName() + ", updated");
         String itemFormStr = this.objectMapper.writeValueAsString(itemForm);
-        logger.debug("updateItem_basic - itemFormStr: [{}]", itemFormStr);
+        log.debug("updateItem_basic - itemFormStr: [{}]", itemFormStr);
         when(this.itemService.updateItem(itemForm, itemForm.getId())).thenReturn(this.convertToItemDto(itemForm));
 
         // when

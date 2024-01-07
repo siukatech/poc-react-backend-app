@@ -12,6 +12,7 @@ import com.siukatech.poc.react.backend.app.global.helper.AttachmentHelper;
 import com.siukatech.poc.react.backend.app.web.controller.AttachmentController;
 import com.siukatech.poc.react.backend.parent.security.authentication.MyAuthenticationToken;
 import com.siukatech.poc.react.backend.parent.web.annotation.v1.ProtectedApiV1Controller;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,13 +50,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@Slf4j
 @WebMvcTest(controllers = {AttachmentController.class})
 @AutoConfigureMockMvc(addFilters = false)
 public class AttachmentControllerTests extends AbstractWebTests {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    //    @Autowired
+//    @Autowired
     private MockMvc mockMvc;
     @Autowired
     private WebApplicationContext webApplicationContext;

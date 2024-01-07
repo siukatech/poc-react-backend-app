@@ -24,8 +24,6 @@ import java.util.UUID;
 @ProtectedApiV1Controller
 public class AttachmentController {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
     private final AttachmentService attachmentService;
 
     public AttachmentController(AttachmentService attachmentService) {
@@ -56,9 +54,9 @@ public class AttachmentController {
     @PostMapping(value = "/attachments", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<?> uploadAttachment(MyAuthenticationToken myAuthenticationToken
             , @Valid @ModelAttribute AttachmentForm attachmentForm) throws IOException {
-        logger.debug("uploadAttachment - start");
+        log.debug("uploadAttachment - start");
         AttachmentDto attachmentDto = this.attachmentService.uploadAttachment(attachmentForm);
-        logger.debug("uploadAttachment - end");
+        log.debug("uploadAttachment - end");
         return ResponseEntity.status(HttpStatus.CREATED).body(attachmentDto);
     }
 

@@ -3,6 +3,7 @@ package com.siukatech.poc.react.backend.app.data;
 import com.siukatech.poc.react.backend.app.AbstractJpaTests;
 import com.siukatech.poc.react.backend.app.data.entity.I18nEntity;
 import com.siukatech.poc.react.backend.app.data.repository.I18nRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +14,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
+@Slf4j
 @DataJpaTest
 //@DataJpaTest(properties = {
 //        "spring.jpa.show-sql: true"
@@ -23,8 +24,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 //})
 ////@ComponentScan(basePackages = {"com.siukatech.poc.react.backend.app.data.entity"})
 public class I18nRepositoryTests extends AbstractJpaTests {
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     public I18nRepository i18nRepository;
