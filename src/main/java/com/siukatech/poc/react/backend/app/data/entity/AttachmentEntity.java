@@ -4,12 +4,15 @@ import com.siukatech.poc.react.backend.parent.data.entity.AbstractEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.Type;
 
+import java.sql.Types;
 import java.util.UUID;
 
 @Data
-@EqualsAndHashCode(callSuper=false)
-@Entity(name = "attachment")
+@EqualsAndHashCode(callSuper = false)
+@Entity(name = "attachments")
 public class AttachmentEntity extends AbstractEntity<UUID> {
 
     @Id
@@ -23,8 +26,16 @@ public class AttachmentEntity extends AbstractEntity<UUID> {
     @Column(name = "file_size")
     private int fileSize;
 
+    /**
+     * Reference:
+     * https://stackoverflow.com/a/74630733
+     * https://stackoverflow.com/a/75043614
+     *
+     * Both columnDefinition = "bytea" and @JdbcTypeCode(Types.BINARY) are required for Postgresql and h2 databases
+     */
     @Lob
-    @Column(name = "file_content")
+    @JdbcTypeCode(Types.BINARY)
+    @Column(name = "file_content", columnDefinition = "bytea")
     private byte[] fileContent;
     @Column(name = "user_id")
     protected Long userId;
