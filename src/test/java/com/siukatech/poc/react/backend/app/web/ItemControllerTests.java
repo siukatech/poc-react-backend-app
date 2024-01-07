@@ -2,6 +2,7 @@ package com.siukatech.poc.react.backend.app.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.siukatech.poc.react.backend.app.AbstractUnitTests;
+import com.siukatech.poc.react.backend.app.AbstractWebTests;
 import com.siukatech.poc.react.backend.app.business.dto.ItemDto;
 import com.siukatech.poc.react.backend.app.business.service.ItemService;
 import com.siukatech.poc.react.backend.app.web.controller.ItemController;
@@ -38,7 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(controllers = {ItemController.class})
 @AutoConfigureMockMvc(addFilters = false)
-public class ItemControllerTests extends AbstractUnitTests {
+public class ItemControllerTests extends AbstractWebTests {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -65,6 +66,21 @@ public class ItemControllerTests extends AbstractUnitTests {
     public void teardown(TestInfo testInfo) {
     }
 
+    private ItemForm prepareItemForm() {
+        ItemForm itemForm = new ItemForm();
+        itemForm.setId(2L);
+        itemForm.setName("shf figure 2");
+        itemForm.setPurchasedDate(LocalDate.now());
+        itemForm.setVersionNo(1L);
+        return itemForm;
+    }
+
+    private ItemDto convertToItemDto(ItemForm itemForm) {
+        ModelMapper mapper = new ModelMapper();
+        ItemDto itemDto = mapper.map(itemForm, ItemDto.class);
+        return itemDto;
+    }
+
     @Test
     public void listItems_basic() throws Exception {
         // given
@@ -85,21 +101,6 @@ public class ItemControllerTests extends AbstractUnitTests {
                 .andExpect(content().string(containsString("shf figure")))
                 .andReturn();
 
-    }
-
-    private ItemForm prepareItemForm() {
-        ItemForm itemForm = new ItemForm();
-        itemForm.setId(2L);
-        itemForm.setName("shf figure 2");
-        itemForm.setPurchasedDate(LocalDate.now());
-        itemForm.setVersionNo(1L);
-        return itemForm;
-    }
-
-    private ItemDto convertToItemDto(ItemForm itemForm) {
-        ModelMapper mapper = new ModelMapper();
-        ItemDto itemDto = mapper.map(itemForm, ItemDto.class);
-        return itemDto;
     }
 
     @Test

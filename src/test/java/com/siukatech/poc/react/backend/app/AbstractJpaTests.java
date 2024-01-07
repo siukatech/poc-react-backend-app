@@ -11,7 +11,7 @@ import org.springframework.test.context.TestPropertySource;
         , "logging.level.org.springframework.data: TRACE"
 })
 //@ComponentScan(basePackages = {"com.siukatech.poc.react.backend.app.data.entity"})
-public abstract class AbstractJpaTests {
+public abstract class AbstractJpaTests extends AbstractUnitTests {
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(AbstractUnitTests.class);
 

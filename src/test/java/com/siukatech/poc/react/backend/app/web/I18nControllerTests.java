@@ -2,6 +2,7 @@ package com.siukatech.poc.react.backend.app.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.siukatech.poc.react.backend.app.AbstractUnitTests;
+import com.siukatech.poc.react.backend.app.AbstractWebTests;
 import com.siukatech.poc.react.backend.app.business.dto.I18nDto;
 import com.siukatech.poc.react.backend.app.business.service.I18nService;
 import com.siukatech.poc.react.backend.app.web.controller.I18nController;
@@ -52,7 +53,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc(addFilters = false)
 //@Import(I18nController.class)
 //@ContextConfiguration(classes = {WebSecurityConfig.class})
-public class I18nControllerTests extends AbstractUnitTests {
+public class I18nControllerTests extends AbstractWebTests {
 //    @MockBean
 //    @Autowired
 //    public I18nRepository i18nRepository;

@@ -1,6 +1,7 @@
 package com.siukatech.poc.react.backend.app.web;
 
 import com.siukatech.poc.react.backend.app.AbstractUnitTests;
+import com.siukatech.poc.react.backend.app.AbstractWebTests;
 import com.siukatech.poc.react.backend.app.web.controller.PublicController;
 import com.siukatech.poc.react.backend.parent.web.annotation.v1.PublicApiV1Controller;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(controllers = PublicController.class)
 @AutoConfigureMockMvc(addFilters = false)
-public class PublicControllerTests extends AbstractUnitTests {
+public class PublicControllerTests extends AbstractWebTests {
     @Autowired
     private MockMvc mockMvc;
 

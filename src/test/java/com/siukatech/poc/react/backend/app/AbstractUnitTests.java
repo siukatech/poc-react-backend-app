@@ -9,6 +9,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
 import org.springframework.test.context.TestPropertySource;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 
 @TestPropertySource(properties = {
         "client-id: XXX"
@@ -45,6 +49,18 @@ public abstract class AbstractUnitTests {
     @AfterAll
     public static void terminate() {
         logger.debug("AbstractUnitTests.terminate............");
+    }
+
+
+    protected File getResourceFile(String subDir, String resourceName) {
+        Path resourceFilePath = Paths.get("src", "test", "resources", subDir, resourceName);
+        return resourceFilePath.toFile();
+    }
+
+    protected File getResourceFile(String resourceName) {
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource(resourceName).getFile());
+        return file;
     }
 
 }
