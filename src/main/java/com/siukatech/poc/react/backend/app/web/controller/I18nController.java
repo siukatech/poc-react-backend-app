@@ -22,7 +22,7 @@ import java.util.Map;
 public class I18nController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-//    private final ModelMapper modelMapper;
+    //    private final ModelMapper modelMapper;
 ////    private final I18nRepository i18nRepository;
     private final I18nService i18nService;
 
@@ -45,6 +45,12 @@ public class I18nController {
 ////        });
 //        this.i18nRepository = i18nRepository;
         this.i18nService = i18nService;
+    }
+
+    @GetMapping("/i18n")
+    public ResponseEntity<?> listI18ns() {
+        Map<String, Map<String, String>> i18nMap = this.i18nService.findI18nMap();
+        return ResponseEntity.ok(i18nMap);
     }
 
     @GetMapping("/i18n/{langTag}")

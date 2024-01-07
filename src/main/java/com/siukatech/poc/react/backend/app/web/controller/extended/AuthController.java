@@ -1,26 +1,22 @@
 package com.siukatech.poc.react.backend.app.web.controller.extended;
 
+import com.siukatech.poc.react.backend.parent.business.form.auth.LoginForm;
+import com.siukatech.poc.react.backend.parent.business.form.auth.RefreshTokenForm;
 import com.siukatech.poc.react.backend.parent.business.service.AuthService;
 import com.siukatech.poc.react.backend.parent.web.annotation.v1.PublicApiV1Controller;
-import com.siukatech.poc.react.backend.parent.web.model.auth.LoginForm;
-import com.siukatech.poc.react.backend.parent.web.model.auth.RefreshTokenForm;
-import com.siukatech.poc.react.backend.parent.web.model.auth.TokenRes;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.*;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.HashMap;
-import java.util.Map;
 
 @Slf4j
 @PublicApiV1Controller
@@ -32,7 +28,7 @@ public class AuthController extends com.siukatech.poc.react.backend.parent.web.c
 //    private String clientSceret;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-//    private final OAuth2ClientProperties oAuth2ClientProperties;
+    //    private final OAuth2ClientProperties oAuth2ClientProperties;
     private final RestTemplate oauth2ClientRestTemplate;
 //    private final ObjectMapper objectMapper;
 
