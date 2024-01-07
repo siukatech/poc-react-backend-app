@@ -1,8 +1,8 @@
 plugins {
-	id 'java'
+    id 'java'
 //	id 'org.springframework.boot' version '3.1.0'
 //	id 'io.spring.dependency-management' version '1.1.0'
-	id 'org.springframework.boot' version '3.2.1'
+    id 'org.springframework.boot' version '3.2.1'
 }
 apply plugin: 'io.spring.dependency-management'
 
@@ -14,23 +14,25 @@ sourceCompatibility = '17'
 //	mavenCentral()
 //}
 repositories {
-	mavenLocal()
-	mavenCentral()
-	maven {
-		name = 'platformSnapshot'
-		allowInsecureProtocol = true
-		credentials(PasswordCredentials)
-		url = uri("$platformSnapshotUri")
-	}
+    mavenLocal()
+    mavenCentral()
+    if (project.hasProperty("platformSnapshotUri")) {
+        maven {
+            name = 'platformSnapshot'
+            allowInsecureProtocol = true
+            credentials(PasswordCredentials)
+            url = uri("$platformSnapshotUri")
+        }
+    }
 }
 
 bootJar {
 //	exclude('application-a*','x.yml')
-	exclude('application*.properties', 'application*.yml')
+    exclude('application*.properties', 'application*.yml')
 }
 
 dependencies {
-	implementation 'com.siukatech.poc:react-backend-parent:0.0.1-SNAPSHOT'
+    implementation 'com.siukatech.poc:react-backend-parent:0.0.1-SNAPSHOT'
 
 //	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 //	implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -41,13 +43,13 @@ dependencies {
 ////	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2'
 
 //	implementation 'org.projectlombok:lombok:1.18.26'
-	annotationProcessor 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
 
-	runtimeOnly 'org.postgresql:postgresql:42.6.0'
+    runtimeOnly 'org.postgresql:postgresql:42.6.0'
 
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
-	testImplementation 'com.h2database:h2:2.1.214'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'com.h2database:h2:2.1.214'
 }
 
 // after upgrade to springboot >= 3.2.1
@@ -55,9 +57,9 @@ dependencies {
 // https://stackoverflow.com/a/77691302
 // https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-6.x#parameter-name-retention
 tasks.withType(JavaCompile).configureEach {
-	options.compilerArgs.add("-parameters")
+    options.compilerArgs.add("-parameters")
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
