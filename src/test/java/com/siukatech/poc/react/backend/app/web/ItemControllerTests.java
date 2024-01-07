@@ -5,7 +5,7 @@ import com.siukatech.poc.react.backend.app.AbstractUnitTests;
 import com.siukatech.poc.react.backend.app.business.dto.ItemDto;
 import com.siukatech.poc.react.backend.app.business.service.ItemService;
 import com.siukatech.poc.react.backend.app.web.controller.ItemController;
-import com.siukatech.poc.react.backend.app.web.model.ItemForm;
+import com.siukatech.poc.react.backend.app.business.form.ItemForm;
 import com.siukatech.poc.react.backend.parent.web.annotation.v1.ProtectedApiV1Controller;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;

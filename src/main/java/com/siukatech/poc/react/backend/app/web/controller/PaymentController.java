@@ -4,7 +4,7 @@ import com.siukatech.poc.react.backend.app.business.service.ItemService;
 import com.siukatech.poc.react.backend.app.data.entity.ItemEntity;
 import com.siukatech.poc.react.backend.app.data.repository.ItemRepository;
 import com.siukatech.poc.react.backend.app.business.dto.ItemDto;
-import com.siukatech.poc.react.backend.app.web.model.ItemForm;
+import com.siukatech.poc.react.backend.app.business.form.ItemForm;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;

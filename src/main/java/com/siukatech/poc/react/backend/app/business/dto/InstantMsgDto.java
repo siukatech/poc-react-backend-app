@@ -1,6 +1,6 @@
 package com.siukatech.poc.react.backend.app.business.dto;
 
-import com.siukatech.poc.react.backend.app.web.model.InstantMsgForm;
+import com.siukatech.poc.react.backend.app.business.form.InstantMsgForm;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

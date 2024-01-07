@@ -5,7 +5,7 @@ import com.siukatech.poc.react.backend.app.AbstractUnitTests;
 import com.siukatech.poc.react.backend.app.business.dto.I18nDto;
 import com.siukatech.poc.react.backend.app.business.service.I18nService;
 import com.siukatech.poc.react.backend.app.web.controller.I18nController;
-import com.siukatech.poc.react.backend.app.web.model.I18nForm;
+import com.siukatech.poc.react.backend.app.business.form.I18nForm;
 import com.siukatech.poc.react.backend.parent.web.annotation.v1.PublicApiV1Controller;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;

@@ -2,23 +2,16 @@ package com.siukatech.poc.react.backend.app.web.controller;
 
 import com.siukatech.poc.react.backend.app.business.dto.I18nDto;
 import com.siukatech.poc.react.backend.app.business.service.I18nService;
-import com.siukatech.poc.react.backend.app.data.entity.I18nEntity;
-import com.siukatech.poc.react.backend.app.data.repository.I18nRepository;
-import com.siukatech.poc.react.backend.app.web.model.I18nForm;
+import com.siukatech.poc.react.backend.app.business.form.I18nForm;
 import com.siukatech.poc.react.backend.parent.web.annotation.v1.PublicApiV1Controller;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * i18n support for react

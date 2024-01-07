@@ -1,20 +1,21 @@
-package com.siukatech.poc.react.backend.app.web.model;
+package com.siukatech.poc.react.backend.app.business.form;
 
 import com.siukatech.poc.react.backend.parent.web.model.AbstractForm;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.time.LocalDate;
-
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class ItemForm extends AbstractForm {
+public class MerchantForm extends AbstractForm {
     protected Long id;
-
+    @NotNull
+    protected String mid;
     @NotNull
     protected String name;
+    private String website;
+    private String description;
+    private String status;
 
-    //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    protected LocalDate purchasedDate;
 }
+

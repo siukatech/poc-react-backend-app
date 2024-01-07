@@ -2,7 +2,7 @@ package com.siukatech.poc.react.backend.app.web.controller;
 
 import com.siukatech.poc.react.backend.app.business.dto.MerchantDto;
 import com.siukatech.poc.react.backend.app.business.service.MerchantService;
-import com.siukatech.poc.react.backend.app.web.model.MerchantForm;
+import com.siukatech.poc.react.backend.app.business.form.MerchantForm;
 import com.siukatech.poc.react.backend.parent.web.annotation.v1.ProtectedApiV1Controller;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;

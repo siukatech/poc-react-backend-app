@@ -3,7 +3,7 @@ package com.siukatech.poc.react.backend.app.business.service;
 import com.siukatech.poc.react.backend.app.business.dto.MerchantDto;
 import com.siukatech.poc.react.backend.app.data.entity.MerchantEntity;
 import com.siukatech.poc.react.backend.app.data.repository.MerchantRepository;
-import com.siukatech.poc.react.backend.app.web.model.MerchantForm;
+import com.siukatech.poc.react.backend.app.business.form.MerchantForm;
 import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;

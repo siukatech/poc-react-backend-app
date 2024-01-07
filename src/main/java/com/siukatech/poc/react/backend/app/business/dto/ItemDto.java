@@ -1,6 +1,6 @@
 package com.siukatech.poc.react.backend.app.business.dto;
 
-import com.siukatech.poc.react.backend.app.web.model.ItemForm;
+import com.siukatech.poc.react.backend.app.business.form.ItemForm;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
