@@ -1,5 +1,6 @@
 package com.siukatech.poc.react.backend.app.web.controller;
 
+import com.siukatech.poc.react.backend.app.business.dto.AttachmentContentDto;
 import com.siukatech.poc.react.backend.app.business.dto.AttachmentDto;
 import com.siukatech.poc.react.backend.app.business.service.AttachmentService;
 import com.siukatech.poc.react.backend.app.business.form.AttachmentForm;
@@ -7,6 +8,7 @@ import com.siukatech.poc.react.backend.parent.security.authentication.MyAuthenti
 import com.siukatech.poc.react.backend.parent.web.annotation.v1.ProtectedApiV1Controller;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tika.Tika;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,9 +46,16 @@ public class AttachmentController {
         return ResponseEntity.ok(attachmentDto);
     }
 
+    @GetMapping("/attachments/{id}/download")
+    public ResponseEntity<?> downloadAttachmentById(MyAuthenticationToken myAuthenticationToken
+            , @PathVariable(required = true, name = "id") UUID targetAttachmentId) {
+        AttachmentContentDto attachmentDto = this.attachmentService.downloadAttachmentById(targetAttachmentId);
+        return ResponseEntity.ok(attachmentDto);
+    }
+
     @PostMapping(value = "/attachments", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<?> uploadAttachment(MyAuthenticationToken myAuthenticationToken
-            , @Valid @ModelAttribute AttachmentForm attachmentForm) {
+            , @Valid @ModelAttribute AttachmentForm attachmentForm) throws IOException {
         logger.debug("uploadAttachment - start");
         AttachmentDto attachmentDto = this.attachmentService.uploadAttachment(attachmentForm);
         logger.debug("uploadAttachment - end");

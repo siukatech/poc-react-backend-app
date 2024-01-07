@@ -55,6 +55,9 @@ public class AttachmentRepositoryTests extends AbstractJpaTests {
     public void findAll_basic() {
         List<AttachmentEntity> attachmentEntityList = attachmentRepository.findAll();
         assertThat(attachmentEntityList).filteredOn(attachmentEntity -> {
+            logger.debug("findAll_basic - attachmentEntity.getFileContent: [{}]"
+                    , (attachmentEntity.getFileContent() == null ? "NULL" : "NOT-NULL")
+            );
             return attachmentEntity.getFileName().contains(AttachmentHelper.RESOURCE_FILE_NAME);
         });
     }

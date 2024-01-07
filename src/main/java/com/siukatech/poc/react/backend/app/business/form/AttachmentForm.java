@@ -19,12 +19,6 @@ public class AttachmentForm extends AbstractForm {
     protected UUID id;
 
     @NotNull
-    protected String fileName;
-    @NotNull
-    protected String contentType;
-    @NotNull
-    protected int fileSize;
-
     private MultipartFile multipartFile;
 
 }

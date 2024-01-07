@@ -1,6 +1,7 @@
 package com.siukatech.poc.react.backend.app.business;
 
 import com.siukatech.poc.react.backend.app.AbstractUnitTests;
+import com.siukatech.poc.react.backend.app.business.dto.AttachmentContentDto;
 import com.siukatech.poc.react.backend.app.business.dto.AttachmentDto;
 import com.siukatech.poc.react.backend.app.business.form.AttachmentForm;
 import com.siukatech.poc.react.backend.app.business.service.AttachmentService;
@@ -21,6 +22,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -84,7 +86,22 @@ public class AttachmentServiceTests extends AbstractUnitTests {
     }
 
     @Test
-    public void uploadAttachment_basic() {
+    public void downloadAttachmentById_basic() {
+        // given
+        AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic();
+        when(this.attachmentRepository.findById(any(UUID.class))).thenReturn(Optional.of(attachmentEntity));
+
+        // when
+        AttachmentContentDto attachmentContentDto = this.attachmentService.downloadAttachmentById(attachmentEntity.getId());
+
+        // then / verify
+        assertThat(attachmentContentDto)
+                .hasFieldOrProperty("fileContent")
+        ;
+    }
+
+    @Test
+    public void uploadAttachment_basic() throws IOException {
         // given
         AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic();
         AttachmentForm attachmentForm = this.attachmentHelper.prepareAttachmentForm_basic();
