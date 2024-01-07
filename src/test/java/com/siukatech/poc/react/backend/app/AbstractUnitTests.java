@@ -51,16 +51,4 @@ public abstract class AbstractUnitTests {
         logger.debug("AbstractUnitTests.terminate............");
     }
 
-
-    protected File getResourceFile(String subDir, String resourceName) {
-        Path resourceFilePath = Paths.get("src", "test", "resources", subDir, resourceName);
-        return resourceFilePath.toFile();
-    }
-
-    protected File getResourceFile(String resourceName) {
-        ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource(resourceName).getFile());
-        return file;
-    }
-
 }
