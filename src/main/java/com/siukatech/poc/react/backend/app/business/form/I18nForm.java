@@ -1,6 +1,6 @@
 package com.siukatech.poc.react.backend.app.business.form;
 
-import com.siukatech.poc.react.backend.parent.web.model.AbstractForm;
+import com.siukatech.poc.react.backend.parent.business.form.AbstractForm;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -10,7 +10,7 @@ public class I18nForm extends AbstractForm {
     protected Long id;
     protected String messageKey;
     protected String messageEn;
-    protected String messageZh;
-    protected String messageCn;
+    protected String messageTc;
+    protected String messageSc;
 
 }
