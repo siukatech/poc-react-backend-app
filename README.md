@@ -27,12 +27,14 @@ https://docs.gradle.org/current/samples/sample_publishing_credentials.html
 repositories {
 	mavenLocal()
 	mavenCentral()
-	maven {
-		name = '[repository-name]'
-		allowInsecureProtocol = true
-		credentials(PasswordCredentials)
-		url = uri("$[repository-name]Uri")
-	}
+    if (project.hasProperty("[repository-name]Uri")) {
+        maven {
+            name = '[repository-name]'
+            allowInsecureProtocol = true
+            credentials(PasswordCredentials)
+            url = uri("$[repository-name]Uri")
+        }
+    }
 }
 ```
 
