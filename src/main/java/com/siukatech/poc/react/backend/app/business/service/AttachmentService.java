@@ -9,8 +9,6 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tika.Tika;
 import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -63,17 +61,17 @@ public class AttachmentService {
     }
 
     public AttachmentContentDto downloadAttachmentById(UUID targetAttachmentId) {
-        AttachmentContentDto attachmentDto = this.attachmentRepository.findById(targetAttachmentId)
+        AttachmentContentDto attachmentContentDto = this.attachmentRepository.findById(targetAttachmentId)
                 .map(attachmentEntity -> this.modelMapper.map(attachmentEntity, AttachmentContentDto.class))
                 .orElseThrow(() -> new EntityNotFoundException("targetAttachmentId: %s".formatted(targetAttachmentId)));
-        return attachmentDto;
+        return attachmentContentDto;
     }
 
     public AttachmentDto uploadAttachment(AttachmentForm attachmentForm) throws IOException {
         // This converts AttachmentForm to blank new AttachmentEntity
         AttachmentEntity attachmentReq = this.modelMapper.map(attachmentForm, AttachmentEntity.class);
 
-        MultipartFile multipartFile = attachmentForm.getMultipartFile();
+        MultipartFile multipartFile = attachmentForm.getFile();
         String contentType = this.tika.detect(multipartFile.getOriginalFilename());
         attachmentReq.setFileName(multipartFile.getOriginalFilename());
         attachmentReq.setContentType(contentType);

@@ -54,14 +54,14 @@ public class AttachmentHelper extends AbstractHelper {
     public AttachmentForm prepareAttachmentForm_basic() {
         AttachmentEntity attachmentEntity = prepareAttachmentEntity_basic();
         MockMultipartFile multipartFile = new MockMultipartFile(
-                "multipartFile", attachmentEntity.getFileName()
+                "file", attachmentEntity.getFileName()
                 , attachmentEntity.getContentType(), attachmentEntity.getFileContent());
         AttachmentForm attachmentForm = new AttachmentForm();
         attachmentForm.setId(attachmentEntity.getId());
 //        attachmentForm.setFileName(attachmentEntity.getFileName());
 //        attachmentForm.setContentType(attachmentEntity.getContentType());
 //        attachmentForm.setFileSize(attachmentEntity.getFileSize());
-        attachmentForm.setMultipartFile(multipartFile);
+        attachmentForm.setFile(multipartFile);
 
         attachmentForm.setVersionNo(1L);
         return attachmentForm;

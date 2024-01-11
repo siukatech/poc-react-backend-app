@@ -17,8 +17,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -156,7 +154,7 @@ public class AttachmentControllerTests extends AbstractWebTests {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .multipart(ProtectedApiV1Controller.REQUEST_MAPPING_URI_PREFIX
                         + "/attachments")
-                .file((MockMultipartFile) attachmentForm.getMultipartFile())
+                .file((MockMultipartFile) attachmentForm.getFile())
                 .params(attachmentDtoValueMap)
                 .with(authentication(prepareMyAuthenticationToken_basic()))
                 .with(csrf());
