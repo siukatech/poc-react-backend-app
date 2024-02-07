@@ -37,8 +37,8 @@ spring:
             client-id: ${client-id}
             client-secret: ${client-secret}
             authorization-grant-type: authorization_code
-#            scope: openid,profile,email
-            scope: openid
+            scope: openid,profile,email
+#            scope: openid
 #            scope: "openid,profile,email"
 #            scope: "openid+profile+email"
 #            scope: "openid profile email"
