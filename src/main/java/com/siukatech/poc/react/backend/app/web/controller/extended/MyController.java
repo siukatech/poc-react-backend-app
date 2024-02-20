@@ -20,17 +20,17 @@ public class MyController extends com.siukatech.poc.react.backend.parent.web.con
         super(userService);
     }
 
-    @PostMapping("/my/public-key")
+    @GetMapping("/my/public-key")
     public ResponseEntity<?> getPublicKey(Authentication authentication) {
         return super.getPublicKey(authentication);
     }
 
-    @PostMapping("/my/key-info")
+    @GetMapping("/my/key-info")
     public ResponseEntity<?> getKeyInfo(Authentication authentication) {
         return super.getKeyInfo(authentication);
     }
 
-    @PostMapping("/my/user-info")
+    @GetMapping("/my/user-info")
     public ResponseEntity<?> getUserInfo(Authentication authentication) {
         return super.getUserInfo(authentication);
     }
