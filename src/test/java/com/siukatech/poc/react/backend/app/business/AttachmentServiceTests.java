@@ -6,7 +6,6 @@ import com.siukatech.poc.react.backend.app.business.dto.AttachmentDto;
 import com.siukatech.poc.react.backend.app.business.form.AttachmentForm;
 import com.siukatech.poc.react.backend.app.business.service.AttachmentService;
 import com.siukatech.poc.react.backend.app.data.entity.AttachmentEntity;
-import com.siukatech.poc.react.backend.app.data.entity.I18nEntity;
 import com.siukatech.poc.react.backend.app.data.repository.AttachmentRepository;
 import com.siukatech.poc.react.backend.app.global.helper.AttachmentHelper;
 import lombok.extern.slf4j.Slf4j;
@@ -18,14 +17,12 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;

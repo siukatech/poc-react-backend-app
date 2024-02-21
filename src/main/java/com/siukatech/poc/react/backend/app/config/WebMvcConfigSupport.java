@@ -1,6 +1,5 @@
 package com.siukatech.poc.react.backend.app.config;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.format.datetime.DateFormatter;
 import org.springframework.format.datetime.DateFormatterRegistrar;
 import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;

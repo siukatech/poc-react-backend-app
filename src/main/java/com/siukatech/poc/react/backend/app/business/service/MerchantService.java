@@ -1,14 +1,12 @@
 package com.siukatech.poc.react.backend.app.business.service;
 
 import com.siukatech.poc.react.backend.app.business.dto.MerchantDto;
+import com.siukatech.poc.react.backend.app.business.form.MerchantForm;
 import com.siukatech.poc.react.backend.app.data.entity.MerchantEntity;
 import com.siukatech.poc.react.backend.app.data.repository.MerchantRepository;
-import com.siukatech.poc.react.backend.app.business.form.MerchantForm;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

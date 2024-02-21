@@ -2,17 +2,12 @@ package com.siukatech.poc.react.backend.app;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
 import org.springframework.test.context.TestPropertySource;
-
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 //@Slf4j
 @TestPropertySource(properties = {
