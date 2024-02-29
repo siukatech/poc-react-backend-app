@@ -7,6 +7,9 @@ import com.siukatech.poc.react.backend.app.data.repository.ItemRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,11 +36,19 @@ public class ItemService {
         return itemDtoList;
     }
 
+    public Page<ItemDto> pageItemAll(Pageable pageable) {
+        Page<ItemEntity> itemEntityPage = this.itemRepository.findAll(pageable);
+        List<ItemDto> itemDtoList = itemEntityPage.stream().map(itemEntity -> this.modelMapper.map(itemEntity, ItemDto.class))
+                .sorted((a1, a2) -> a1.getLastModifiedDatetime().isAfter(a2.getLastModifiedDatetime()) ? -1 : 1) // descending order
+                .collect(Collectors.toList());
+        Page<ItemDto> itemDtoPage = new PageImpl<>(itemDtoList, itemEntityPage.getPageable(), itemEntityPage.getTotalElements());
+        return itemDtoPage;
+    }
+
     public List<ItemDto> findItemAllByUserId(Long userId) {
         List<ItemEntity> itemEntityList = this.itemRepository
 //                .findAllByUserIdOrderByLastModifiedDatetimeDesc(userId)
-                .findAll()
-                ;
+                .findAll();
         List<ItemDto> itemDtoList = itemEntityList.stream().map(itemEntity -> this.modelMapper.map(itemEntity, ItemDto.class))
 //                .sorted((a1, a2) -> a1.getLastModifiedDatetime().isAfter(a2.getLastModifiedDatetime()) ? 1 : -1) // ascending order
                 .sorted((a1, a2) -> a1.getLastModifiedDatetime().isAfter(a2.getLastModifiedDatetime()) ? -1 : 1) // descending order
