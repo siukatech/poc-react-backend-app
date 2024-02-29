@@ -4,8 +4,10 @@ import com.siukatech.poc.react.backend.app.business.service.ItemService;
 import com.siukatech.poc.react.backend.app.web.controller.ItemController;
 import com.siukatech.poc.react.backend.app.business.form.ItemForm;
 import com.siukatech.poc.react.backend.parent.web.annotation.v1.EncryptedApiV1Controller;
+import com.siukatech.poc.react.backend.parent.web.micrometer.CorrelationIdHandler;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,18 +30,20 @@ public class EncryptedItemController extends ItemController {
 //            ModelMapper modelMapper
 ////            , ItemRepository itemRepository
 //            ,
-            ItemService itemService) {
+            ItemService itemService
+            , CorrelationIdHandler correlationIdHandler
+    ) {
         super(
 //                modelMapper
 ////                , itemRepository
 //                ,
-                itemService
-        );
+                itemService,
+                correlationIdHandler);
     }
 
     @GetMapping("/items")
-    public ResponseEntity<?> listItems() {
-        return super.listItems();
+    public ResponseEntity<?> listItems(@RequestHeader HttpHeaders httpHeaders) {
+        return super.listItems(httpHeaders);
     }
 
     @GetMapping("/items/{targetItemId}")

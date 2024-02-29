@@ -3,9 +3,14 @@ package com.siukatech.poc.react.backend.app.web.controller;
 import com.siukatech.poc.react.backend.app.business.dto.ItemDto;
 import com.siukatech.poc.react.backend.app.business.form.ItemForm;
 import com.siukatech.poc.react.backend.app.business.service.ItemService;
+import com.siukatech.poc.react.backend.parent.util.HttpHeaderUtils;
 import com.siukatech.poc.react.backend.parent.web.annotation.v1.ProtectedApiV1Controller;
+import com.siukatech.poc.react.backend.parent.web.micrometer.CorrelationIdHandler;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +21,10 @@ import java.util.List;
 @ProtectedApiV1Controller
 public class ItemController {
 
-//    private final ModelMapper modelMapper;
+    //    private final ModelMapper modelMapper;
 ////    private final ItemRepository itemRepository;
     private final ItemService itemService;
+    private final CorrelationIdHandler correlationIdHandler;
 
 //    private PropertyMap<ItemForm, ItemEntity> skipItemFormItemEntityModifiedFieldsMap = new PropertyMap<ItemForm, ItemEntity>() {
 //        protected void configure() {
@@ -31,7 +37,7 @@ public class ItemController {
 //            ModelMapper modelMapper
 ////            , ItemRepository itemRepository
 //            ,
-            ItemService itemService) {
+            ItemService itemService, CorrelationIdHandler correlationIdHandler) {
 //        this.modelMapper = modelMapper;
 ////        try {
 ////            boolean isExisted = this.modelMapper.getTypeMaps().stream()
@@ -60,11 +66,12 @@ public class ItemController {
         //
 //        this.itemRepository = itemRepository;
         this.itemService = itemService;
+        this.correlationIdHandler = correlationIdHandler;
     }
 
     //@CrossOrigin(origins = "*")
     @GetMapping("/items")
-    public ResponseEntity<?> listItems() {
+    public ResponseEntity<?> listItems(@RequestHeader HttpHeaders httpHeaders) {
 //        List<ItemEntity> itemEntityList = this.itemRepository.findAll();
 //        List<ItemDto> itemDtoList = itemEntityList.stream().map(itemEntity -> this.modelMapper.map(itemEntity, ItemDto.class)).collect(Collectors.toList());
 //        try {
@@ -73,6 +80,15 @@ public class ItemController {
 //            throw new RuntimeException(e);
 //        }
         //return ResponseEntity.ok(itemEntityList);
+        HttpHeaderUtils.logHttpHeaders(httpHeaders);
+        log.debug("listItems - correlationIdHandler.getCorrelationId: [{}]", correlationIdHandler.getCorrelationId());
+        List<ItemDto> itemDtoList = this.itemService.findItemAll();
+        return ResponseEntity.ok(itemDtoList);
+    }
+
+    //@CrossOrigin(origins = "*")
+//    @GetMapping("/items")
+    public ResponseEntity<?> pageItems(@Param("name") String name, Pageable pageable) {
         List<ItemDto> itemDtoList = this.itemService.findItemAll();
         return ResponseEntity.ok(itemDtoList);
     }
