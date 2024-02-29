@@ -17,7 +17,8 @@ import org.springframework.web.client.RestTemplate;
 import java.net.URISyntaxException;
 
 @Slf4j
-@PublicApiV1Controller
+@Deprecated
+//@PublicApiV1Controller
 public class AuthController extends com.siukatech.poc.react.backend.parent.web.controller.AuthController {
 
 //    @Value("${security.oauth2.client.registration.keycloak.client-id}")

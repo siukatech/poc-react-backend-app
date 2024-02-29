@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Slf4j
-@ProtectedApiV1Controller
+@Deprecated
+//@ProtectedApiV1Controller
 public class UserController extends com.siukatech.poc.react.backend.parent.web.controller.UserController {
 
 //    private final UserRepository userRepository;
