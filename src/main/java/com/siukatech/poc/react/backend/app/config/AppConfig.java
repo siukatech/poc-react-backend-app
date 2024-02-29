@@ -2,7 +2,9 @@ package com.siukatech.poc.react.backend.app.config;
 
 import com.siukatech.poc.react.backend.parent.EnableReactBackend;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 
 @Slf4j
 @Configuration
@@ -11,6 +13,11 @@ import org.springframework.context.annotation.Configuration;
 //        WebConfigImport.class
 //        , SecurityConfigImport.class
 //})
+@ComponentScan(value = {"com.siukatech.poc.react.backend.parent.web.controller"}
+        , excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX
+        , pattern = "com.siukatech.poc.react.backend.parent.web.controller.WebController"
+)
+)
 @EnableReactBackend
 public class AppConfig {
 
