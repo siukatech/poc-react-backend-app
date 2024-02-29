@@ -13,13 +13,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 
+/**
+ * @Order is not required, bean will not be found if added.
+ * No need to extend the parent {@link com.siukatech.poc.react.backend.parent.web.controller.WebController WebController}.
+ */
 @Slf4j
-@Order(Ordered.HIGHEST_PRECEDENCE)
+// This is not working - start
+//@Order(Ordered.HIGHEST_PRECEDENCE)
+// This is not working - end
 //@PublicApiV1Controller
 @RestController
-public class WebController {
+public class WebController
+//        extends com.siukatech.poc.react.backend.parent.web.controller.WebController
+{
 
-    @GetMapping(path = PublicApiV1Controller.REQUEST_MAPPING_URI_PREFIX)
+    @GetMapping(path = PublicApiV1Controller.REQUEST_MAPPING_URI_PREFIX + "/")
     public String index() {
         return "external (react-backend-app)";
     }

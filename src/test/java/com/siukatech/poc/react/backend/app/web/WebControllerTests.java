@@ -34,7 +34,7 @@ public class WebControllerTests extends AbstractWebTests {
 
         // when
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get(new URI(PublicApiV1Controller.REQUEST_MAPPING_URI_PREFIX))
+                .get(new URI(PublicApiV1Controller.REQUEST_MAPPING_URI_PREFIX + "/"))
                 .with(csrf())
                 .accept(MediaType.APPLICATION_JSON);
 
