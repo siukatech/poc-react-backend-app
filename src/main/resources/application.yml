@@ -2,13 +2,18 @@ server:
   port: 28080
 
 spring:
-  # not working - start
+  # This is not working - start
 #  mvc:
 #    format:
 #      date: yyyy-MM-dd
 #      date-time: yyyy-MM-dd HH:mm:ss
 #      time: HH:mm:ss
-  # not working - end
+  # This is not working - end
+
+  output:
+    ansi:
+      enabled: always
+
   jpa:
     properties:
       hibernate:
@@ -59,8 +64,26 @@ spring:
           issuer-uri: ${oauth2-client-keycloak}/realms/${client-realm}
 
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  tracing:
+    sampling:
+      probability: 1.0
+  metrics:
+    distribution:
+      percentiles-histogram:
+        greeting: true
+        http:
+          server:
+            requests: true
+
+
 app:
-  host-name: http://localhost:28080
+#  host-name: http://localhost:28080
+  host-name: http://localhost:28081
   api:
     my-user-info: /v1/protected/my/user-info
     my-key-info: /v1/protected/my/key-info
@@ -74,6 +97,7 @@ logging:
 #    org.springframework.web: TRACE
     org.springframework.security: TRACE
     org.springframework.http.client: TRACE
+    org.springframework.web.servlet.DispatcherServlet: DEBUG
     com.siukatech.poc.react.backend.parent: TRACE
     com.siukatech.poc.react.backend.app: DEBUG
 
