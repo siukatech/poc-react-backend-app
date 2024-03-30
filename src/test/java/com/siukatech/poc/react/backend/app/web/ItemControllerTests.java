@@ -8,6 +8,7 @@ import com.siukatech.poc.react.backend.app.business.form.ItemForm;
 import com.siukatech.poc.react.backend.app.business.service.ItemService;
 import com.siukatech.poc.react.backend.app.web.controller.ItemController;
 import com.siukatech.poc.react.backend.parent.web.annotation.v1.ProtectedApiV1Controller;
+import com.siukatech.poc.react.backend.parent.web.micrometer.CorrelationIdHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -49,6 +50,8 @@ public class ItemControllerTests extends AbstractWebTests {
 //    private ModelMapper modelMapper;
     @MockBean
     private ItemService itemService;
+    @MockBean
+    private CorrelationIdHandler correlationIdHandler;
 
 
     @BeforeAll
