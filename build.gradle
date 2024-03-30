@@ -10,7 +10,9 @@ apply plugin: 'io.spring.dependency-management'
 group = 'com.siukatech.poc'
 version = '0.0.1-SNAPSHOT'
 //sourceCompatibility = '17'
-sourceCompatibility = '21'
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+}
 
 //repositories {
 //	mavenCentral()
