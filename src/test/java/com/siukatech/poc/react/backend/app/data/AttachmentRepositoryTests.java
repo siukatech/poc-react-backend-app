@@ -26,7 +26,7 @@ public class AttachmentRepositoryTests extends AbstractJpaTests {
 
     private AttachmentHelper attachmentHelper = new AttachmentHelper();
 
-    @BeforeEach()
+    @BeforeEach
     public void setup(TestInfo testInfo) {
         AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic();
         this.attachmentRepository.save(attachmentEntity);

@@ -53,7 +53,7 @@ public class ItemRepositoryTests extends AbstractJpaTests {
         return itemDto;
     }
 
-    @BeforeEach()
+    @BeforeEach
     public void setup(TestInfo testInfo) {
         ItemEntity itemEntity = this.prepareItemEntity_basic();
         this.itemRepository.save(itemEntity);

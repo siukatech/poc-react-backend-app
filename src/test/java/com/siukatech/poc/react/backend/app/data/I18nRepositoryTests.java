@@ -38,7 +38,7 @@ public class I18nRepositoryTests extends AbstractJpaTests {
         return i18nEntity;
     }
 
-    @BeforeEach()
+    @BeforeEach
     public void setup(TestInfo testInfo) {
         I18nEntity i18nEntity = this.prepareI18nEntity_basic();
         this.i18nRepository.save(i18nEntity);

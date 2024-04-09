@@ -10,10 +10,7 @@ import com.siukatech.poc.react.backend.app.web.controller.ItemController;
 import com.siukatech.poc.react.backend.parent.web.annotation.v1.ProtectedApiV1Controller;
 import com.siukatech.poc.react.backend.parent.web.micrometer.CorrelationIdHandler;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -63,7 +60,7 @@ public class ItemControllerTests extends AbstractWebTests {
     public void setup(TestInfo testInfo) {
     }
 
-    @BeforeEach
+    @AfterEach
     public void teardown(TestInfo testInfo) {
     }
 
