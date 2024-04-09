@@ -82,10 +82,14 @@ management:
 
 
 app:
-#  host-name: http://localhost:28080
-  host-name: http://localhost:28081
+  # configuration for remote user service
+#  host-name: http://localhost:28081
+#  api:
+#    my-user-info: /v1/protected/my/user-info
+#    my-key-info: /v1/protected/my/key-info
+  # configuration for database user service
+  host-name: http://localhost:28080
   api:
-    my-user-info: /v1/protected/my/user-info
     my-key-info: /v1/protected/my/key-info
 
 
