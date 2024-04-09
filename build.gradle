@@ -1,7 +1,8 @@
 plugins {
-    id 'java'
-//	id 'org.springframework.boot' version '3.1.0'
-//	id 'io.spring.dependency-management' version '1.1.0'
+//    id 'java'
+    id 'application'
+//    id 'org.springframework.boot' version '3.1.0'
+//    id 'io.spring.dependency-management' version '1.1.0'
     id 'org.springframework.boot' version '3.2.1'
     id 'maven-publish'
 }
@@ -52,9 +53,12 @@ dependencies {
 
     runtimeOnly 'org.postgresql:postgresql:42.6.0'
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.security:spring-security-test'
-    testImplementation 'com.h2database:h2:2.1.214'
+    testImplementation testFixtures('com.siukatech.poc:react-backend-parent:0.0.1-SNAPSHOT-test-fixtures')
+
+//    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//    testImplementation 'org.springframework.security:spring-security-test'
+//    testImplementation 'com.h2database:h2:2.1.214'
+
 }
 
 // after upgrade to springboot >= 3.2.1

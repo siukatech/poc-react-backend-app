@@ -1,7 +1,7 @@
 package com.siukatech.poc.react.backend.app.web;
 
-import com.siukatech.poc.react.backend.app.AbstractWebTests;
 import com.siukatech.poc.react.backend.app.web.controller.ProtectedController;
+import com.siukatech.poc.react.backend.parent.AbstractWebTests;
 import com.siukatech.poc.react.backend.parent.web.annotation.v1.ProtectedApiV1Controller;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +22,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(controllers = ProtectedController.class)
 @AutoConfigureMockMvc(addFilters = false)
 public class ProtectedControllerTests extends AbstractWebTests {
-    @Autowired
-    private MockMvc mockMvc;
+
+//    @Autowired
+//    private MockMvc mockMvc;
 
     @Test
     public void test_basic() throws Exception {

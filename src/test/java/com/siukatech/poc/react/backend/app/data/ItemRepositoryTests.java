@@ -1,10 +1,10 @@
 package com.siukatech.poc.react.backend.app.data;
 
 
-import com.siukatech.poc.react.backend.app.AbstractJpaTests;
 import com.siukatech.poc.react.backend.app.business.dto.ItemDto;
 import com.siukatech.poc.react.backend.app.data.entity.ItemEntity;
 import com.siukatech.poc.react.backend.app.data.repository.ItemRepository;
+import com.siukatech.poc.react.backend.parent.AbstractJpaTests;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

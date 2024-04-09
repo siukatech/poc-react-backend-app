@@ -1,10 +1,10 @@
 package com.siukatech.poc.react.backend.app.business;
 
 
-import com.siukatech.poc.react.backend.app.AbstractUnitTests;
 import com.siukatech.poc.react.backend.app.business.service.I18nService;
 import com.siukatech.poc.react.backend.app.data.entity.I18nEntity;
 import com.siukatech.poc.react.backend.app.data.repository.I18nRepository;
+import com.siukatech.poc.react.backend.parent.AbstractUnitTests;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

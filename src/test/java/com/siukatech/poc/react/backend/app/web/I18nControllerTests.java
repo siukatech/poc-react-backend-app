@@ -1,12 +1,12 @@
 package com.siukatech.poc.react.backend.app.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.siukatech.poc.react.backend.app.AbstractUnitTests;
-import com.siukatech.poc.react.backend.app.AbstractWebTests;
 import com.siukatech.poc.react.backend.app.business.dto.I18nDto;
 import com.siukatech.poc.react.backend.app.business.form.I18nForm;
 import com.siukatech.poc.react.backend.app.business.service.I18nService;
 import com.siukatech.poc.react.backend.app.web.controller.I18nController;
+import com.siukatech.poc.react.backend.parent.AbstractUnitTests;
+import com.siukatech.poc.react.backend.parent.AbstractWebTests;
 import com.siukatech.poc.react.backend.parent.web.annotation.v1.PublicApiV1Controller;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
@@ -56,14 +56,17 @@ public class I18nControllerTests extends AbstractWebTests {
 //    @Autowired
 //    public I18nRepository i18nRepository;
 
-    //    @Autowired
+////    @Autowired
 //    private WebApplicationContext webApplicationContext;
-    @Autowired
-    private MockMvc mockMvc;
-    @Autowired
-    private ObjectMapper objectMapper;
-//    @MockBean
+
+//    @Autowired
+//    private MockMvc mockMvc;
+//    @Autowired
+//    private ObjectMapper objectMapper;
+
+////    @MockBean
 //    private ModelMapper modelMapper;
+
     @MockBean
     private I18nService i18nService;
 //    @MockBean

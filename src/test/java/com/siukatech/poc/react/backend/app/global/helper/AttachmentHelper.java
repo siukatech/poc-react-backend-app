@@ -3,6 +3,7 @@ package com.siukatech.poc.react.backend.app.global.helper;
 import com.siukatech.poc.react.backend.app.business.dto.AttachmentDto;
 import com.siukatech.poc.react.backend.app.business.form.AttachmentForm;
 import com.siukatech.poc.react.backend.app.data.entity.AttachmentEntity;
+import com.siukatech.poc.react.backend.parent.global.helper.AbstractHelper;
 import org.apache.commons.io.FileUtils;
 import org.apache.tika.Tika;
 import org.modelmapper.ModelMapper;

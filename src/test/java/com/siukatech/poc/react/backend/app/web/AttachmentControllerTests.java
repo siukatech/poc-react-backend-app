@@ -2,8 +2,8 @@ package com.siukatech.poc.react.backend.app.web;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.siukatech.poc.react.backend.app.AbstractUnitTests;
-import com.siukatech.poc.react.backend.app.AbstractWebTests;
+import com.siukatech.poc.react.backend.parent.AbstractUnitTests;
+import com.siukatech.poc.react.backend.parent.AbstractWebTests;
 import com.siukatech.poc.react.backend.app.business.dto.AttachmentDto;
 import com.siukatech.poc.react.backend.app.business.form.AttachmentForm;
 import com.siukatech.poc.react.backend.app.business.service.AttachmentService;
@@ -52,10 +52,11 @@ public class AttachmentControllerTests extends AbstractWebTests {
 
 //    @Autowired
     private MockMvc mockMvc;
-    @Autowired
-    private WebApplicationContext webApplicationContext;
-    @Autowired
-    private ObjectMapper objectMapper;
+//    @Autowired
+//    private WebApplicationContext webApplicationContext;
+//    @Autowired
+//    private ObjectMapper objectMapper;
+
     @MockBean
     private AttachmentService attachmentService;
 
@@ -70,10 +71,11 @@ public class AttachmentControllerTests extends AbstractWebTests {
     @BeforeEach
     public void setup(TestInfo testInfo) {
         if (mockMvc == null) {
-            mockMvc = MockMvcBuilders
-                    .webAppContextSetup(webApplicationContext)
-                    .apply(springSecurity())
-                    .build();
+//            mockMvc = MockMvcBuilders
+//                    .webAppContextSetup(webApplicationContext)
+//                    .apply(springSecurity())
+//                    .build();
+            mockMvc = prepareMockMvc();
         }
     }
 

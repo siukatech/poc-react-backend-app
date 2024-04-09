@@ -1,12 +1,12 @@
 package com.siukatech.poc.react.backend.app.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.siukatech.poc.react.backend.app.AbstractUnitTests;
-import com.siukatech.poc.react.backend.app.AbstractWebTests;
 import com.siukatech.poc.react.backend.app.business.dto.ItemDto;
 import com.siukatech.poc.react.backend.app.business.form.ItemForm;
 import com.siukatech.poc.react.backend.app.business.service.ItemService;
 import com.siukatech.poc.react.backend.app.web.controller.ItemController;
+import com.siukatech.poc.react.backend.parent.AbstractUnitTests;
+import com.siukatech.poc.react.backend.parent.AbstractWebTests;
 import com.siukatech.poc.react.backend.parent.web.annotation.v1.ProtectedApiV1Controller;
 import com.siukatech.poc.react.backend.parent.web.micrometer.CorrelationIdHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -39,12 +39,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc(addFilters = false)
 public class ItemControllerTests extends AbstractWebTests {
 
-    @Autowired
-    private MockMvc mockMvc;
-    @Autowired
-    private ObjectMapper objectMapper;
-    //    @MockBean
+//    @Autowired
+//    private MockMvc mockMvc;
+//    @Autowired
+//    private ObjectMapper objectMapper;
+
+////    @MockBean
 //    private ModelMapper modelMapper;
+
     @MockBean
     private ItemService itemService;
     @MockBean

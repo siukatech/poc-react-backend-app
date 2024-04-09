@@ -1,8 +1,8 @@
 package com.siukatech.poc.react.backend.app.data;
 
-import com.siukatech.poc.react.backend.app.AbstractJpaTests;
 import com.siukatech.poc.react.backend.app.data.entity.I18nEntity;
 import com.siukatech.poc.react.backend.app.data.repository.I18nRepository;
+import com.siukatech.poc.react.backend.parent.AbstractJpaTests;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;

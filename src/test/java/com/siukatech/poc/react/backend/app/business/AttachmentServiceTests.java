@@ -1,6 +1,5 @@
 package com.siukatech.poc.react.backend.app.business;
 
-import com.siukatech.poc.react.backend.app.AbstractUnitTests;
 import com.siukatech.poc.react.backend.app.business.dto.AttachmentContentDto;
 import com.siukatech.poc.react.backend.app.business.dto.AttachmentDto;
 import com.siukatech.poc.react.backend.app.business.form.AttachmentForm;
@@ -8,6 +7,7 @@ import com.siukatech.poc.react.backend.app.business.service.AttachmentService;
 import com.siukatech.poc.react.backend.app.data.entity.AttachmentEntity;
 import com.siukatech.poc.react.backend.app.data.repository.AttachmentRepository;
 import com.siukatech.poc.react.backend.app.global.helper.AttachmentHelper;
+import com.siukatech.poc.react.backend.parent.AbstractUnitTests;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
