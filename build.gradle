@@ -8,11 +8,12 @@ plugins {
 }
 apply plugin: 'io.spring.dependency-management'
 
-group = 'com.siukatech.poc'
-version = '0.0.1-SNAPSHOT'
-//sourceCompatibility = '17'
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
+    group = 'com.siukatech.poc'
+    version = '0.0.1-SNAPSHOT'
+//    sourceCompatibility = '17'
+    sourceCompatibility = JavaVersion.VERSION_17
+//    sourceCompatibility = JavaVersion.VERSION_21
 }
 
 //repositories {
@@ -36,8 +37,11 @@ bootJar {
     exclude('application*.properties', 'application*.yml')
 }
 
+// define react-backend-parent version
+def parentProjectVersion = '0.0.1-SNAPSHOT'
+
 dependencies {
-    implementation 'com.siukatech.poc:react-backend-parent:0.0.1-SNAPSHOT'
+    implementation "com.siukatech.poc:react-backend-parent:$parentProjectVersion"
 
 //	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 //	implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -53,7 +57,7 @@ dependencies {
 
     runtimeOnly 'org.postgresql:postgresql:42.6.0'
 
-    testImplementation testFixtures('com.siukatech.poc:react-backend-parent:0.0.1-SNAPSHOT-test-fixtures')
+    testImplementation testFixtures("com.siukatech.poc:react-backend-parent:$parentProjectVersion")
 
 //    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 //    testImplementation 'org.springframework.security:spring-security-test'
