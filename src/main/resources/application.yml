@@ -42,11 +42,20 @@ spring:
             client-id: ${client-id}
             client-secret: ${client-secret}
             authorization-grant-type: authorization_code
+            # write in list (- xxx -yyy) is correct 1
+            #scope:
+            #  - openid
+            #  - profile
+            #  - email
+            # write in comma (xxx,yyy) is correct 2
             scope: openid,profile,email
-#            scope: openid
-#            scope: "openid,profile,email"
-#            scope: "openid+profile+email"
-#            scope: "openid profile email"
+            #scope: openid
+            # write in double quote with comma ("xxx,yyy") is correct 3
+            #scope: "openid,profile,email"
+            # write in double quote with comma ("xxx+yyy") is wrong 1
+            #scope: "openid+profile+email"
+            # write in double quote with comma ("xxx yyy") is wrong 2
+            #scope: "openid profile email"
             redirect-uri: ${oauth2-client-redirect-uri}
 
         provider:
@@ -105,5 +114,7 @@ logging:
     org.springframework.http.client: TRACE
     org.springframework.web.servlet.DispatcherServlet: DEBUG
     com.siukatech.poc.react.backend.parent: TRACE
+    com.siukatech.poc.react.backend.parent.web: TRACE
     com.siukatech.poc.react.backend.app: DEBUG
+    com.siukatech.poc.react.backend.app.web: TRACE
 
