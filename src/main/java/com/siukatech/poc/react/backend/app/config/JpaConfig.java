@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
 //@EnableJpaAuditing(auditorAwareRef = "auditorAware")
-@EntityScan(basePackages = {"com.siukatech.poc.react.backend.app.data.entity"})
-@EnableJpaRepositories("com.siukatech.poc.react.backend.app.data.repository")
+@EntityScan(basePackages = {"com.siukatech.poc.react.backend.app.*.data.entity"})
+@EnableJpaRepositories("com.siukatech.poc.react.backend.app.*.data.repository")
 public class JpaConfig {
 
 //    @Bean
