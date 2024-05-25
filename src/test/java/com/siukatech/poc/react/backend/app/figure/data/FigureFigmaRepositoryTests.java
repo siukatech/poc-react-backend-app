@@ -73,7 +73,9 @@ public class FigureFigmaRepositoryTests extends AbstractJpaTests {
     @Test
     public void findAll_basic() {
         List<FigureFigmaEntity> figureFigmaEntityList = figureFigmaRepository.findAll();
+        log.debug("findAll_basic - figureFigmaEntityList.size: [{}]", figureFigmaEntityList.size());
         assertThat(figureFigmaEntityList).filteredOn(figureFigmaEntity -> {
+                    log.debug("findAll_basic - figureFigmaEntity: [{}]", figureFigmaEntity);
                     return StringUtils.hasText(figureFigmaEntity.getName())
                             && figureFigmaEntity.getName().contains("figma ");
                 })
@@ -82,6 +84,8 @@ public class FigureFigmaRepositoryTests extends AbstractJpaTests {
 
     private void findByHasPreorderBonus_basic(boolean hasPreorderBonus, int expectedSize) {
         List<FigureFigmaEntity> figureFigmaEntityList = figureFigmaRepository.findByHasPreorderBonus(hasPreorderBonus);
+        log.debug("findByHasPreorderBonus_basic - figureFigmaEntityList.size: [{}]", figureFigmaEntityList.size());
+        log.debug("findByHasPreorderBonus_basic - figureFigmaEntityList: [{}]", figureFigmaEntityList);
         assertThat(figureFigmaEntityList).hasSize(expectedSize);
     }
 

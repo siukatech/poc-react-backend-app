@@ -100,18 +100,19 @@ bootJar {
 # Design
 ## Package
 - main/java
+  - config: Application configuration
+  - feature
     - business: Business services and dto
-    - config: Application configuration
     - data: ms-project specific data layer
     - web
-        - controller
-            - encrypted
-                - EncryptedItemController: expose protected api to encrypt
-            - extended
-                - AuthController: Handle OAuth2 flows
-                - MyController: Expose the `my-key-info` api for decryption when calling `/encrypted` api
-            - I18nController: i18n data
-        - model: Form models and request models
+      - controller
+        - encrypted
+          - EncryptedItemController: expose protected api to encrypt
+        - extended
+          - AuthController: Handle OAuth2 flows
+          - MyController: Expose the `my-key-info` api for decryption when calling `/encrypted` api
+        - I18nController: i18n data
+      - model: Form models and request models
 
 
 
@@ -125,6 +126,66 @@ After the application started, those configurations will be also loaded into the
 public class AppConfig {
     ...
 }
+```
+
+
+
+## Entity Inheritance
+Package is com.siukatech.poc.react.backend.app.figure.data.entity.  
+- FigureAbstractEntity is the abstract class for FigureCoreEntity and FigureBaseEntity.
+- FigureCoreEntity is read-only.
+- FigureBaseEntity is the base for joining sub-classes by setting `@Inheritance(strategy = InheritanceType.JOINED)`.
+- FigureShfEntity and FigureFigmaEntity are the actual implementations of FigureBaseEntity.
+
+```
+Visibility:
++ Public
+- Private
+# Protected
+~ Package/Internal
+```
+```mermaid
+---
+title: E2EE class diagram
+---
+classDiagram
+    AbstractEntity <|-- FigureAbstractEntity
+    FigureAbstractEntity <|-- FigureCoreEntity
+    FigureAbstractEntity <|-- FigureBaseEntity
+    FigureBaseEntity <|-- FigureFigmaEntity
+    FigureBaseEntity <|-- FigureShfEntity
+
+    class AbstractEntity {
+        <<abstract>>
+        #String createdBy
+        #LocalDateTime createdDatetime;
+        #String lastModifiedBy;
+        #LocalDateTime lastModifiedDatetime;
+        #Long versionNo;
+    }
+    class FigureAbstractEntity {
+        <<abstract>>
+        #UUID id
+        #String name
+        #LocalDate firstReleaseDate;
+
+    }
+    class FigureCoreEntity {
+        <<entity>>
+        read-only purpose
+    }
+    class FigureBaseEntity {
+        <<entity>>
+        @Inheritance(strategy = InheritanceType.JOINED)
+    }
+    class FigureShfEntity {
+        <<entity>>
+    }
+    class FigureFigmaEntity {
+        <<entity>>
+        -boolean hasPreorderBonus
+    }
+
 ```
 
 

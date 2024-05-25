@@ -3,7 +3,9 @@ package com.siukatech.poc.react.backend.app.figure.data;
 
 import com.siukatech.poc.react.backend.app.figure.business.dto.FigureBaseDto;
 import com.siukatech.poc.react.backend.app.figure.data.entity.FigureBaseEntity;
+import com.siukatech.poc.react.backend.app.figure.data.entity.FigureCoreEntity;
 import com.siukatech.poc.react.backend.app.figure.data.repository.FigureBaseRepository;
+import com.siukatech.poc.react.backend.app.figure.data.repository.FigureCoreRepository;
 import com.siukatech.poc.react.backend.parent.AbstractJpaTests;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
@@ -23,10 +25,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 @DataJpaTest
-public class FigureBaseRepositoryTests extends AbstractJpaTests {
+public class FigureCoreRepositoryTests extends AbstractJpaTests {
 
     @Autowired
     private FigureBaseRepository figureBaseRepository;
+
+    @Autowired
+    private FigureCoreRepository figureCoreRepository;
 
 
     private FigureBaseEntity prepareFigureBaseEntity_basic() {
@@ -58,23 +63,25 @@ public class FigureBaseRepositoryTests extends AbstractJpaTests {
     @BeforeEach
     public void setup(TestInfo testInfo) {
         FigureBaseEntity figureBaseEntity = this.prepareFigureBaseEntity_basic();
+        log.debug("setups - testInfo: [{}], figureBaseEntity: [{}]", testInfo, figureBaseEntity);
         this.figureBaseRepository.save(figureBaseEntity);
     }
 
     @AfterEach
     public void teardown(TestInfo testInfo) {
         FigureBaseEntity figureBaseEntity = this.prepareFigureBaseEntity_basic();
+        log.debug("teardown - testInfo: [{}], figureBaseEntity: [{}]", testInfo, figureBaseEntity);
         this.figureBaseRepository.delete(figureBaseEntity);
     }
 
     @Test
     public void findAll_basic() {
-        List<FigureBaseEntity> figureBaseEntityList = figureBaseRepository.findAll();
-        log.debug("findAll_basic - figureBaseEntityList.size: [{}]", figureBaseEntityList.size());
-        assertThat(figureBaseEntityList).filteredOn(figureBaseEntity -> {
-                    log.debug("findAll_basic - figureBaseEntity: [{}]", figureBaseEntity);
-                    return StringUtils.hasText(figureBaseEntity.getName())
-                            && figureBaseEntity.getName().contains("shf ");
+        List<FigureCoreEntity> figureCoreEntityList = figureCoreRepository.findAll();
+        log.debug("findAll_basic - figureCoreEntityList.size: [{}]", figureCoreEntityList.size());
+        assertThat(figureCoreEntityList).filteredOn(figureCoreEntity -> {
+                    log.debug("findAll_basic - figureCoreEntity: [{}]", figureCoreEntity);
+                    return StringUtils.hasText(figureCoreEntity.getName())
+                            && figureCoreEntity.getName().contains("shf ");
                 })
                 .hasSize(1);
     }
