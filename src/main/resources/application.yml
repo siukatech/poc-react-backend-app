@@ -1,6 +1,11 @@
 server:
   port: 28080
 
+#for plain hibernate
+hibernate:
+  jdbc:
+    time_zone: UTC
+
 spring:
   # This is not working - start
 #  mvc:
@@ -21,6 +26,9 @@ spring:
         ddl-auto: none
         show-sql: true
         format-sql: true
+#        #for Spring boot jpa
+#        jdbc:
+#          time_zone: UTC
 
   datasource:
     url: jdbc:postgresql://${db-hostname}/${db-name}
@@ -72,6 +80,12 @@ spring:
         jwt:
           issuer-uri: ${oauth2-client-keycloak}/realms/${client-realm}
 
+#  # Doesnt work for java 8 date types
+#  jackson:
+#    date-format: 'yyyy-MM-ddTHH:mm:ss.sssZ'
+#    serialization:
+#      write_dates_as_timestamps: false
+
 
 management:
   endpoints:
@@ -107,8 +121,11 @@ logging:
     level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
   level:
 #    root: DEBUG
-#    org.hibernate.SQL: DEBUG
-#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.orm.jdbc.bind: TRACE
+    org.springframework.jdbc.core.JdbcTemplate: DEBUG
+    org.springframework.jdbc.core.StatementCreatorUtils: TRACE
 #    org.springframework.web: TRACE
     org.springframework.security: TRACE
     org.springframework.http.client: TRACE

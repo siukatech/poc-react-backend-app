@@ -75,6 +75,7 @@ The [redirect-uri] most likely is the frontend url, e.g. https://frontend/redire
 > client-realm=[client-realm]  
 > oauth2-client-keycloak=[keycloak-server]  
 > oauth2-client-redirect-uri=[redirect-uri]
+> jvmArgs="-Duser.timezone=UTC"
 
 
 

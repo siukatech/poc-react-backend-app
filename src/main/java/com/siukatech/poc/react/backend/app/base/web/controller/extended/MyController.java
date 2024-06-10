@@ -43,4 +43,10 @@ public class MyController extends com.siukatech.poc.react.backend.parent.web.con
         return super.getUserPermissions(httpHeaders, authentication);
     }
 
+    @GetMapping("/my/user-view")
+    public ResponseEntity<?> getUserView(@RequestHeader HttpHeaders httpHeaders
+            , Authentication authentication) {
+        return super.getUserView(httpHeaders, authentication);
+    }
+
 }
