@@ -79,8 +79,17 @@ The [redirect-uri] most likely is the frontend url, e.g. https://frontend/redire
 
 
 ### Terminal / Command Prompt
+It is weird that the behaviors between intellij bootRun task and gradlew bootRun task.  
+![Intellij task 01](assets/image/gradle-01-01-intellij-task-bootRun-01.png)  
+![Gradlew task 01](assets/image/gradle-01-02-gradlew-task-bootRun-01.png)  
+In Intellij task, `--args` can be loaded as environment variable.  
+But in gradlew task, `--args` can be loaded as class arguments only. The timezone information is required to pass through `-D`.  
 ```shell
-./gradlew bootRun --debug --args='db-hostname=[db-hostname] --db-name=[db-name] --db-username=[db-username] --db-password=[db-password] --spring.profiles.active=[spring-profile] --client-secret=[client-secret] --client-id=[client-id] --client-realm=[client-realm] --oauth2-client-keycloak=[keycloak-server] --oauth2-client-redirect-uri=[redirect-uri, most likely is frontend url, e.g. https://frontend/redirect]'
+#gradlew
+./gradlew bootRun --debug --args='--db-hostname=[db-hostname] --db-name=[db-name] --db-username=[db-username] --db-password=[db-password] --spring.profiles.active=[spring-profile] --client-secret=[client-secret] --client-id=[client-id] --client-realm=[client-realm] --oauth2-client-keycloak=[keycloak-server] --oauth2-client-redirect-uri=[redirect-uri, most likely is frontend url, e.g. https://frontend/redirect]'  -DjvmArgs="-Duser.timezone=UTC"
+
+#java
+java -jar '-Duser.timezone=UTC' build/libs/react-backend-app-0.0.1-SNAPSHOT.jar
 ```
 
 
