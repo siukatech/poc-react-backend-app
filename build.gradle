@@ -37,6 +37,24 @@ bootJar {
     exclude('application*.properties', 'application*.yml')
 }
 
+// change to pass through parameter rather than coded in build.gradle
+// look like only using environment arguments and pass through bootRun's jvmArgs
+// https://www.baeldung.com/spring-boot-set-default-timezone
+// https://stackoverflow.com/a/25079415
+//
+bootRun {
+    println("bootRun - System.getenv: [" + System.getenv("jvmArgs") + "]")
+    println("bootRun - System.getpropertu: [" + System.getProperty("jvmArgs") + "]")
+//    def jvmArgsStr = System.getenv("jvmArgs")
+    def jvmArgsStr = System.getProperty("jvmArgs")
+    def jvmArgsList = jvmArgsStr == null? [] : jvmArgsStr.split('\\s+') as List
+    println("bootRun - jvmArgsStr: [" + jvmArgsStr + "], jvmArgsList: [" + jvmArgsList + "]")
+    jvmArgs(
+//            ["-Duser.timezone=UTC"]
+            jvmArgsList
+    )
+}
+
 // define react-backend-parent version
 def parentProjectVersion = '0.0.1-SNAPSHOT'
 
