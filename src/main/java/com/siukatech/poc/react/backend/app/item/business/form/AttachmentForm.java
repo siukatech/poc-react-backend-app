@@ -10,7 +10,6 @@ import java.util.UUID;
 
 
 @Data
-@EqualsAndHashCode(callSuper=false)
 public class AttachmentForm extends AbstractForm<UUID> {
 
     @NotNull

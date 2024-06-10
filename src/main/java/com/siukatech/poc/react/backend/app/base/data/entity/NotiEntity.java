@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 
 
 @Data
-@EqualsAndHashCode(callSuper=false)
+//@EqualsAndHashCode(callSuper = true)
 @Entity(name = "notis")
 public class NotiEntity extends AbstractEntity<Long> {
 

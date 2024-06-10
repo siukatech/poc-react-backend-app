@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
+//@EqualsAndHashCode(callSuper = true)
 @Entity(name = "figure_shf")
 public class FigureShfEntity extends FigureBaseEntity {
 }

@@ -10,7 +10,6 @@ import java.sql.Types;
 import java.util.UUID;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
 @Entity(name = "attachments")
 public class AttachmentEntity extends AbstractEntity<UUID> {
 

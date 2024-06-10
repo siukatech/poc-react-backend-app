@@ -4,20 +4,23 @@ import com.siukatech.poc.react.backend.parent.data.entity.AbstractEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDate;
 
-//@Data
-//@EqualsAndHashCode(callSuper=false)
+//@Data 
+////@EqualsAndHashCode(callSuper = true)
 @Setter
 @Getter
+//@ToString(callSuper = true)
+@ToString
 @Entity(name = "items")
 //@AttributeOverride(name = "id", column = @Column(name = "id"))
 public class ItemEntity extends AbstractEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    protected Long id;
     @Column
     protected String name;
     @Column(name = "purchased_date")

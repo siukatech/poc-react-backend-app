@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 
 
 @Data
-@EqualsAndHashCode(callSuper=false)
+//@EqualsAndHashCode(callSuper = true)
 @Entity(name = "instant_msgs")
 public class InstantMsgEntity extends AbstractEntity<Long> {
 

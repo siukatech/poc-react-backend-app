@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
+//@EqualsAndHashCode(callSuper = true)
 @Entity(name = "figure_figma")
 public class FigureFigmaEntity extends FigureBaseEntity {
     private boolean hasPreorderBonus;

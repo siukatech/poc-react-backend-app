@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper=false)
+//@EqualsAndHashCode(callSuper = true)
 @Entity(name = "i18n")
 //@EntityListeners(AbstractEntityToPersistListener.class)
 public class I18nEntity extends AbstractEntity<Long> {

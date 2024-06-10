@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @Data
 @MappedSuperclass
-@EqualsAndHashCode(callSuper = false)
+//@EqualsAndHashCode(callSuper = true)
 public abstract class FigureAbstractEntity extends AbstractEntity<UUID> {
 
     @Id

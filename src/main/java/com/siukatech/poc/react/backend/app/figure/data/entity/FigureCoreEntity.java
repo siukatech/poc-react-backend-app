@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 //@MappedSuperclass
-@EqualsAndHashCode(callSuper = false)
+//@EqualsAndHashCode(callSuper = true)
 @Entity(name = "figure_core")
 //@Entity
 @Table(name = "figure_base")

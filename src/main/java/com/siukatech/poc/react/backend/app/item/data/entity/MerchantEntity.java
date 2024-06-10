@@ -4,9 +4,11 @@ import com.siukatech.poc.react.backend.parent.data.entity.AbstractEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Setter
 @Getter
+@ToString
 @Entity(name = "merchants")
 public class MerchantEntity extends AbstractEntity<Long> {
 

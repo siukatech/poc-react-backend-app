@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
 public class MerchantDto extends MerchantEntity {
 //    private Long id;
 //    private String mid;

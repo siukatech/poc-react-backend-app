@@ -4,11 +4,11 @@ import com.siukatech.poc.react.backend.parent.business.form.AbstractForm;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.time.LocalDate;
 
 @Data
-@EqualsAndHashCode(callSuper=false)
 public class ItemForm extends AbstractForm<Long> {
 
     @NotNull
