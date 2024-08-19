@@ -14,6 +14,8 @@ spring:
 #      date-time: yyyy-MM-dd HH:mm:ss
 #      time: HH:mm:ss
   # This is not working - end
+  application:
+    name: app
 
   output:
     ansi:
@@ -105,20 +107,25 @@ management:
 
 
 app:
+  app-mid: backend-app
   # configuration for remote user service
-#  host-name: http://localhost:28081
-#  api:
-#    my-user-info: /v1/protected/my/user-info
-#    my-key-info: /v1/protected/my/key-info
-  # configuration for database user service
-  host-name: http://localhost:28080
+  host-name: http://localhost:28081
   api:
+    my-user-info: /v1/protected/my/user-info
     my-key-info: /v1/protected/my/key-info
+    my-user-permission-info: /v1/protected/my/user-permission-info
+  # configuration for database user service
+#  host-name: http://localhost:28080
+#  api:
+#    my-key-info: /v1/protected/my/key-info
+##    my-user-info: /v1/protected/my/user-info
+##    my-user-permission-info: /v1/protected/my/user-permission-info
 
 
 logging:
-  pattern:
-    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+#  pattern:
+##    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+#    level: "%5p [${spring.application.name:}-%X{traceId:-}-%X{spanId:-}]"
   level:
 #    root: DEBUG
     org.hibernate.SQL: DEBUG
@@ -134,4 +141,5 @@ logging:
     com.siukatech.poc.react.backend.parent.web: TRACE
     com.siukatech.poc.react.backend.app: DEBUG
     com.siukatech.poc.react.backend.app.web: TRACE
+    com.siukatech.poc.react.backend.parent.security.interceptor: DEBUG
 
