@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Slf4j
 @Deprecated
@@ -39,8 +40,9 @@ public class MyController extends com.siukatech.poc.react.backend.parent.web.con
 
     @GetMapping("/my/permissions")
     public ResponseEntity<?> getUserPermissions(@RequestHeader HttpHeaders httpHeaders
+            , @RequestParam String appMid
             , Authentication authentication) {
-        return super.getUserPermissions(httpHeaders, authentication);
+        return super.getUserPermissions(httpHeaders, appMid, authentication);
     }
 
     @GetMapping("/my/user-view")
