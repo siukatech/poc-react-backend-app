@@ -46,8 +46,8 @@ public class ItemControllerTests extends AbstractWebTests {
 
     @MockBean
     private ItemService itemService;
-    @MockBean
-    private CorrelationIdHandler correlationIdHandler;
+//    @MockBean
+//    private CorrelationIdHandler correlationIdHandler;
 
 
     @BeforeAll
