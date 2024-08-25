@@ -4,6 +4,7 @@ import com.siukatech.poc.react.backend.parent.data.entity.AbstractEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.annotations.JdbcTypeCode;
 
 import java.sql.Types;
@@ -31,6 +32,7 @@ public class AttachmentEntity extends AbstractEntity<UUID> {
      *
      * Both columnDefinition = "bytea" and @JdbcTypeCode(Types.BINARY) are required for Postgresql and h2 databases
      */
+    @ToString.Exclude
     @Lob
     @JdbcTypeCode(Types.BINARY)
     @Column(name = "file_content", columnDefinition = "bytea")
