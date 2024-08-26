@@ -1,12 +1,14 @@
 plugins {
 //    id 'java'
     id 'application'
-//    id 'org.springframework.boot' version '3.1.0'
-//    id 'io.spring.dependency-management' version '1.1.0'
-    id 'org.springframework.boot' version '3.2.1'
-    id 'maven-publish'
+//    id 'maven-publish'
+////    id 'org.springframework.boot' version '3.1.0'
+////    id 'io.spring.dependency-management' version '1.1.0'
+//    id 'org.springframework.boot' version '3.2.1'
+    id 'com.siukatech.poc.react-backend-plugin' version '0.0.1-SNAPSHOT'
 }
-apply plugin: 'io.spring.dependency-management'
+
+//apply plugin: 'io.spring.dependency-management'
 
 java {
     group = 'com.siukatech.poc'
@@ -32,28 +34,28 @@ repositories {
     }
 }
 
-bootJar {
-//	exclude('application-a*','x.yml')
-    exclude('application*.properties', 'application*.yml')
-}
+//bootJar {
+////	exclude('application-a*','x.yml')
+//    exclude('application*.properties', 'application*.yml')
+//}
 
 // change to pass through parameter rather than coded in build.gradle
 // look like only using environment arguments and pass through bootRun's jvmArgs
 // https://www.baeldung.com/spring-boot-set-default-timezone
 // https://stackoverflow.com/a/25079415
 //
-bootRun {
-    println("bootRun - System.getenv: [" + System.getenv("jvmArgs") + "]")
-    println("bootRun - System.getpropertu: [" + System.getProperty("jvmArgs") + "]")
-//    def jvmArgsStr = System.getenv("jvmArgs")
-    def jvmArgsStr = System.getProperty("jvmArgs")
-    def jvmArgsList = jvmArgsStr == null? [] : jvmArgsStr.split('\\s+') as List
-    println("bootRun - jvmArgsStr: [" + jvmArgsStr + "], jvmArgsList: [" + jvmArgsList + "]")
-    jvmArgs(
-//            ["-Duser.timezone=UTC"]
-            jvmArgsList
-    )
-}
+//bootRun {
+//    println("bootRun - System.getenv: [" + System.getenv("jvmArgs") + "]")
+//    println("bootRun - System.getpropertu: [" + System.getProperty("jvmArgs") + "]")
+////    def jvmArgsStr = System.getenv("jvmArgs")
+//    def jvmArgsStr = System.getProperty("jvmArgs")
+//    def jvmArgsList = jvmArgsStr == null? [] : jvmArgsStr.split('\\s+') as List
+//    println("bootRun - jvmArgsStr: [" + jvmArgsStr + "], jvmArgsList: [" + jvmArgsList + "]")
+//    jvmArgs(
+////            ["-Duser.timezone=UTC"]
+//            jvmArgsList
+//    )
+//}
 
 // define react-backend-parent version
 def parentProjectVersion = '0.0.1-SNAPSHOT'
@@ -95,29 +97,29 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-// Reference:
-// https://docs.gradle.org/current/userguide/publishing_maven.html
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            def artifactIdStr = "$project.name"
-            groupId "$project.group"
-            version "$project.version"
-            artifactId "$artifactIdStr"
-//			from components.javaPlatform
-            from components.java
-            versionMapping {
-                usage('java-api') {
-                    fromResolutionOf('runtimeClasspath')
-                }
-                usage('java-runtime') {
-                    fromResolutionResult()
-                }
-            }
-            pom {
-                name = "$artifactId"
-                description = "$artifactId"
-            }
-        }
-    }
-}
+//// Reference:
+//// https://docs.gradle.org/current/userguide/publishing_maven.html
+//publishing {
+//    publications {
+//        mavenJava(MavenPublication) {
+//            def artifactIdStr = "$project.name"
+//            groupId "$project.group"
+//            version "$project.version"
+//            artifactId "$artifactIdStr"
+////			from components.javaPlatform
+//            from components.java
+//            versionMapping {
+//                usage('java-api') {
+//                    fromResolutionOf('runtimeClasspath')
+//                }
+//                usage('java-runtime') {
+//                    fromResolutionResult()
+//                }
+//            }
+//            pom {
+//                name = "$artifactId"
+//                description = "$artifactId"
+//            }
+//        }
+//    }
+//}
