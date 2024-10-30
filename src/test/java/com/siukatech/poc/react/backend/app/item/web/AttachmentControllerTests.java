@@ -30,8 +30,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import static org.hamcrest.Matchers.containsString;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.authentication;
@@ -81,7 +80,7 @@ public class AttachmentControllerTests extends AbstractWebTests {
 
 
     protected MyAuthenticationToken prepareMyAuthenticationToken_basic() {
-        return prepareMyAuthenticationToken("app-user-01", 1L);
+        return prepareMyAuthenticationToken("app-user-01", UUID.randomUUID().toString());
     }
 
     @Test
@@ -89,7 +88,7 @@ public class AttachmentControllerTests extends AbstractWebTests {
         // given
         AttachmentDto attachmentDto = this.attachmentHelper.convertToAttachmentDto(
                 this.attachmentHelper.prepareAttachmentEntity_basic());
-        when(attachmentService.findAttachmentAllByUserId(anyLong())).thenReturn(List.of(attachmentDto));
+        when(attachmentService.findAttachmentAllByUserId(anyString())).thenReturn(List.of(attachmentDto));
 
         // when
         RequestBuilder requestBuilder = MockMvcRequestBuilders

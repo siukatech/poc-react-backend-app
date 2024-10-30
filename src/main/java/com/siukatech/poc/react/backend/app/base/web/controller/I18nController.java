@@ -87,7 +87,7 @@ public class I18nController {
     }
 
     @PutMapping("/i18n/{targetI18nId}")
-    public ResponseEntity<?> updateI18n(@RequestBody I18nForm i18nForm, @PathVariable(required = true) Long targetI18nId) {
+    public ResponseEntity<?> updateI18n(@RequestBody I18nForm i18nForm, @PathVariable(required = true) String targetI18nId) {
 //        I18nEntity i18nEntity = this.i18nRepository.findById(targetI18nId).orElseThrow(() -> new EntityNotFoundException("targetI18nId: %s".formatted(targetI18nId)));
 //        I18nEntity i18nReq = new I18nEntity();
 //        this.modelMapper.map(i18nEntity, i18nReq);
@@ -101,7 +101,7 @@ public class I18nController {
     }
 
     @DeleteMapping("/i18n/{targetI18nId}")
-    public HttpStatus deleteI18n(@PathVariable(required = true) Long targetI18nId) {
+    public HttpStatus deleteI18n(@PathVariable(required = true) String targetI18nId) {
 //        I18nEntity i18nEntity = this.i18nRepository.findById(targetI18nId).orElseThrow(() -> new EntityNotFoundException("targetI18nId: %s".formatted(targetI18nId)));
 //        this.i18nRepository.delete(i18nEntity);
         this.i18nService.deleteI18n(targetI18nId);

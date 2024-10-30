@@ -124,8 +124,9 @@ public class I18nControllerTests extends AbstractWebTests {
 
     private I18nForm prepareI18nForm() {
         I18nForm i18nForm = new I18nForm();
-        i18nForm.setId(2L);
-        i18nForm.setMessageKey("testing.title.2");
+//        i18nForm.setId(2L);
+//        i18nForm.setMessageKey("testing.title.2");
+        i18nForm.setId("testing.title.2");
         i18nForm.setMessageEn("Testing");
         i18nForm.setMessageEn("Testing title En");
         i18nForm.setMessageTc("Testing title Tc");
@@ -136,7 +137,8 @@ public class I18nControllerTests extends AbstractWebTests {
     private I18nDto convertToI18nDto(I18nForm i18nForm, String langTag) {
 //        ModelMapper mapper = new ModelMapper();
         I18nDto i18nDto = new I18nDto();
-        i18nDto.setKey(i18nForm.getMessageKey());
+//        i18nDto.setKey(i18nForm.getMessageKey());
+        i18nDto.setKey(i18nForm.getId());
         switch (langTag) {
             case "zh-TW":
                 i18nDto.setMessage(i18nForm.getMessageTc());
@@ -289,7 +291,7 @@ public class I18nControllerTests extends AbstractWebTests {
     public void deleteI18n_en() throws Exception {
         // given
         // doNothing
-        doNothing().when(this.i18nService).deleteI18n(anyLong());
+        doNothing().when(this.i18nService).deleteI18n(anyString());
 
         // when
         RequestBuilder requestBuilder = MockMvcRequestBuilders

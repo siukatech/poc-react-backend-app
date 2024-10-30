@@ -9,12 +9,12 @@ import lombok.EqualsAndHashCode;
 //@EqualsAndHashCode(callSuper = true)
 @Entity(name = "i18n")
 //@EntityListeners(AbstractEntityToPersistListener.class)
-public class I18nEntity extends AbstractEntity<Long> {
+public class I18nEntity extends AbstractEntity<String> {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column
-    private String messageKey;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
+//    @Column
+//    private String messageKey;
     @Column
     private String messageEn;
     @Column

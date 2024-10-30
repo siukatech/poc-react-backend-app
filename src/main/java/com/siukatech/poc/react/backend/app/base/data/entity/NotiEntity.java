@@ -9,11 +9,11 @@ import lombok.EqualsAndHashCode;
 @Data
 //@EqualsAndHashCode(callSuper = true)
 @Entity(name = "notis")
-public class NotiEntity extends AbstractEntity<Long> {
+public class NotiEntity extends AbstractEntity<String> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     @Column
     private String subject;

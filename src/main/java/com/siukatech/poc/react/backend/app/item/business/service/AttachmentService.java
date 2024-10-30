@@ -42,7 +42,7 @@ public class AttachmentService {
         return attachmentDtoList;
     }
 
-    public List<AttachmentDto> findAttachmentAllByUserId(Long userId) {
+    public List<AttachmentDto> findAttachmentAllByUserId(String userId) {
         List<AttachmentEntity> attachmentEntityList = this.attachmentRepository
 //                .findAllByUserIdOrderByLastModifiedDatetimeDesc(userId)
                 .findAll();

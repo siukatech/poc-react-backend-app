@@ -50,7 +50,7 @@ public class I18nService {
         log.debug("findI18nMap - langTag: [" + langTag + "], locale: [" + locale + "]");
         //List<I18nDto> i18nDtoList = i18nEntityList.stream().map(i18nEntity -> modelMapper.map(i18nEntity, I18nDto.class)).collect(Collectors.toList());
         //Map<String, List<String>> i18nMapList = i18nEntityList.stream().collect(Collectors.groupingBy(I18nEntity::getCode, Collectors.mapping(I18nEntity::getMessageEn, Collectors.toList())));
-        Map<String, String> i18nMap = i18nEntityList.stream().collect(Collectors.toMap(i18nEntity -> i18nEntity.getMessageKey()
+        Map<String, String> i18nMap = i18nEntityList.stream().collect(Collectors.toMap(i18nEntity -> i18nEntity.getId()
                 , i18nEntity -> {
                     if (Locale.TRADITIONAL_CHINESE.equals(locale))
                         return i18nEntity.getMessageTc();
@@ -75,7 +75,7 @@ public class I18nService {
         return this.modelMapper.map(i18nForm, I18nDto.class);
     }
 
-    public I18nDto updateI18n(I18nForm i18nForm, Long targetI18nId) {
+    public I18nDto updateI18n(I18nForm i18nForm, String targetI18nId) {
         I18nEntity i18nEntity = this.i18nRepository.findById(targetI18nId).orElseThrow(() -> new EntityNotFoundException("targetI18nId: %s".formatted(targetI18nId)));
         I18nEntity i18nReq = new I18nEntity();
         this.modelMapper.map(i18nEntity, i18nReq);
@@ -86,7 +86,7 @@ public class I18nService {
         return this.modelMapper.map(i18nForm, I18nDto.class);
     }
 
-    public void deleteI18n(Long targetI18nId) {
+    public void deleteI18n(String targetI18nId) {
         I18nEntity i18nEntity = this.i18nRepository.findById(targetI18nId).orElseThrow(() -> new EntityNotFoundException("targetI18nId: %s".formatted(targetI18nId)));
         this.i18nRepository.delete(i18nEntity);
     }

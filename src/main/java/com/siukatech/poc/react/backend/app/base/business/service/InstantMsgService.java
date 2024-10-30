@@ -21,13 +21,13 @@ public class InstantMsgService {
         this.instantMsgRepository = instantMsgRepository;
     }
 
-    public Page<InstantMsgDto> findInstantMsgAllBySenderId(Long senderId, Pageable pageable) {
+    public Page<InstantMsgDto> findInstantMsgAllBySenderId(String senderId, Pageable pageable) {
         Page<InstantMsgEntity> instantMsgEntityPage = this.instantMsgRepository.findAllByUserId(senderId, pageable);
         Page<InstantMsgDto> instantMsgDtoPage = instantMsgEntityPage.map(instantMsgEntity -> this.modelMapper.map(instantMsgEntity, InstantMsgDto.class));
         return instantMsgDtoPage;
     }
 
-    public Page<InstantMsgDto> findInstantMsgAllByUserId(Long userId, Pageable pageable) {
+    public Page<InstantMsgDto> findInstantMsgAllByUserId(String userId, Pageable pageable) {
         Page<InstantMsgEntity> instantMsgEntityPage = this.instantMsgRepository.findAllByUserId(userId, pageable);
         Page<InstantMsgDto> instantMsgDtoPage = instantMsgEntityPage.map(instantMsgEntity -> this.modelMapper.map(instantMsgEntity, InstantMsgDto.class));
         return instantMsgDtoPage;

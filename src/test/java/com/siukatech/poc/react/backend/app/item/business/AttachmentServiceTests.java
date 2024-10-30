@@ -73,7 +73,7 @@ public class AttachmentServiceTests extends AbstractUnitTests {
         when(this.attachmentRepository.findAll()).thenReturn(List.of(attachmentEntity1, attachmentEntity2));
 
         // when
-        List<AttachmentDto> attachmentDtoList = this.attachmentService.findAttachmentAllByUserId(1L);
+        List<AttachmentDto> attachmentDtoList = this.attachmentService.findAttachmentAllByUserId(UUID.randomUUID().toString());
 
         // then / verify
         assertThat(attachmentDtoList)

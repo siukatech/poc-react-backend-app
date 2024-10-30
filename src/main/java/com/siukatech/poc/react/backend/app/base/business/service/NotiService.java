@@ -21,7 +21,7 @@ public class NotiService {
         this.notiRepository = notiRepository;
     }
 
-    public Page<NotiDto> findNotiAllByUserId(Long userId, Pageable pageable) {
+    public Page<NotiDto> findNotiAllByUserId(String userId, Pageable pageable) {
         Page<NotiEntity> notiEntityPage = this.notiRepository.findAllByUserIdAndStatus(userId, "UNREAD", pageable);
         Page<NotiDto> notiDtoPage = notiEntityPage.map(notiEntity -> this.modelMapper.map(notiEntity, NotiDto.class));
         return notiDtoPage;

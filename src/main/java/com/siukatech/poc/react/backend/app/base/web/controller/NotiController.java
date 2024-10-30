@@ -23,7 +23,7 @@ public class NotiController {
     //@CrossOrigin(origins = "*")
     @GetMapping("/notis")
     public ResponseEntity<?> listNotis(MyAuthenticationToken myAuthenticationToken, Pageable pageable) {
-        Long userId = myAuthenticationToken.getUserId();
+        String userId = myAuthenticationToken.getUserId();
         Page<NotiDto> notiDtoPage = this.notiService.findNotiAllByUserId(userId, pageable);
         return ResponseEntity.ok(notiDtoPage);
     }
