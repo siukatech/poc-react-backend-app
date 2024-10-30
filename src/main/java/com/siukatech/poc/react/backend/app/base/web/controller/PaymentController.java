@@ -58,7 +58,7 @@ public class PaymentController {
 
     @PostMapping("/items/{targetItemId}")
     public ResponseEntity<?> getItemById(
-            @PathVariable(required = true) Long targetItemId
+            @PathVariable(required = true) String targetItemId
             , @RequestBody ItemForm itemForm) {
 ////        ItemDto itemDto = new ItemDto();
 ////        itemDto.setId(targetItemId);

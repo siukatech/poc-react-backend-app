@@ -56,7 +56,7 @@ public class ItemService {
         return itemDtoList;
     }
 
-    public ItemDto findItemById(Long targetItemId) {
+    public ItemDto findItemById(String targetItemId) {
         ItemDto itemDto = this.itemRepository.findById(targetItemId)
                 .map(itemEntity -> this.modelMapper.map(itemEntity, ItemDto.class))
                 .orElseThrow(() -> new EntityNotFoundException("targetItemId: %s".formatted(targetItemId)));
@@ -74,7 +74,7 @@ public class ItemService {
         itemReq = this.itemRepository.save(itemReq);
         //itemForm.setId(itemReq.getId());
         //ItemDto itemDto = this.modelMapper.map(itemReq, ItemDto.class);
-        Long createdItemId = itemReq.getId();
+        String createdItemId = itemReq.getId();
         //ItemDto itemDto = this.modelMapper.map(this.itemRepository.findById(createdItemId).orElseThrow(() -> new EntityNotFoundException("createdItemId: %s".formatted(createdItemId))), ItemDto.class);
         ItemDto itemDto = this.findItemById(createdItemId);
         //
@@ -87,7 +87,7 @@ public class ItemService {
         return itemDto;
     }
 
-    public ItemDto updateItem(ItemForm itemForm, Long targetItemId) {
+    public ItemDto updateItem(ItemForm itemForm, String targetItemId) {
         // findItemById returns ItemDto, not ItemEntity
         // Therefore, itemRepository is required at this point
         ItemEntity itemEntity = this.itemRepository.findById(targetItemId).orElseThrow(() -> new EntityNotFoundException("targetItemId: %s".formatted(targetItemId)));
@@ -108,7 +108,7 @@ public class ItemService {
         itemReq = this.itemRepository.save(itemReq);
         //itemForm.setId(itemReq.getId());
         //ItemDto itemDto = this.modelMapper.map(itemReq, ItemDto.class);
-        Long updatedItemId = itemReq.getId();
+        String updatedItemId = itemReq.getId();
         //ItemDto itemDto = this.modelMapper.map(this.itemRepository.findById(updatedItemId).orElseThrow(() -> new EntityNotFoundException("updatedItemId: %s".formatted(updatedItemId))), ItemDto.class);
         ItemDto itemDto = this.findItemById(updatedItemId);
         //
@@ -121,7 +121,7 @@ public class ItemService {
         return itemDto;
     }
 
-    public void deleteItem(Long targetItemId) {
+    public void deleteItem(String targetItemId) {
         ItemEntity itemEntity = this.itemRepository.findById(targetItemId).orElseThrow(() -> new EntityNotFoundException("targetItemId: %s".formatted(targetItemId)));
         this.itemRepository.delete(itemEntity);
     }

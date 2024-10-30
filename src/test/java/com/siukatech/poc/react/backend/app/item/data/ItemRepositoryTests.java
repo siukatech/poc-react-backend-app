@@ -16,6 +16,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -29,7 +30,7 @@ public class ItemRepositoryTests extends AbstractJpaTests {
 
     private ItemEntity prepareItemEntity_basic() {
         ItemEntity itemEntity = new ItemEntity();
-        itemEntity.setId(1L);
+        itemEntity.setId(UUID.randomUUID().toString());
         itemEntity.setName("shf figure 1");
         itemEntity.setPurchasedDate(LocalDate.now());
         itemEntity.setCreatedBy("admin");
@@ -42,7 +43,7 @@ public class ItemRepositoryTests extends AbstractJpaTests {
 
     private ItemDto prepareItemDto_basic() {
         ItemDto itemDto = new ItemDto();
-        itemDto.setId(1L);
+        itemDto.setId(UUID.randomUUID().toString());
         itemDto.setName("shf figure 1");
         itemDto.setPurchasedDate(LocalDate.now());
         itemDto.setCreatedBy("admin");

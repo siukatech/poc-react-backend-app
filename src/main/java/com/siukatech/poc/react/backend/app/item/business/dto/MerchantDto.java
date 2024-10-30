@@ -6,8 +6,8 @@ import lombok.EqualsAndHashCode;
 
 @Data
 public class MerchantDto extends MerchantEntity {
-//    private Long id;
-//    private String mid;
+//    private String id;
+////    private String mid;
 //    private String name;
 //    private String website;
 //    private String description;

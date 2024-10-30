@@ -10,6 +10,6 @@ import java.util.UUID;
 @Repository
 public interface AttachmentRepository extends JpaRepository<AttachmentEntity, UUID> {
 
-    List<AttachmentEntity> findAllByUserIdOrderByLastModifiedDatetimeDesc(Long userId);
+    List<AttachmentEntity> findAllByUserIdOrderByLastModifiedDatetimeDesc(String userId);
 
 }

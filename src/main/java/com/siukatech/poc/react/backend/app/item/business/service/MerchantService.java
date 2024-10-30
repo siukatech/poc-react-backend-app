@@ -33,19 +33,19 @@ public class MerchantService {
         return merchantDtoList;
     }
 
-    public MerchantDto findMerchantById(Long targetMerchantId) {
+    public MerchantDto findMerchantById(String targetMerchantId) {
         MerchantDto merchantDto = this.merchantRepository.findById(targetMerchantId)
                 .map(merchantEntity -> this.modelMapper.map(merchantEntity, MerchantDto.class))
                 .orElseThrow(() -> new EntityNotFoundException("targetMerchantId: %s".formatted(targetMerchantId)));
         return merchantDto;
     }
 
-    public MerchantDto findMerchantByMid(String targetMerchantMid) {
-        MerchantDto merchantDto = this.merchantRepository.findByMid(targetMerchantMid)
-                .map(merchantEntity -> this.modelMapper.map(merchantEntity, MerchantDto.class))
-                .orElseThrow(() -> new EntityNotFoundException("targetMerchantMid: %s".formatted(targetMerchantMid)));
-        return merchantDto;
-    }
+//    public MerchantDto findMerchantBySId(String targetMerchantId) {
+//        MerchantDto merchantDto = this.merchantRepository.findBySId(targetMerchantId)
+//                .map(merchantEntity -> this.modelMapper.map(merchantEntity, MerchantDto.class))
+//                .orElseThrow(() -> new EntityNotFoundException("targetMerchantId: %s".formatted(targetMerchantId)));
+//        return merchantDto;
+//    }
 
     public MerchantDto createMerchant(MerchantForm merchantForm) {
         // This converts MerchantForm to blank new MerchantEntity
@@ -56,7 +56,7 @@ public class MerchantService {
                 + "], merchantReq: [" + merchantReq
                 + "]");
         merchantReq = this.merchantRepository.save(merchantReq);
-        Long createdMerchantId = merchantReq.getId();
+        String createdMerchantId = merchantReq.getId();
         MerchantDto merchantDto = this.findMerchantById(createdMerchantId);
         //
         log.debug("createMerchant - after save - createdMerchantId: [" + createdMerchantId
@@ -68,7 +68,7 @@ public class MerchantService {
         return merchantDto;
     }
 
-    public MerchantDto updateMerchant(MerchantForm merchantForm, Long targetMerchantId) {
+    public MerchantDto updateMerchant(MerchantForm merchantForm, String targetMerchantId) {
         // findMerchantById returns MerchantDto, not MerchantEntity
         // Therefore, merchantRepository is required at this point
         MerchantEntity merchantEntity = this.merchantRepository.findById(targetMerchantId).orElseThrow(() -> new EntityNotFoundException("targetMerchantId: %s".formatted(targetMerchantId)));
@@ -87,7 +87,7 @@ public class MerchantService {
                 + "], merchantReq: [" + merchantReq
                 + "]");
         merchantReq = this.merchantRepository.save(merchantReq);
-        Long updatedMerchantId = merchantReq.getId();
+        String updatedMerchantId = merchantReq.getId();
         MerchantDto merchantDto = this.findMerchantById(updatedMerchantId);
         //
         log.debug("updateMerchant - after save - updatedMerchantId: [" + updatedMerchantId
@@ -99,7 +99,7 @@ public class MerchantService {
         return merchantDto;
     }
 
-    public void deleteMerchant(Long targetMerchantId) {
+    public void deleteMerchant(String targetMerchantId) {
         MerchantEntity merchantEntity = this.merchantRepository.findById(targetMerchantId).orElseThrow(() -> new EntityNotFoundException("targetMerchantId: %s".formatted(targetMerchantId)));
         this.merchantRepository.delete(merchantEntity);
     }

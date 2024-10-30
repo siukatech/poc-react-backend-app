@@ -3,13 +3,11 @@ package com.siukatech.poc.react.backend.app.item.business.form;
 import com.siukatech.poc.react.backend.parent.business.form.AbstractForm;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 import java.time.LocalDate;
 
 @Data
-public class ItemForm extends AbstractForm<Long> {
+public class ItemForm extends AbstractForm<String> {
 
     @NotNull
     protected String name;

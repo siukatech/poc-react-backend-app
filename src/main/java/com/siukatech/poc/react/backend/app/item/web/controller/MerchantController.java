@@ -30,7 +30,7 @@ public class MerchantController {
     }
 
     @GetMapping("/merchants/{targetMerchantId}")
-    public ResponseEntity<?> getMerchantById(@PathVariable(required = true) Long targetMerchantId) {
+    public ResponseEntity<?> getMerchantById(@PathVariable(required = true) String targetMerchantId) {
         MerchantDto merchantDto = this.merchantService.findMerchantById(targetMerchantId);
         return ResponseEntity.ok(merchantDto);
     }
@@ -46,13 +46,13 @@ public class MerchantController {
     }
 
     @PutMapping("/merchants/{targetMerchantId}")
-    public ResponseEntity<?> updateMerchant(@Valid @RequestBody MerchantForm merchantForm, @PathVariable(required = true) Long targetMerchantId) {
+    public ResponseEntity<?> updateMerchant(@Valid @RequestBody MerchantForm merchantForm, @PathVariable(required = true) String targetMerchantId) {
         MerchantDto merchantDto = this.merchantService.updateMerchant(merchantForm, targetMerchantId);
         return ResponseEntity.status(HttpStatus.OK).body(merchantDto);
     }
 
     @DeleteMapping("/merchants/{targetMerchantId}")
-    public HttpStatus deleteMerchant(@PathVariable(required = true) Long targetMerchantId) {
+    public HttpStatus deleteMerchant(@PathVariable(required = true) String targetMerchantId) {
         this.merchantService.deleteMerchant(targetMerchantId);
         return HttpStatus.OK;
     }

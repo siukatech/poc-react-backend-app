@@ -16,15 +16,15 @@ import java.time.LocalDate;
 @ToString
 @Entity(name = "items")
 //@AttributeOverride(name = "id", column = @Column(name = "id"))
-public class ItemEntity extends AbstractEntity<Long> {
+public class ItemEntity extends AbstractEntity<String> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    protected String id;
     @Column
     protected String name;
     @Column(name = "purchased_date")
     protected LocalDate purchasedDate;
     @Column(name = "user_id")
-    protected Long userId;
+    protected String userId;
 }

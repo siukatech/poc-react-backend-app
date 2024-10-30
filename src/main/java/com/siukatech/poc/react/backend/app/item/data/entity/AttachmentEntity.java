@@ -38,7 +38,7 @@ public class AttachmentEntity extends AbstractEntity<UUID> {
     @Column(name = "file_content", columnDefinition = "bytea")
     private byte[] fileContent;
     @Column(name = "user_id")
-    protected Long userId;
+    protected String userId;
 
 }
 

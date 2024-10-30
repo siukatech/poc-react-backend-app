@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-public class MerchantForm extends AbstractForm<Long> {
+public class MerchantForm extends AbstractForm<String> {
 
     @NotNull
     protected String mid;

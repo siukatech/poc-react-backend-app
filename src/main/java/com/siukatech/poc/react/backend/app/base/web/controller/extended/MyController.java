@@ -1,7 +1,6 @@
 package com.siukatech.poc.react.backend.app.base.web.controller.extended;
 
-import com.siukatech.poc.react.backend.parent.business.service.UserService;
-import com.siukatech.poc.react.backend.parent.web.annotation.v1.ProtectedApiV1Controller;
+import com.siukatech.poc.react.backend.parent.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Slf4j
 @Deprecated
 //@ProtectedApiV1Controller
-public class MyController extends com.siukatech.poc.react.backend.parent.web.controller.MyController {
+public class MyController extends com.siukatech.poc.react.backend.parent.user.controller.MyController {
 
 //    private final UserService userService;
     public MyController(UserService userService) {
@@ -40,9 +39,9 @@ public class MyController extends com.siukatech.poc.react.backend.parent.web.con
 
     @GetMapping("/my/permissions")
     public ResponseEntity<?> getUserPermissions(@RequestHeader HttpHeaders httpHeaders
-            , @RequestParam String appMid
+            , @RequestParam String appId
             , Authentication authentication) {
-        return super.getUserPermissions(httpHeaders, appMid, authentication);
+        return super.getUserPermissions(httpHeaders, appId, authentication);
     }
 
     @GetMapping("/my/user-view")

@@ -94,7 +94,7 @@ public class ItemController {
     }
 
     @GetMapping("/items/{targetItemId}")
-    public ResponseEntity<?> getItemById(@PathVariable(required = true) Long targetItemId) {
+    public ResponseEntity<?> getItemById(@PathVariable(required = true) String targetItemId) {
 //        ItemDto itemDto = this.itemRepository.findById(targetItemId)
 //                .map(itemEntity -> this.modelMapper.map(itemEntity, ItemDto.class))
 //                .orElseThrow(() -> new EntityNotFoundException("targetItemId: %s".formatted(targetItemId)));
@@ -126,7 +126,7 @@ public class ItemController {
     }
 
     @PutMapping("/items/{targetItemId}")
-    public ResponseEntity<?> updateItem(@Valid @RequestBody ItemForm itemForm, @PathVariable(required = true) Long targetItemId) {
+    public ResponseEntity<?> updateItem(@Valid @RequestBody ItemForm itemForm, @PathVariable(required = true) String targetItemId) {
 //        ItemEntity itemEntity = this.itemRepository.findById(targetItemId).orElseThrow(() -> new EntityNotFoundException("targetItemId: %s".formatted(targetItemId)));
 //        ItemEntity itemReq = this.prepareEntityBeforeSave(itemForm, itemEntity);
 //        log.debug("updateItem - before save - itemEntity.getId: [" + itemEntity.getId()
@@ -174,7 +174,7 @@ public class ItemController {
 //    }
 
     @DeleteMapping("/items/{targetItemId}")
-    public HttpStatus deleteItem(@PathVariable(required = true) Long targetItemId) {
+    public HttpStatus deleteItem(@PathVariable(required = true) String targetItemId) {
 //        ItemEntity itemEntity = this.itemRepository.findById(targetItemId).orElseThrow(() -> new EntityNotFoundException("targetItemId: %s".formatted(targetItemId)));
 //        this.itemRepository.delete(itemEntity);
         this.itemService.deleteItem(targetItemId);

@@ -21,9 +21,11 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -65,7 +67,7 @@ public class ItemControllerTests extends AbstractWebTests {
 
     private ItemForm prepareItemForm() {
         ItemForm itemForm = new ItemForm();
-        itemForm.setId(2L);
+        itemForm.setId(UUID.randomUUID().toString());
         itemForm.setName("shf figure 2");
         itemForm.setPurchasedDate(LocalDate.now());
         itemForm.setVersionNo(1L);
@@ -162,7 +164,7 @@ public class ItemControllerTests extends AbstractWebTests {
     public void deleteItem_basic() throws Exception {
         // given
         // doNothing
-        doNothing().when(this.itemService).deleteItem(anyLong());
+        doNothing().when(this.itemService).deleteItem(anyString());
 
         // when
         RequestBuilder requestBuilder = MockMvcRequestBuilders

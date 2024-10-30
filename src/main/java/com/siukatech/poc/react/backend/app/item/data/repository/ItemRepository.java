@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ItemRepository extends JpaRepository<ItemEntity, Long> {
+public interface ItemRepository extends JpaRepository<ItemEntity, String> {
 
-    List<ItemEntity> findAllByUserIdOrderByLastModifiedDatetimeDesc(Long userId);
+    List<ItemEntity> findAllByUserIdOrderByLastModifiedDatetimeDesc(String userId);
 
-    Page<ItemEntity> findAllByUserId(Long userId, Pageable pageable);
+    Page<ItemEntity> findAllByUserId(String userId, Pageable pageable);
 }

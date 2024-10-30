@@ -47,7 +47,7 @@ public class EncryptedItemController extends ItemController {
     }
 
     @GetMapping("/items/{targetItemId}")
-    public ResponseEntity<?> getItemById(@PathVariable(required = true) Long targetItemId) {
+    public ResponseEntity<?> getItemById(@PathVariable(required = true) String targetItemId) {
         return super.getItemById(targetItemId);
     }
 
@@ -57,12 +57,12 @@ public class EncryptedItemController extends ItemController {
     }
 
     @PutMapping("/items/{targetItemId}")
-    public ResponseEntity<?> updateItem(@Valid @RequestBody ItemForm itemForm, @PathVariable(required = true) Long targetItemId) {
+    public ResponseEntity<?> updateItem(@Valid @RequestBody ItemForm itemForm, @PathVariable(required = true) String targetItemId) {
         return super.updateItem(itemForm, targetItemId);
     }
 
     @DeleteMapping("/items/{targetItemId}")
-    public HttpStatus deleteItem(@PathVariable(required = true) Long targetItemId) {
+    public HttpStatus deleteItem(@PathVariable(required = true) String targetItemId) {
         return super.deleteItem(targetItemId);
     }
 

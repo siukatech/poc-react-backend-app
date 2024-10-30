@@ -18,6 +18,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
@@ -43,7 +44,7 @@ public class ItemServiceTests extends AbstractUnitTests {
 
     private ItemEntity prepareItemEntity_basic() {
         ItemEntity itemEntity = new ItemEntity();
-        itemEntity.setId(1L);
+        itemEntity.setId(UUID.randomUUID().toString());
         itemEntity.setName("item 1");
         itemEntity.setPurchasedDate(LocalDate.of(2024, 8, 9));
         itemEntity.setCreatedBy("admin");

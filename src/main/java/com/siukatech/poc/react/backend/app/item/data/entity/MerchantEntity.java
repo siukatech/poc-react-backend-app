@@ -10,14 +10,14 @@ import lombok.ToString;
 @Getter
 @ToString
 @Entity(name = "merchants")
-public class MerchantEntity extends AbstractEntity<Long> {
+public class MerchantEntity extends AbstractEntity<String> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
-    @Column
-    private String mid;
+//    @Column
+//    private String mid;
     @Column
     private String name;
     @Column
