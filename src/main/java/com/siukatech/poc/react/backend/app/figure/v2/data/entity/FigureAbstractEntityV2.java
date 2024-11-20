@@ -1,6 +1,6 @@
 package com.siukatech.poc.react.backend.app.figure.v2.data.entity;
 
-import com.siukatech.poc.react.backend.parent.data.entity.AbstractEntity;
+import com.siukatech.poc.react.backend.core.data.entity.AbstractEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;

@@ -1,6 +1,6 @@
 package com.siukatech.poc.react.backend.app.item.business.form;
 
-import com.siukatech.poc.react.backend.parent.business.form.AbstractForm;
+import com.siukatech.poc.react.backend.core.business.form.AbstractForm;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 

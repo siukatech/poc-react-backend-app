@@ -1,8 +1,8 @@
 package com.siukatech.poc.react.backend.app.base.web;
 
 import com.siukatech.poc.react.backend.app.base.web.controller.ProtectedController;
-import com.siukatech.poc.react.backend.parent.AbstractWebTests;
-import com.siukatech.poc.react.backend.parent.web.annotation.v1.ProtectedApiV1Controller;
+import com.siukatech.poc.react.backend.core.AbstractWebTests;
+import com.siukatech.poc.react.backend.core.web.annotation.v1.ProtectedApiV1Controller;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

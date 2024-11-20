@@ -3,7 +3,7 @@ package com.siukatech.poc.react.backend.app.base.web.controller;
 import com.siukatech.poc.react.backend.app.base.business.dto.I18nDto;
 import com.siukatech.poc.react.backend.app.base.business.form.I18nForm;
 import com.siukatech.poc.react.backend.app.base.business.service.I18nService;
-import com.siukatech.poc.react.backend.parent.web.annotation.v1.PublicApiV1Controller;
+import com.siukatech.poc.react.backend.core.web.annotation.v1.PublicApiV1Controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

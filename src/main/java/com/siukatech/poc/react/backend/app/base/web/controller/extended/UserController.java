@@ -1,6 +1,6 @@
 package com.siukatech.poc.react.backend.app.base.web.controller.extended;
 
-import com.siukatech.poc.react.backend.parent.user.service.UserService;
+import com.siukatech.poc.react.backend.core.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Slf4j
 @Deprecated
 //@ProtectedApiV1Controller
-public class UserController extends com.siukatech.poc.react.backend.parent.user.controller.UserController {
+public class UserController extends com.siukatech.poc.react.backend.core.user.controller.UserController {
 
 //    private final UserRepository userRepository;
     private UserService userService;

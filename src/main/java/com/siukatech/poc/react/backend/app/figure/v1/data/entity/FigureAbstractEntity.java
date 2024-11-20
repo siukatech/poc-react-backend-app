@@ -1,6 +1,6 @@
 package com.siukatech.poc.react.backend.app.figure.v1.data.entity;
 
-import com.siukatech.poc.react.backend.parent.data.entity.AbstractEntity;
+import com.siukatech.poc.react.backend.core.data.entity.AbstractEntity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;

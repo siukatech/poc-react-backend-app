@@ -4,7 +4,7 @@ package com.siukatech.poc.react.backend.app.base.business;
 import com.siukatech.poc.react.backend.app.base.business.service.I18nService;
 import com.siukatech.poc.react.backend.app.base.data.entity.I18nEntity;
 import com.siukatech.poc.react.backend.app.base.data.repository.I18nRepository;
-import com.siukatech.poc.react.backend.parent.AbstractUnitTests;
+import com.siukatech.poc.react.backend.core.AbstractUnitTests;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

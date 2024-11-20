@@ -4,8 +4,8 @@ import com.siukatech.poc.react.backend.app.item.business.dto.AttachmentContentDt
 import com.siukatech.poc.react.backend.app.item.business.dto.AttachmentDto;
 import com.siukatech.poc.react.backend.app.item.business.form.AttachmentForm;
 import com.siukatech.poc.react.backend.app.item.business.service.AttachmentService;
-import com.siukatech.poc.react.backend.parent.security.authentication.MyAuthenticationToken;
-import com.siukatech.poc.react.backend.parent.web.annotation.v1.ProtectedApiV1Controller;
+import com.siukatech.poc.react.backend.core.security.authentication.MyAuthenticationToken;
+import com.siukatech.poc.react.backend.core.web.annotation.v1.ProtectedApiV1Controller;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ByteArrayResource;

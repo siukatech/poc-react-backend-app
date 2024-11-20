@@ -1,7 +1,7 @@
 package com.siukatech.poc.react.backend.app.base.web.controller;
 
-import com.siukatech.poc.react.backend.parent.web.annotation.v1.ProtectedApiV1Controller;
-import com.siukatech.poc.react.backend.parent.web.annotation.v1.PublicApiV1Controller;
+import com.siukatech.poc.react.backend.core.web.annotation.v1.ProtectedApiV1Controller;
+import com.siukatech.poc.react.backend.core.web.annotation.v1.PublicApiV1Controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -15,7 +15,7 @@ import java.security.Principal;
 
 /**
  * @Order is not required, bean will not be found if added.
- * No need to extend the parent {@link com.siukatech.poc.react.backend.parent.web.controller.WebController WebController}.
+ * No need to extend the parent {@link com.siukatech.poc.react.backend.core.web.controller.WebController WebController}.
  */
 @Slf4j
 // This is not working - start
@@ -24,7 +24,7 @@ import java.security.Principal;
 //@PublicApiV1Controller
 @RestController
 public class WebController
-//        extends com.siukatech.poc.react.backend.parent.web.controller.WebController
+//        extends com.siukatech.poc.react.backend.core.web.controller.WebController
 {
 
     @GetMapping(path = PublicApiV1Controller.REQUEST_MAPPING_URI_PREFIX + "/")

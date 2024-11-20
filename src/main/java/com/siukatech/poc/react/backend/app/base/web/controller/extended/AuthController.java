@@ -1,8 +1,8 @@
 package com.siukatech.poc.react.backend.app.base.web.controller.extended;
 
-import com.siukatech.poc.react.backend.parent.user.form.auth.LoginForm;
-import com.siukatech.poc.react.backend.parent.user.form.auth.RefreshTokenForm;
-import com.siukatech.poc.react.backend.parent.user.service.AuthService;
+import com.siukatech.poc.react.backend.core.user.form.auth.LoginForm;
+import com.siukatech.poc.react.backend.core.user.form.auth.RefreshTokenForm;
+import com.siukatech.poc.react.backend.core.user.service.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +15,7 @@ import java.net.URISyntaxException;
 @Slf4j
 @Deprecated
 //@PublicApiV1Controller
-public class AuthController extends com.siukatech.poc.react.backend.parent.user.controller.AuthController {
+public class AuthController extends com.siukatech.poc.react.backend.core.user.controller.AuthController {
 
 //    @Value("${security.oauth2.client.registration.keycloak.client-id}")
 //    private String clientId;

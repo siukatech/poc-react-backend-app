@@ -3,7 +3,7 @@ package com.siukatech.poc.react.backend.app.item.web.controller;
 import com.siukatech.poc.react.backend.app.item.business.dto.MerchantDto;
 import com.siukatech.poc.react.backend.app.item.business.form.MerchantForm;
 import com.siukatech.poc.react.backend.app.item.business.service.MerchantService;
-import com.siukatech.poc.react.backend.parent.web.annotation.v1.ProtectedApiV1Controller;
+import com.siukatech.poc.react.backend.core.web.annotation.v1.ProtectedApiV1Controller;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

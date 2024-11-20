@@ -144,8 +144,8 @@ logging:
     org.springframework.web.client.RestTemplate: DEBUG
     org.springframework.web.servlet.DispatcherServlet: DEBUG
     com.siukatech.poc.react.backend.parent: TRACE
-    com.siukatech.poc.react.backend.parent.web: TRACE
+    com.siukatech.poc.react.backend.core.web: TRACE
     com.siukatech.poc.react.backend.app: DEBUG
     com.siukatech.poc.react.backend.app.web: TRACE
-    com.siukatech.poc.react.backend.parent.security.interceptor: DEBUG
+    com.siukatech.poc.react.backend.core.security.interceptor: DEBUG
 

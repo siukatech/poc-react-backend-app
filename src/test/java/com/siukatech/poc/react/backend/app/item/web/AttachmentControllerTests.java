@@ -1,16 +1,16 @@
 package com.siukatech.poc.react.backend.app.item.web;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.siukatech.poc.react.backend.parent.AbstractUnitTests;
-import com.siukatech.poc.react.backend.parent.AbstractWebTests;
+import com.siukatech.poc.react.backend.core.AbstractUnitTests;
+import com.siukatech.poc.react.backend.core.AbstractWebTests;
 import com.siukatech.poc.react.backend.app.item.business.dto.AttachmentDto;
 import com.siukatech.poc.react.backend.app.item.business.form.AttachmentForm;
 import com.siukatech.poc.react.backend.app.item.business.service.AttachmentService;
 import com.siukatech.poc.react.backend.app.item.data.entity.AttachmentEntity;
 import com.siukatech.poc.react.backend.app.item.helper.AttachmentHelper;
 import com.siukatech.poc.react.backend.app.item.web.controller.AttachmentController;
-import com.siukatech.poc.react.backend.parent.security.authentication.MyAuthenticationToken;
-import com.siukatech.poc.react.backend.parent.web.annotation.v1.ProtectedApiV1Controller;
+import com.siukatech.poc.react.backend.core.security.authentication.MyAuthenticationToken;
+import com.siukatech.poc.react.backend.core.web.annotation.v1.ProtectedApiV1Controller;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

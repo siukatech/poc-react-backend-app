@@ -4,7 +4,7 @@ package com.siukatech.poc.react.backend.app.figure.v2.data;
 import com.siukatech.poc.react.backend.app.figure.v2.business.dto.FigureFigmaDtoV2;
 import com.siukatech.poc.react.backend.app.figure.v2.data.entity.FigureFigmaEntityV2;
 import com.siukatech.poc.react.backend.app.figure.v2.data.repository.FigureFigmaRepositoryV2;
-import com.siukatech.poc.react.backend.parent.AbstractJpaTests;
+import com.siukatech.poc.react.backend.core.AbstractJpaTests;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

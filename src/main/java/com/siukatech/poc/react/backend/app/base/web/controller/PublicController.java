@@ -1,7 +1,7 @@
 package com.siukatech.poc.react.backend.app.base.web.controller;
 
 
-import com.siukatech.poc.react.backend.parent.web.annotation.v1.PublicApiV1Controller;
+import com.siukatech.poc.react.backend.core.web.annotation.v1.PublicApiV1Controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
