@@ -42,7 +42,7 @@ spring:
     bak-schema: classpath:/schema.sql
     continue-on-error: true
 
-# properties for react-backend-parent
+# properties for react-backend-core
 # scope: openid is required to keycloak
   security:
     oauth2:

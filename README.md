@@ -1,6 +1,6 @@
 # React-Backend-App
-This is the ms-project that imports the `react-backend-parent` library which mainly focusing on the business logic and flow.  
-OAuth2, end-to-end-encryption and others are taking care by the `react-backend-parent` library.
+This is the ms-project that imports the `react-backend-core` library which mainly focusing on the business logic and flow.  
+OAuth2, end-to-end-encryption and others are taking care by the `react-backend-core` library.
 
 
 
@@ -45,7 +45,7 @@ repositories {
 As mentioned in `lib-project`, some dependencies are not required to re-define again.
 ```groovy
 dependencies {
-    implementation 'com.siukatech.poc:react-backend-parent:0.0.1-SNAPSHOT'
+    implementation 'com.siukatech.poc:react-backend-core:0.0.1-SNAPSHOT'
 
 //	implementation 'org.projectlombok:lombok:1.18.26'
     annotationProcessor 'org.projectlombok:lombok:1.18.26'
