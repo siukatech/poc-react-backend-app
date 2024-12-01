@@ -12,7 +12,7 @@ import java.util.List;
 )
 //@ComponentScan({
 //        "com.siukatech.poc.react.backend.app"
-////        , "com.siukatech.poc.react.backend.parent"
+////        , "com.siukatech.poc.react.backend.core"
 //})
 //@Import({GlobalExceptionHandler.class, EncryptedRequestBodyAdvice.class})
 //@Import({

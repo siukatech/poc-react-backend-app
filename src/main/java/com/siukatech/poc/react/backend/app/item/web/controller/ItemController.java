@@ -3,6 +3,7 @@ package com.siukatech.poc.react.backend.app.item.web.controller;
 import com.siukatech.poc.react.backend.app.item.business.dto.ItemDto;
 import com.siukatech.poc.react.backend.app.item.business.form.ItemForm;
 import com.siukatech.poc.react.backend.app.item.business.service.ItemService;
+import com.siukatech.poc.react.backend.core.security.annotation.PermissionControl;
 import com.siukatech.poc.react.backend.core.util.HttpHeaderUtils;
 import com.siukatech.poc.react.backend.core.web.annotation.v1.ProtectedApiV1Controller;
 import com.siukatech.poc.react.backend.core.web.micrometer.CorrelationIdHandler;
@@ -71,6 +72,7 @@ public class ItemController {
 
     //@CrossOrigin(origins = "*")
     @GetMapping("/items")
+    @PermissionControl(appResourceId = "app.item.listItems", accessRight = "view")
     public ResponseEntity<?> listItems(@RequestHeader HttpHeaders httpHeaders) {
 //        List<ItemEntity> itemEntityList = this.itemRepository.findAll();
 //        List<ItemDto> itemDtoList = itemEntityList.stream().map(itemEntity -> this.modelMapper.map(itemEntity, ItemDto.class)).collect(Collectors.toList());

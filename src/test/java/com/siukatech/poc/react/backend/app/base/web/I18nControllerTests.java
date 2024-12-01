@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         controllers = {I18nController.class}
 //        ,
 //        properties = {"logging.level.org.springframework.web=TRACE"
-//        , "logging.level.com.siukatech.poc.react.backend.parent=DEBUG"
+//        , "logging.level.com.siukatech.poc.react.backend.core=DEBUG"
 //        , "client-id=xxx"
 //        , "client-secret=xxx"
 //        , "client-realm=xxx"
