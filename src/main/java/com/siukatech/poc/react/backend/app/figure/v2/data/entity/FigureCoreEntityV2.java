@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 @Entity(name = "figure_core_v2")
 @Table(name = "figure_base_v2")
-@PrimaryKeyJoinColumn(name = "sid")
+//@PrimaryKeyJoinColumn(name = "id", referencedColumnName = "sid")
 //@JoinColumn(name = "sid", referencedColumnName = "sid")
 public class FigureCoreEntityV2 extends FigureAbstractEntityV2 {
 }
