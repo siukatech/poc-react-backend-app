@@ -15,7 +15,7 @@ import java.security.Principal;
 
 /**
  * @Order is not required, bean will not be found if added.
- * No need to extend the parent {@link com.siukatech.poc.react.backend.core.web.controller.WebController WebController}.
+ * No need to extend the core {@link com.siukatech.poc.react.backend.core.web.controller.WebController WebController}.
  */
 @Slf4j
 // This is not working - start

@@ -54,7 +54,7 @@ public class AppConfig {
 
     /**
      * Dont setup the corsFilter in child microservices
-     * cors has been setup in parent library WebSecurityConfig
+     * cors has been setup in core library WebSecurityConfig
      * OPTIONS
      *
      * @return

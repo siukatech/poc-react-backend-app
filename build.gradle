@@ -60,10 +60,10 @@ repositories {
 //}
 
 // define react-backend-core version
-def parentProjectVersion = '0.0.1-SNAPSHOT'
+def coreProjectVersion = '0.0.1-SNAPSHOT'
 
 dependencies {
-    implementation "com.siukatech.poc:react-backend-core:$parentProjectVersion"
+    implementation "com.siukatech.poc:react-backend-core:$coreProjectVersion"
 
 //	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 //	implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -79,7 +79,7 @@ dependencies {
 
     runtimeOnly 'org.postgresql:postgresql:42.6.0'
 
-    testImplementation testFixtures("com.siukatech.poc:react-backend-core:$parentProjectVersion")
+    testImplementation testFixtures("com.siukatech.poc:react-backend-core:$coreProjectVersion")
 
 //    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 //    testImplementation 'org.springframework.security:spring-security-test'
