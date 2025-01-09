@@ -89,6 +89,7 @@ spring:
             issuer-uri: ${oauth2-client-keycloak}/realms/${client-realm}
         opaque-token:
           keycloak:
+            issuer-uri: ${oauth2-client-keycloak}/realms/${client-realm}
             introspection-uri: ${oauth2-client-keycloak}/realms/${client-realm}/protocol/openid-connect/token/introspect
 
 
