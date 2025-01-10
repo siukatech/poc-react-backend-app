@@ -13,10 +13,12 @@ import org.springframework.context.annotation.FilterType;
 //        WebConfigImport.class
 //        , SecurityConfigImport.class
 //})
-@ComponentScan(value = {"com.siukatech.poc.react.backend.core.web.controller"}
-        , excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX
+@ComponentScan(value = {"com.siukatech.poc.react.backend.core.web.controller"
+//        , "com.siukatech.poc.react.backend.core.**.mapper.**"
+    }
+    , excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX
         , pattern = "com.siukatech.poc.react.backend.core.web.controller.WebController"
-)
+    )
 )
 @EnableReactBackend
 public class AppConfig {

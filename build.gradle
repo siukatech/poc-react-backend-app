@@ -1,3 +1,6 @@
+import com.siukatech.poc.react.backend.plugin.ReactBackendUtil
+import org.codehaus.groovy.runtime.GStringImpl
+
 plugins {
 //    id 'java'
     id 'application'
@@ -60,7 +63,11 @@ repositories {
 //}
 
 // define react-backend-core version
-def coreProjectVersion = '0.0.1-SNAPSHOT'
+//def coreProjectVersion = '0.0.1-SNAPSHOT'
+ext {
+    coreProjectVersion = '0.0.1-SNAPSHOT'
+    mapstructVersion = '1.6.0.RC1'
+}
 
 dependencies {
     implementation "com.siukatech.poc:react-backend-core:$coreProjectVersion"
@@ -76,10 +83,15 @@ dependencies {
 ////	implementation 'org.projectlombok:lombok:1.18.26'
 //    annotationProcessor 'org.projectlombok:lombok:1.18.26'
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
+//    annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
 
-    runtimeOnly 'org.postgresql:postgresql:42.6.0'
+//    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+//    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+
+    runtimeOnly 'org.postgresql:postgresql:42.7.2'
 
     testImplementation testFixtures("com.siukatech.poc:react-backend-core:$coreProjectVersion")
+//    testAnnotationProcessor testFixtures("com.siukatech.poc:react-backend-core:$coreProjectVersion")
 
 //    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 //    testImplementation 'org.springframework.security:spring-security-test'

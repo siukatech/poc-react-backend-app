@@ -30,8 +30,8 @@ class ReactBackendAppTests {
 	private OAuth2ResourceServerProperties oAuth2ResourceServerProperties;
 	@MockBean
 	private JwtDecoder jwtDecoder;
-	@MockBean
-	private ProblemDetailExtMapper problemDetailExtMapper;
+	// @MockBean
+	// private ProblemDetailExtMapper problemDetailExtMapper;
 
 	@Test
 	void contextLoads() {
