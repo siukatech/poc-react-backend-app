@@ -9,7 +9,7 @@ import com.siukatech.poc.react.backend.app.item.business.service.AttachmentServi
 import com.siukatech.poc.react.backend.app.item.data.entity.AttachmentEntity;
 import com.siukatech.poc.react.backend.app.item.helper.AttachmentHelper;
 import com.siukatech.poc.react.backend.app.item.web.controller.AttachmentController;
-import com.siukatech.poc.react.backend.core.security.authentication.MyAuthenticationToken;
+import com.siukatech.poc.react.backend.core.security.model.MyAuthenticationToken;
 import com.siukatech.poc.react.backend.core.web.annotation.v1.ProtectedApiV1Controller;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
