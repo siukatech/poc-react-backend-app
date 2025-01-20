@@ -27,7 +27,8 @@ spring:
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+        dialect: com.siukatech.poc.react.backend.core.data.dialect.MyPostgreSQLDialect
         ddl-auto: none
         show-sql: true
         format-sql: true
@@ -161,4 +162,5 @@ logging:
     com.siukatech.poc.react.backend.core.security.evaluator: DEBUG
     com.siukatech.poc.react.backend.app: DEBUG
     com.siukatech.poc.react.backend.app.web: TRACE
+    com.siukatech.poc.react.backend.core.data.dialect: DEBUG
 
