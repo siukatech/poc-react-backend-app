@@ -23,13 +23,16 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 class ReactBackendAppTests {
 
 	@MockBean
-	private OAuth2ClientProperties oAuth2ClientProperties;
-	@MockBean
 	private InMemoryClientRegistrationRepository clientRegistrationRepository;
-	@MockBean
-	private OAuth2ResourceServerProperties oAuth2ResourceServerProperties;
-	@MockBean
-	private JwtDecoder jwtDecoder;
+
+	// After moving the following WebSecurityConfig Components from constructor to filterChain,
+	// they are no longer required to mark as MockBean or MockitoBean
+//	@MockBean
+//	private OAuth2ClientProperties oAuth2ClientProperties;
+//	@MockBean
+//	private OAuth2ResourceServerProperties oAuth2ResourceServerProperties;
+//	@MockBean
+//	private JwtDecoder jwtDecoder;
 	// @MockBean
 	// private ProblemDetailExtMapper problemDetailExtMapper;
 
