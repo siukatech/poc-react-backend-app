@@ -50,7 +50,8 @@ public class I18nService {
         log.debug("findI18nMap - langTag: [" + langTag + "], locale: [" + locale + "]");
         //List<I18nDto> i18nDtoList = i18nEntityList.stream().map(i18nEntity -> modelMapper.map(i18nEntity, I18nDto.class)).collect(Collectors.toList());
         //Map<String, List<String>> i18nMapList = i18nEntityList.stream().collect(Collectors.groupingBy(I18nEntity::getCode, Collectors.mapping(I18nEntity::getMessageEn, Collectors.toList())));
-        Map<String, String> i18nMap = i18nEntityList.stream().collect(Collectors.toMap(i18nEntity -> i18nEntity.getId()
+        Map<String, String> i18nMap = i18nEntityList.stream()
+                .collect(Collectors.toMap(i18nEntity -> i18nEntity.getI18nId()
                 , i18nEntity -> {
                     if (Locale.TRADITIONAL_CHINESE.equals(locale))
                         return i18nEntity.getMessageTc();
