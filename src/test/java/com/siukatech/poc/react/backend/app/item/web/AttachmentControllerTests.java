@@ -87,7 +87,7 @@ public class AttachmentControllerTests extends AbstractWebTests {
     public void listAttachments_basic() throws Exception {
         // given
         AttachmentDto attachmentDto = this.attachmentHelper.convertToAttachmentDto(
-                this.attachmentHelper.prepareAttachmentEntity_basic());
+                this.attachmentHelper.prepareAttachmentEntity_basic(true));
         when(attachmentService.findAttachmentAllByUserId(anyString())).thenReturn(List.of(attachmentDto));
 
         // when
@@ -111,7 +111,7 @@ public class AttachmentControllerTests extends AbstractWebTests {
     public void getAttachmentById_basic() throws Exception {
         // given
 
-        AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic();
+        AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic(true);
         AttachmentDto attachmentDto = this.attachmentHelper.convertToAttachmentDto(attachmentEntity);
         when(this.attachmentService.findAttachmentById(any(UUID.class))).thenReturn(attachmentDto);
 
@@ -134,8 +134,8 @@ public class AttachmentControllerTests extends AbstractWebTests {
     @Test
     public void uploadAttachment_basic() throws Exception {
         // given
-        AttachmentForm attachmentForm = this.attachmentHelper.prepareAttachmentForm_basic();
-        AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic();
+        AttachmentForm attachmentForm = this.attachmentHelper.prepareAttachmentForm_basic(true);
+        AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic(true);
         AttachmentDto attachmentDto = this.attachmentHelper.convertToAttachmentDto(attachmentEntity);
         Map<String, String> attachmentDtoFieldMap = this.objectMapper.convertValue(
                 attachmentDto, new TypeReference<Map<String, String>>() {

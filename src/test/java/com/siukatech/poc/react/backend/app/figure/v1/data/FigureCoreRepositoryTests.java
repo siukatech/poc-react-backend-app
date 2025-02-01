@@ -33,10 +33,14 @@ public class FigureCoreRepositoryTests extends AbstractJpaTests {
     @Autowired
     private FigureCoreRepository figureCoreRepository;
 
+    private UUID lastRecordId;
 
-    private FigureBaseEntity prepareFigureBaseEntity_basic() {
+
+    private FigureBaseEntity prepareFigureBaseEntity_basic(boolean withId) {
         FigureBaseEntity figureBaseEntity = new FigureBaseEntity();
-        figureBaseEntity.setId(UUID.randomUUID());
+        if (withId) {
+            figureBaseEntity.setId(UUID.randomUUID());
+        }
         figureBaseEntity.setName("shf figure 1");
         figureBaseEntity.setFirstReleaseDate(LocalDate.of(2023,8,21));
         figureBaseEntity.setCreatedBy("admin");
@@ -62,16 +66,22 @@ public class FigureCoreRepositoryTests extends AbstractJpaTests {
 
     @BeforeEach
     public void setup(TestInfo testInfo) {
-        FigureBaseEntity figureBaseEntity = this.prepareFigureBaseEntity_basic();
+        FigureBaseEntity figureBaseEntity = this.prepareFigureBaseEntity_basic(false);
         log.debug("setups - testInfo: [{}], figureBaseEntity: [{}]", testInfo, figureBaseEntity);
-        this.figureBaseRepository.save(figureBaseEntity);
+        figureBaseEntity = this.figureBaseRepository.save(figureBaseEntity);
+        this.lastRecordId = figureBaseEntity.getId();
     }
 
     @AfterEach
     public void teardown(TestInfo testInfo) {
-        FigureBaseEntity figureBaseEntity = this.prepareFigureBaseEntity_basic();
-        log.debug("teardown - testInfo: [{}], figureBaseEntity: [{}]", testInfo, figureBaseEntity);
-        this.figureBaseRepository.delete(figureBaseEntity);
+//        FigureBaseEntity figureBaseEntity = this.prepareFigureBaseEntity_basic();
+//        log.debug("teardown - testInfo: [{}], figureBaseEntity: [{}]", testInfo, figureBaseEntity);
+//        this.figureBaseRepository.delete(figureBaseEntity);
+        this.figureBaseRepository.findById(this.lastRecordId)
+                .ifPresent(figureBaseEntity -> {
+                    log.debug("teardown - testInfo: [{}], figureBaseEntity: [{}]", testInfo, figureBaseEntity);
+                    this.figureBaseRepository.delete(figureBaseEntity);
+                });
     }
 
     @Test

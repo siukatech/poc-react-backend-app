@@ -27,10 +27,14 @@ public class ItemRepositoryTests extends AbstractJpaTests {
     @Autowired
     private ItemRepository itemRepository;
 
+    private String lastRecordId;
 
-    private ItemEntity prepareItemEntity_basic() {
+
+    private ItemEntity prepareItemEntity_basic(boolean withId) {
         ItemEntity itemEntity = new ItemEntity();
-        itemEntity.setId(UUID.randomUUID().toString());
+        if (withId) {
+            itemEntity.setId(UUID.randomUUID().toString());
+        }
         itemEntity.setName("shf figure 1");
         itemEntity.setPurchasedDate(LocalDate.now());
         itemEntity.setCreatedBy("admin");
@@ -56,14 +60,17 @@ public class ItemRepositoryTests extends AbstractJpaTests {
 
     @BeforeEach
     public void setup(TestInfo testInfo) {
-        ItemEntity itemEntity = this.prepareItemEntity_basic();
-        this.itemRepository.save(itemEntity);
+        ItemEntity itemEntity = this.prepareItemEntity_basic(false);
+        itemEntity = this.itemRepository.save(itemEntity);
+        this.lastRecordId = itemEntity.getId();
     }
 
     @AfterEach
     public void teardown(TestInfo testInfo) {
-        ItemEntity itemEntity = this.prepareItemEntity_basic();
-        this.itemRepository.delete(itemEntity);
+//        ItemEntity itemEntity = this.prepareItemEntity_basic();
+//        this.itemRepository.delete(itemEntity);
+        this.itemRepository.findById(this.lastRecordId)
+                .ifPresent(itemEntity -> this.itemRepository.delete(itemEntity));
     }
 
     @Test

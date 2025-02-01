@@ -4,6 +4,8 @@ import com.siukatech.poc.react.backend.app.figure.v2.data.entity.FigureBaseEntit
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
-public interface FigureBaseRepositoryV2 extends JpaRepository<FigureBaseEntityV2, String> {
+public interface FigureBaseRepositoryV2 extends JpaRepository<FigureBaseEntityV2, UUID> {
 }

@@ -28,10 +28,14 @@ public class FigureFigmaRepositoryTests extends AbstractJpaTests {
     @Autowired
     private FigureFigmaRepository figureFigmaRepository;
 
+    private UUID lastRecordId;
 
-    private FigureFigmaEntity prepareFigureFigmaEntity_basic() {
+
+    private FigureFigmaEntity prepareFigureFigmaEntity_basic(boolean withId) {
         FigureFigmaEntity figureFigmaEntity = new FigureFigmaEntity();
-        figureFigmaEntity.setId(UUID.randomUUID());
+        if (withId) {
+            figureFigmaEntity.setId(UUID.randomUUID());
+        }
         figureFigmaEntity.setName("figma figure 1");
         figureFigmaEntity.setFirstReleaseDate(LocalDate.of(2023,8,21));
         figureFigmaEntity.setHasPreorderBonus(true);
@@ -60,14 +64,17 @@ public class FigureFigmaRepositoryTests extends AbstractJpaTests {
 
     @BeforeEach
     public void setup(TestInfo testInfo) {
-        FigureFigmaEntity figureFigmaEntity = this.prepareFigureFigmaEntity_basic();
-        this.figureFigmaRepository.save(figureFigmaEntity);
+        FigureFigmaEntity figureFigmaEntity = this.prepareFigureFigmaEntity_basic(false);
+        figureFigmaEntity = this.figureFigmaRepository.save(figureFigmaEntity);
+        this.lastRecordId = figureFigmaEntity.getId();
     }
 
     @AfterEach
     public void teardown(TestInfo testInfo) {
-        FigureFigmaEntity figureFigmaEntity = this.prepareFigureFigmaEntity_basic();
-        this.figureFigmaRepository.delete(figureFigmaEntity);
+//        FigureFigmaEntity figureFigmaEntity = this.prepareFigureFigmaEntity_basic();
+//        this.figureFigmaRepository.delete(figureFigmaEntity);
+        this.figureFigmaRepository.findById(this.lastRecordId)
+                .ifPresent(figureFigmaEntity -> this.figureFigmaRepository.delete(figureFigmaEntity));
     }
 
     @Test

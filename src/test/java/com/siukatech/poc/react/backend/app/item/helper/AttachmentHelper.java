@@ -22,7 +22,7 @@ public class AttachmentHelper extends AbstractHelper {
 
     private Tika tika = new Tika();
 
-    public AttachmentEntity prepareAttachmentEntity_basic() {
+    public AttachmentEntity prepareAttachmentEntity_basic(boolean withId) {
         File file = getResourceFile("attachment", RESOURCE_FILE_NAME);
         String contentType = null;
         try {
@@ -38,7 +38,9 @@ public class AttachmentHelper extends AbstractHelper {
         }
 
         AttachmentEntity attachmentEntity = new AttachmentEntity();
-        attachmentEntity.setId(UUID.randomUUID());
+        if (withId) {
+            attachmentEntity.setId(UUID.randomUUID());
+        }
         attachmentEntity.setFileName(file.getName());
         attachmentEntity.setContentType(contentType);
         attachmentEntity.setFileSize(fileContent == null ? -1 : fileContent.length);
@@ -52,8 +54,8 @@ public class AttachmentHelper extends AbstractHelper {
         return attachmentEntity;
     }
 
-    public AttachmentForm prepareAttachmentForm_basic() {
-        AttachmentEntity attachmentEntity = prepareAttachmentEntity_basic();
+    public AttachmentForm prepareAttachmentForm_basic(boolean withId) {
+        AttachmentEntity attachmentEntity = prepareAttachmentEntity_basic(withId);
         MockMultipartFile multipartFile = new MockMultipartFile(
                 "file", attachmentEntity.getFileName()
                 , attachmentEntity.getContentType(), attachmentEntity.getFileContent());

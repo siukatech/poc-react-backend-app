@@ -4,8 +4,9 @@ import com.siukatech.poc.react.backend.app.figure.v2.data.entity.FigureFigmaEnti
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.UUID;
 
-public interface FigureFigmaRepositoryV2 extends JpaRepository<FigureFigmaEntityV2, String> {
+public interface FigureFigmaRepositoryV2 extends JpaRepository<FigureFigmaEntityV2, UUID> {
 
     List<FigureFigmaEntityV2> findByHasPreorderBonus(boolean hasPreorderBonus);
 

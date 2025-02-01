@@ -46,7 +46,7 @@ public class I18nServiceTests extends AbstractUnitTests {
         I18nEntity i18nEntity = new I18nEntity();
 //        i18nEntity.setId(1L);
 //        i18nEntity.setMessageKey("testing.title");
-        i18nEntity.setId("testing.title");
+        i18nEntity.setI18nId("testing.title");
         i18nEntity.setMessageEn("Testing title En");
         i18nEntity.setMessageTc("Testing title Tc");
         i18nEntity.setMessageSc("Testing title Sc");

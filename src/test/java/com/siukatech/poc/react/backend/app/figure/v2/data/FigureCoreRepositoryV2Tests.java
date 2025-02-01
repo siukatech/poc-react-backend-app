@@ -33,10 +33,14 @@ public class FigureCoreRepositoryV2Tests extends AbstractJpaTests {
     @Autowired
     private FigureCoreRepositoryV2 figureCoreRepositoryV2;
 
+    private UUID lastRecordId;
 
-    private FigureBaseEntityV2 prepareFigureBaseEntity_basic() {
+
+    private FigureBaseEntityV2 prepareFigureBaseEntity_basic(boolean withId) {
         FigureBaseEntityV2 figureBaseEntity = new FigureBaseEntityV2();
-        figureBaseEntity.setId(UUID.randomUUID());
+        if (withId) {
+            figureBaseEntity.setId(UUID.randomUUID());
+        }
         figureBaseEntity.setName("shf figure 1");
         figureBaseEntity.setFirstReleaseDate(LocalDate.of(2023,8,21));
         figureBaseEntity.setCreatedBy("admin");
@@ -62,16 +66,22 @@ public class FigureCoreRepositoryV2Tests extends AbstractJpaTests {
 
     @BeforeEach
     public void setup(TestInfo testInfo) {
-        FigureBaseEntityV2 figureBaseEntity = this.prepareFigureBaseEntity_basic();
+        FigureBaseEntityV2 figureBaseEntity = this.prepareFigureBaseEntity_basic(false);
         log.debug("setups - testInfo: [{}], figureBaseEntity: [{}]", testInfo, figureBaseEntity);
-        this.figureBaseRepositoryV2.save(figureBaseEntity);
+        figureBaseEntity = this.figureBaseRepositoryV2.save(figureBaseEntity);
+        this.lastRecordId = figureBaseEntity.getId();
     }
 
     @AfterEach
     public void teardown(TestInfo testInfo) {
-        FigureBaseEntityV2 figureBaseEntity = this.prepareFigureBaseEntity_basic();
-        log.debug("teardown - testInfo: [{}], figureBaseEntity: [{}]", testInfo, figureBaseEntity);
-        this.figureBaseRepositoryV2.delete(figureBaseEntity);
+//        FigureBaseEntityV2 figureBaseEntity = this.prepareFigureBaseEntity_basic();
+//        log.debug("teardown - testInfo: [{}], figureBaseEntity: [{}]", testInfo, figureBaseEntity);
+//        this.figureBaseRepositoryV2.delete(figureBaseEntity);
+        this.figureBaseRepositoryV2.findById(this.lastRecordId)
+                .ifPresent(figureBaseEntity -> {
+                    log.debug("teardown - testInfo: [{}], figureBaseEntity: [{}]", testInfo, figureBaseEntity);
+                    this.figureBaseRepositoryV2.delete(figureBaseEntity);
+                });
     }
 
     @Test

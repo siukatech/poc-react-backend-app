@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -26,16 +27,21 @@ public class AttachmentRepositoryTests extends AbstractJpaTests {
 
     private AttachmentHelper attachmentHelper = new AttachmentHelper();
 
+    private UUID lastRecordId;
+
     @BeforeEach
     public void setup(TestInfo testInfo) {
-        AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic();
-        this.attachmentRepository.save(attachmentEntity);
+        AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic(false);
+        attachmentEntity = this.attachmentRepository.save(attachmentEntity);
+        this.lastRecordId = attachmentEntity.getId();
     }
 
     @AfterEach
     public void teardown(TestInfo testInfo) {
-        AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic();
-        this.attachmentRepository.delete(attachmentEntity);
+//        AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic();
+//        this.attachmentRepository.delete(attachmentEntity);
+        this.attachmentRepository.findById(this.lastRecordId)
+                .ifPresent(attachmentEntity -> this.attachmentRepository.delete(attachmentEntity));
     }
 
     @Test

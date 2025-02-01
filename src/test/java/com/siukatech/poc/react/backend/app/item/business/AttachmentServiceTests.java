@@ -52,7 +52,7 @@ public class AttachmentServiceTests extends AbstractUnitTests {
     @Test
     public void findAttachmentAll_basic() {
         // given
-        AttachmentEntity attachmentEntity1 = this.attachmentHelper.prepareAttachmentEntity_basic();
+        AttachmentEntity attachmentEntity1 = this.attachmentHelper.prepareAttachmentEntity_basic(true);
         when(this.attachmentRepository.findAll()).thenReturn(List.of(attachmentEntity1));
 
         // when
@@ -68,8 +68,8 @@ public class AttachmentServiceTests extends AbstractUnitTests {
     @Test
     public void findAttachmentAllByUserId_basic() {
         // given
-        AttachmentEntity attachmentEntity1 = this.attachmentHelper.prepareAttachmentEntity_basic();
-        AttachmentEntity attachmentEntity2 = this.attachmentHelper.prepareAttachmentEntity_basic();
+        AttachmentEntity attachmentEntity1 = this.attachmentHelper.prepareAttachmentEntity_basic(true);
+        AttachmentEntity attachmentEntity2 = this.attachmentHelper.prepareAttachmentEntity_basic(true);
         when(this.attachmentRepository.findAll()).thenReturn(List.of(attachmentEntity1, attachmentEntity2));
 
         // when
@@ -85,7 +85,7 @@ public class AttachmentServiceTests extends AbstractUnitTests {
     @Test
     public void downloadAttachmentById_basic() {
         // given
-        AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic();
+        AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic(true);
         when(this.attachmentRepository.findById(any(UUID.class))).thenReturn(Optional.of(attachmentEntity));
 
         // when
@@ -100,8 +100,8 @@ public class AttachmentServiceTests extends AbstractUnitTests {
     @Test
     public void uploadAttachment_basic() throws IOException {
         // given
-        AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic();
-        AttachmentForm attachmentForm = this.attachmentHelper.prepareAttachmentForm_basic();
+        AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic(true);
+        AttachmentForm attachmentForm = this.attachmentHelper.prepareAttachmentForm_basic(true);
         when(this.attachmentRepository.save(any(AttachmentEntity.class))).thenReturn(attachmentEntity);
         when(this.attachmentRepository.findById(any(UUID.class))).thenReturn(Optional.of(attachmentEntity));
 
@@ -115,7 +115,7 @@ public class AttachmentServiceTests extends AbstractUnitTests {
     @Test
     public void deleteAttachment_basic() {
         // given
-        AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic();
+        AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic(true);
         when(this.attachmentRepository.findById(any(UUID.class))).thenReturn(Optional.of(attachmentEntity));
         doNothing().when(this.attachmentRepository).delete(any(AttachmentEntity.class));
 
