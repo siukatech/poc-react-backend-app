@@ -1,9 +1,9 @@
 package com.siukatech.poc.react.backend.app.figure.v1.data;
 
 
-import com.siukatech.poc.react.backend.app.figure.v1.business.dto.FigureFigmaDto;
 import com.siukatech.poc.react.backend.app.figure.v1.data.entity.FigureFigmaEntity;
 import com.siukatech.poc.react.backend.app.figure.v1.data.repository.FigureFigmaRepository;
+import com.siukatech.poc.react.backend.app.figure.v1.helper.FigureFigmaTestDataHelper;
 import com.siukatech.poc.react.backend.core.AbstractJpaTests;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
@@ -12,10 +12,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.util.StringUtils;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,43 +27,15 @@ public class FigureFigmaRepositoryTests extends AbstractJpaTests {
     @Autowired
     private FigureFigmaRepository figureFigmaRepository;
 
+    @SpyBean
+    private FigureFigmaTestDataHelper figureFigmaTestDataHelper;
+
     private UUID lastRecordId;
 
 
-    private FigureFigmaEntity prepareFigureFigmaEntity_basic(boolean withId) {
-        FigureFigmaEntity figureFigmaEntity = new FigureFigmaEntity();
-        if (withId) {
-            figureFigmaEntity.setId(UUID.randomUUID());
-        }
-        figureFigmaEntity.setName("figma figure 1");
-        figureFigmaEntity.setFirstReleaseDate(LocalDate.of(2023,8,21));
-        figureFigmaEntity.setHasPreorderBonus(true);
-        figureFigmaEntity.setCreatedBy("admin");
-        figureFigmaEntity.setCreatedDatetime(LocalDateTime.now());
-        figureFigmaEntity.setLastModifiedBy("admin");
-        figureFigmaEntity.setLastModifiedDatetime(LocalDateTime.now());
-        figureFigmaEntity.setVersionNo(1L);
-        return figureFigmaEntity;
-    }
-
-    private FigureFigmaDto prepareFigureFigmaDto_basic() {
-        FigureFigmaDto figureFigmaDto = new FigureFigmaDto();
-        figureFigmaDto.setId(UUID.randomUUID());
-        figureFigmaDto.setName("figma figure 1");
-        figureFigmaDto.setFirstReleaseDate(LocalDate.of(2023,8,21));
-        figureFigmaDto.setHasPreorderBonus(true);
-        figureFigmaDto.setFirstReleaseDate(LocalDate.now());
-        figureFigmaDto.setCreatedBy("admin");
-        figureFigmaDto.setCreatedDatetime(LocalDateTime.now());
-        figureFigmaDto.setLastModifiedBy("admin");
-        figureFigmaDto.setLastModifiedDatetime(LocalDateTime.now());
-        figureFigmaDto.setVersionNo(1L);
-        return figureFigmaDto;
-    }
-
     @BeforeEach
     public void setup(TestInfo testInfo) {
-        FigureFigmaEntity figureFigmaEntity = this.prepareFigureFigmaEntity_basic(false);
+        FigureFigmaEntity figureFigmaEntity = this.figureFigmaTestDataHelper.prepareFigureFigmaEntity_basic(false);
         figureFigmaEntity = this.figureFigmaRepository.save(figureFigmaEntity);
         this.lastRecordId = figureFigmaEntity.getId();
     }

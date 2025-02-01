@@ -3,6 +3,7 @@ package com.siukatech.poc.react.backend.app.base.web;
 import com.siukatech.poc.react.backend.app.base.business.dto.I18nDto;
 import com.siukatech.poc.react.backend.app.base.business.form.I18nForm;
 import com.siukatech.poc.react.backend.app.base.business.service.I18nService;
+import com.siukatech.poc.react.backend.app.base.helper.I18nTestDataHelper;
 import com.siukatech.poc.react.backend.app.base.web.controller.I18nController;
 import com.siukatech.poc.react.backend.core.AbstractUnitTests;
 import com.siukatech.poc.react.backend.core.AbstractWebTests;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.*;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
@@ -21,7 +23,6 @@ import java.util.Locale;
 import java.util.Map;
 
 import static org.hamcrest.Matchers.containsString;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
@@ -77,6 +78,9 @@ public class I18nControllerTests extends AbstractWebTests {
 //    @MockBean
 //    private InMemoryClientRegistrationRepository clientRegistrationRepository;
 
+    @SpyBean
+    private I18nTestDataHelper i18nTestDataHelper;
+
 
     @BeforeAll
     public static void init() {
@@ -120,34 +124,6 @@ public class I18nControllerTests extends AbstractWebTests {
 //        i18nEntity.setMessageCn("Testing title Sc");
 //        i18nEntity.setVersionNo(1L);
 //        this.i18nRepository.delete(i18nEntity);
-    }
-
-    private I18nForm prepareI18nForm() {
-        I18nForm i18nForm = new I18nForm();
-//        i18nForm.setId(2L);
-//        i18nForm.setMessageKey("testing.title.2");
-        i18nForm.setId("testing.title.2");
-        i18nForm.setMessageEn("Testing");
-        i18nForm.setMessageEn("Testing title En");
-        i18nForm.setMessageTc("Testing title Tc");
-        i18nForm.setMessageSc("Testing title Sc");
-        return i18nForm;
-    }
-
-    private I18nDto convertToI18nDto(I18nForm i18nForm, String langTag) {
-//        ModelMapper mapper = new ModelMapper();
-        I18nDto i18nDto = new I18nDto();
-//        i18nDto.setKey(i18nForm.getMessageKey());
-        i18nDto.setKey(i18nForm.getId());
-        switch (langTag) {
-            case "zh-TW":
-                i18nDto.setMessage(i18nForm.getMessageTc());
-            case "zh-CN":
-                i18nDto.setMessage(i18nForm.getMessageSc());
-            default:
-                i18nDto.setMessage(i18nForm.getMessageEn());
-        }
-        return i18nDto;
     }
 
     @Test
@@ -224,12 +200,13 @@ public class I18nControllerTests extends AbstractWebTests {
     @Test
     public void createI18n_en() throws Exception {
         // given
-        I18nForm i18nForm = this.prepareI18nForm();
+        I18nForm i18nForm = this.i18nTestDataHelper.prepareI18nForm();
         String i18nFormStr = this.objectMapper.writeValueAsString(i18nForm);
+        I18nDto i18nDto = this.i18nTestDataHelper.convertToI18nDto(
+                i18nForm, Locale.ENGLISH.toLanguageTag());
         log.debug("createI18n_en - i18nFormStr: [{}]", i18nFormStr);
         when(this.i18nService.createI18n(i18nForm))
-                .thenReturn(this.convertToI18nDto(
-                        i18nForm, Locale.ENGLISH.toLanguageTag()));
+                .thenReturn(i18nDto);
 
         // when
         RequestBuilder requestBuilder = MockMvcRequestBuilders
@@ -253,13 +230,14 @@ public class I18nControllerTests extends AbstractWebTests {
     @Test
     public void updateI18n_en() throws Exception {
         // given
-        I18nForm i18nForm = this.prepareI18nForm();
+        I18nForm i18nForm = this.i18nTestDataHelper.prepareI18nForm();
         i18nForm.setMessageEn(i18nForm.getMessageEn() + ", updated");
         String i18nFormStr = this.objectMapper.writeValueAsString(i18nForm);
+        I18nDto i18nDto = this.i18nTestDataHelper.convertToI18nDto(
+                i18nForm, Locale.ENGLISH.toLanguageTag());
         log.debug("updateI18n_en - i18nFormStr: [{}]", i18nFormStr);
         when(this.i18nService.updateI18n(i18nForm, i18nForm.getId()))
-                .thenReturn(this.convertToI18nDto(
-                        i18nForm, Locale.ENGLISH.toLanguageTag()));
+                .thenReturn(i18nDto);
 
         // when
         RequestBuilder requestBuilder = MockMvcRequestBuilders

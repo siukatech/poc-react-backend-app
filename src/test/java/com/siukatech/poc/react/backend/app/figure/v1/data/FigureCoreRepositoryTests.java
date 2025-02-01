@@ -1,11 +1,11 @@
 package com.siukatech.poc.react.backend.app.figure.v1.data;
 
 
-import com.siukatech.poc.react.backend.app.figure.v1.business.dto.FigureBaseDto;
 import com.siukatech.poc.react.backend.app.figure.v1.data.entity.FigureBaseEntity;
 import com.siukatech.poc.react.backend.app.figure.v1.data.entity.FigureCoreEntity;
 import com.siukatech.poc.react.backend.app.figure.v1.data.repository.FigureBaseRepository;
 import com.siukatech.poc.react.backend.app.figure.v1.data.repository.FigureCoreRepository;
+import com.siukatech.poc.react.backend.app.figure.v1.helper.FigureCoreTestDataHelper;
 import com.siukatech.poc.react.backend.core.AbstractJpaTests;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
@@ -14,10 +14,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.util.StringUtils;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,40 +32,15 @@ public class FigureCoreRepositoryTests extends AbstractJpaTests {
     @Autowired
     private FigureCoreRepository figureCoreRepository;
 
+    @SpyBean
+    private FigureCoreTestDataHelper figureCoreTestDataHelper;
+
     private UUID lastRecordId;
 
 
-    private FigureBaseEntity prepareFigureBaseEntity_basic(boolean withId) {
-        FigureBaseEntity figureBaseEntity = new FigureBaseEntity();
-        if (withId) {
-            figureBaseEntity.setId(UUID.randomUUID());
-        }
-        figureBaseEntity.setName("shf figure 1");
-        figureBaseEntity.setFirstReleaseDate(LocalDate.of(2023,8,21));
-        figureBaseEntity.setCreatedBy("admin");
-        figureBaseEntity.setCreatedDatetime(LocalDateTime.now());
-        figureBaseEntity.setLastModifiedBy("admin");
-        figureBaseEntity.setLastModifiedDatetime(LocalDateTime.now());
-        figureBaseEntity.setVersionNo(1L);
-        return figureBaseEntity;
-    }
-
-    private FigureBaseDto prepareFigureBaseDto_basic() {
-        FigureBaseDto figureBaseDto = new FigureBaseDto();
-        figureBaseDto.setId(UUID.randomUUID());
-        figureBaseDto.setName("shf figure 1");
-        figureBaseDto.setFirstReleaseDate(LocalDate.of(2023,8,21));
-        figureBaseDto.setCreatedBy("admin");
-        figureBaseDto.setCreatedDatetime(LocalDateTime.now());
-        figureBaseDto.setLastModifiedBy("admin");
-        figureBaseDto.setLastModifiedDatetime(LocalDateTime.now());
-        figureBaseDto.setVersionNo(1L);
-        return figureBaseDto;
-    }
-
     @BeforeEach
     public void setup(TestInfo testInfo) {
-        FigureBaseEntity figureBaseEntity = this.prepareFigureBaseEntity_basic(false);
+        FigureBaseEntity figureBaseEntity = this.figureCoreTestDataHelper.prepareFigureBaseEntity_basic(false);
         log.debug("setups - testInfo: [{}], figureBaseEntity: [{}]", testInfo, figureBaseEntity);
         figureBaseEntity = this.figureBaseRepository.save(figureBaseEntity);
         this.lastRecordId = figureBaseEntity.getId();

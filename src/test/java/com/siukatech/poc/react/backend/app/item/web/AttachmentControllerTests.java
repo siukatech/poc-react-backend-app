@@ -7,7 +7,7 @@ import com.siukatech.poc.react.backend.app.item.business.dto.AttachmentDto;
 import com.siukatech.poc.react.backend.app.item.business.form.AttachmentForm;
 import com.siukatech.poc.react.backend.app.item.business.service.AttachmentService;
 import com.siukatech.poc.react.backend.app.item.data.entity.AttachmentEntity;
-import com.siukatech.poc.react.backend.app.item.helper.AttachmentHelper;
+import com.siukatech.poc.react.backend.app.item.helper.AttachmentTestDataHelper;
 import com.siukatech.poc.react.backend.app.item.web.controller.AttachmentController;
 import com.siukatech.poc.react.backend.core.security.model.MyAuthenticationToken;
 import com.siukatech.poc.react.backend.core.web.annotation.v1.ProtectedApiV1Controller;
@@ -16,6 +16,7 @@ import org.junit.jupiter.api.*;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
@@ -55,7 +56,8 @@ public class AttachmentControllerTests extends AbstractWebTests {
     @MockBean
     private AttachmentService attachmentService;
 
-    private AttachmentHelper attachmentHelper = new AttachmentHelper();
+    @SpyBean
+    private AttachmentTestDataHelper attachmentTestDataHelper;
 
 
     @BeforeAll
@@ -86,8 +88,8 @@ public class AttachmentControllerTests extends AbstractWebTests {
     @Test
     public void listAttachments_basic() throws Exception {
         // given
-        AttachmentDto attachmentDto = this.attachmentHelper.convertToAttachmentDto(
-                this.attachmentHelper.prepareAttachmentEntity_basic(true));
+        AttachmentDto attachmentDto = this.attachmentTestDataHelper.convertToAttachmentDto(
+                this.attachmentTestDataHelper.prepareAttachmentEntity_basic(true));
         when(attachmentService.findAttachmentAllByUserId(anyString())).thenReturn(List.of(attachmentDto));
 
         // when
@@ -102,7 +104,7 @@ public class AttachmentControllerTests extends AbstractWebTests {
         MvcResult mvcResult = this.mockMvc.perform(requestBuilder)
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString(AttachmentHelper.RESOURCE_FILE_NAME)))
+                .andExpect(content().string(containsString(AttachmentTestDataHelper.RESOURCE_FILE_NAME)))
                 .andReturn();
 
     }
@@ -111,8 +113,8 @@ public class AttachmentControllerTests extends AbstractWebTests {
     public void getAttachmentById_basic() throws Exception {
         // given
 
-        AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic(true);
-        AttachmentDto attachmentDto = this.attachmentHelper.convertToAttachmentDto(attachmentEntity);
+        AttachmentEntity attachmentEntity = this.attachmentTestDataHelper.prepareAttachmentEntity_basic(true);
+        AttachmentDto attachmentDto = this.attachmentTestDataHelper.convertToAttachmentDto(attachmentEntity);
         when(this.attachmentService.findAttachmentById(any(UUID.class))).thenReturn(attachmentDto);
 
         // when
@@ -134,9 +136,9 @@ public class AttachmentControllerTests extends AbstractWebTests {
     @Test
     public void uploadAttachment_basic() throws Exception {
         // given
-        AttachmentForm attachmentForm = this.attachmentHelper.prepareAttachmentForm_basic(true);
-        AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic(true);
-        AttachmentDto attachmentDto = this.attachmentHelper.convertToAttachmentDto(attachmentEntity);
+        AttachmentForm attachmentForm = this.attachmentTestDataHelper.prepareAttachmentForm_basic(true);
+        AttachmentEntity attachmentEntity = this.attachmentTestDataHelper.prepareAttachmentEntity_basic(true);
+        AttachmentDto attachmentDto = this.attachmentTestDataHelper.convertToAttachmentDto(attachmentEntity);
         Map<String, String> attachmentDtoFieldMap = this.objectMapper.convertValue(
                 attachmentDto, new TypeReference<Map<String, String>>() {
                 });

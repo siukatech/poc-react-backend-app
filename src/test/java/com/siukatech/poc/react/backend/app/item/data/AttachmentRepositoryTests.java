@@ -3,7 +3,7 @@ package com.siukatech.poc.react.backend.app.item.data;
 
 import com.siukatech.poc.react.backend.app.item.data.entity.AttachmentEntity;
 import com.siukatech.poc.react.backend.app.item.data.repository.AttachmentRepository;
-import com.siukatech.poc.react.backend.app.item.helper.AttachmentHelper;
+import com.siukatech.poc.react.backend.app.item.helper.AttachmentTestDataHelper;
 import com.siukatech.poc.react.backend.core.AbstractJpaTests;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 
 import java.util.List;
 import java.util.UUID;
@@ -25,13 +26,14 @@ public class AttachmentRepositoryTests extends AbstractJpaTests {
     @Autowired
     private AttachmentRepository attachmentRepository;
 
-    private AttachmentHelper attachmentHelper = new AttachmentHelper();
+    @SpyBean
+    private AttachmentTestDataHelper attachmentTestDataHelper;
 
     private UUID lastRecordId;
 
     @BeforeEach
     public void setup(TestInfo testInfo) {
-        AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic(false);
+        AttachmentEntity attachmentEntity = this.attachmentTestDataHelper.prepareAttachmentEntity_basic(false);
         attachmentEntity = this.attachmentRepository.save(attachmentEntity);
         this.lastRecordId = attachmentEntity.getId();
     }
@@ -51,7 +53,7 @@ public class AttachmentRepositoryTests extends AbstractJpaTests {
                     log.debug("findAll_basic - attachmentEntity.getFileContent: [{}]"
                             , (attachmentEntity.getFileContent() == null ? "NULL" : "NOT-NULL")
                     );
-                    return attachmentEntity.getFileName().contains(AttachmentHelper.RESOURCE_FILE_NAME);
+                    return attachmentEntity.getFileName().contains(AttachmentTestDataHelper.RESOURCE_FILE_NAME);
                 })
                 .hasSize(1);
     }

@@ -4,6 +4,7 @@ package com.siukatech.poc.react.backend.app.base.business;
 import com.siukatech.poc.react.backend.app.base.business.service.I18nService;
 import com.siukatech.poc.react.backend.app.base.data.entity.I18nEntity;
 import com.siukatech.poc.react.backend.app.base.data.repository.I18nRepository;
+import com.siukatech.poc.react.backend.app.base.helper.I18nTestDataHelper;
 import com.siukatech.poc.react.backend.core.AbstractUnitTests;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
@@ -15,7 +16,6 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -33,6 +33,8 @@ public class I18nServiceTests extends AbstractUnitTests {
     private ModelMapper modelMapper;
     @Mock
     private I18nRepository i18nRepository;
+    @Spy
+    private I18nTestDataHelper i18nTestDataHelper;
 
     @BeforeAll
     public static void init() {
@@ -43,15 +45,7 @@ public class I18nServiceTests extends AbstractUnitTests {
     @Test
     public void findAll_basic() {
         // given
-        I18nEntity i18nEntity = new I18nEntity();
-//        i18nEntity.setId(1L);
-//        i18nEntity.setMessageKey("testing.title");
-        i18nEntity.setI18nId("testing.title");
-        i18nEntity.setMessageEn("Testing title En");
-        i18nEntity.setMessageTc("Testing title Tc");
-        i18nEntity.setMessageSc("Testing title Sc");
-        i18nEntity.setVersionNo(1L);
-        i18nEntity.setLastModifiedDatetime(LocalDateTime.now());
+        I18nEntity i18nEntity = this.i18nTestDataHelper.prepareI18nEntity_basic(true);
         when(this.i18nRepository.findAll()).thenReturn(List.of(i18nEntity));
 
         // when

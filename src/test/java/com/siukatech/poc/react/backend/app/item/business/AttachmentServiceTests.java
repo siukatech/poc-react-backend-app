@@ -6,7 +6,7 @@ import com.siukatech.poc.react.backend.app.item.business.form.AttachmentForm;
 import com.siukatech.poc.react.backend.app.item.business.service.AttachmentService;
 import com.siukatech.poc.react.backend.app.item.data.entity.AttachmentEntity;
 import com.siukatech.poc.react.backend.app.item.data.repository.AttachmentRepository;
-import com.siukatech.poc.react.backend.app.item.helper.AttachmentHelper;
+import com.siukatech.poc.react.backend.app.item.helper.AttachmentTestDataHelper;
 import com.siukatech.poc.react.backend.core.AbstractUnitTests;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
@@ -31,7 +31,7 @@ import static org.mockito.Mockito.when;
 
 @Slf4j
 @ExtendWith(MockitoExtension.class)
-@Import({AttachmentHelper.class})
+@Import({AttachmentTestDataHelper.class})
 public class AttachmentServiceTests extends AbstractUnitTests {
 
     @InjectMocks
@@ -40,8 +40,8 @@ public class AttachmentServiceTests extends AbstractUnitTests {
     private ModelMapper modelMapper;
     @Mock
     private AttachmentRepository attachmentRepository;
-
-    private AttachmentHelper attachmentHelper = new AttachmentHelper();
+    @Spy
+    private AttachmentTestDataHelper attachmentTestDataHelper;
 
     @BeforeAll
     public static void init() {
@@ -52,7 +52,7 @@ public class AttachmentServiceTests extends AbstractUnitTests {
     @Test
     public void findAttachmentAll_basic() {
         // given
-        AttachmentEntity attachmentEntity1 = this.attachmentHelper.prepareAttachmentEntity_basic(true);
+        AttachmentEntity attachmentEntity1 = this.attachmentTestDataHelper.prepareAttachmentEntity_basic(true);
         when(this.attachmentRepository.findAll()).thenReturn(List.of(attachmentEntity1));
 
         // when
@@ -62,14 +62,14 @@ public class AttachmentServiceTests extends AbstractUnitTests {
         assertThat(attachmentDtoList)
                 .hasSize(1)
                 .extracting(AttachmentDto::getFileName)
-                .containsExactlyInAnyOrder(AttachmentHelper.RESOURCE_FILE_NAME);
+                .containsExactlyInAnyOrder(AttachmentTestDataHelper.RESOURCE_FILE_NAME);
     }
 
     @Test
     public void findAttachmentAllByUserId_basic() {
         // given
-        AttachmentEntity attachmentEntity1 = this.attachmentHelper.prepareAttachmentEntity_basic(true);
-        AttachmentEntity attachmentEntity2 = this.attachmentHelper.prepareAttachmentEntity_basic(true);
+        AttachmentEntity attachmentEntity1 = this.attachmentTestDataHelper.prepareAttachmentEntity_basic(true);
+        AttachmentEntity attachmentEntity2 = this.attachmentTestDataHelper.prepareAttachmentEntity_basic(true);
         when(this.attachmentRepository.findAll()).thenReturn(List.of(attachmentEntity1, attachmentEntity2));
 
         // when
@@ -79,13 +79,13 @@ public class AttachmentServiceTests extends AbstractUnitTests {
         assertThat(attachmentDtoList)
                 .hasSize(2)
                 .extracting(AttachmentDto::getFileName)
-                .containsExactlyInAnyOrder(AttachmentHelper.RESOURCE_FILE_NAME, AttachmentHelper.RESOURCE_FILE_NAME);
+                .containsExactlyInAnyOrder(AttachmentTestDataHelper.RESOURCE_FILE_NAME, AttachmentTestDataHelper.RESOURCE_FILE_NAME);
     }
 
     @Test
     public void downloadAttachmentById_basic() {
         // given
-        AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic(true);
+        AttachmentEntity attachmentEntity = this.attachmentTestDataHelper.prepareAttachmentEntity_basic(true);
         when(this.attachmentRepository.findById(any(UUID.class))).thenReturn(Optional.of(attachmentEntity));
 
         // when
@@ -100,8 +100,8 @@ public class AttachmentServiceTests extends AbstractUnitTests {
     @Test
     public void uploadAttachment_basic() throws IOException {
         // given
-        AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic(true);
-        AttachmentForm attachmentForm = this.attachmentHelper.prepareAttachmentForm_basic(true);
+        AttachmentEntity attachmentEntity = this.attachmentTestDataHelper.prepareAttachmentEntity_basic(true);
+        AttachmentForm attachmentForm = this.attachmentTestDataHelper.prepareAttachmentForm_basic(true);
         when(this.attachmentRepository.save(any(AttachmentEntity.class))).thenReturn(attachmentEntity);
         when(this.attachmentRepository.findById(any(UUID.class))).thenReturn(Optional.of(attachmentEntity));
 
@@ -115,7 +115,7 @@ public class AttachmentServiceTests extends AbstractUnitTests {
     @Test
     public void deleteAttachment_basic() {
         // given
-        AttachmentEntity attachmentEntity = this.attachmentHelper.prepareAttachmentEntity_basic(true);
+        AttachmentEntity attachmentEntity = this.attachmentTestDataHelper.prepareAttachmentEntity_basic(true);
         when(this.attachmentRepository.findById(any(UUID.class))).thenReturn(Optional.of(attachmentEntity));
         doNothing().when(this.attachmentRepository).delete(any(AttachmentEntity.class));
 

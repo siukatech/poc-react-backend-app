@@ -3,7 +3,8 @@ package com.siukatech.poc.react.backend.app.item.helper;
 import com.siukatech.poc.react.backend.app.item.business.dto.AttachmentDto;
 import com.siukatech.poc.react.backend.app.item.business.form.AttachmentForm;
 import com.siukatech.poc.react.backend.app.item.data.entity.AttachmentEntity;
-import com.siukatech.poc.react.backend.core.global.helper.AbstractHelper;
+import com.siukatech.poc.react.backend.core.global.helper.AbstractTestDataHelper;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.tika.Tika;
 import org.modelmapper.ModelMapper;
@@ -15,8 +16,9 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Slf4j
 @Component
-public class AttachmentHelper extends AbstractHelper {
+public class AttachmentTestDataHelper extends AbstractTestDataHelper {
 
     public final static String RESOURCE_FILE_NAME = "12-Light-thumbnail-768x768.jpg";
 

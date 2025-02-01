@@ -4,21 +4,18 @@ import com.siukatech.poc.react.backend.app.item.business.dto.ItemDto;
 import com.siukatech.poc.react.backend.app.item.business.service.ItemService;
 import com.siukatech.poc.react.backend.app.item.data.entity.ItemEntity;
 import com.siukatech.poc.react.backend.app.item.data.repository.ItemRepository;
+import com.siukatech.poc.react.backend.app.item.helper.ItemTestDataHelper;
 import com.siukatech.poc.react.backend.core.AbstractUnitTests;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
@@ -35,6 +32,8 @@ public class ItemServiceTests extends AbstractUnitTests {
     @MockBean
     private ItemRepository itemRepository;
 
+    @SpyBean
+    private ItemTestDataHelper itemTestDataHelper;
 
     @BeforeAll
     public static void init() {
@@ -42,27 +41,10 @@ public class ItemServiceTests extends AbstractUnitTests {
         AbstractUnitTests.init();
     }
 
-    private ItemEntity prepareItemEntity_basic() {
-        ItemEntity itemEntity = new ItemEntity();
-        itemEntity.setId(UUID.randomUUID().toString());
-        itemEntity.setName("item 1");
-        itemEntity.setPurchasedDate(LocalDate.of(2024, 8, 9));
-        itemEntity.setCreatedBy("admin");
-        itemEntity.setCreatedDatetime(LocalDateTime.now());
-        itemEntity.setLastModifiedBy("admin");
-        itemEntity.setLastModifiedDatetime(LocalDateTime.now());
-        itemEntity.setVersionNo(1L);
-        return itemEntity;
-    }
-    private List<ItemEntity> prepareItemEntityList_basic() {
-        ItemEntity itemEntity = prepareItemEntity_basic();
-        return List.of(itemEntity);
-    }
-
     @Test
     public void findItemAll_basic() {
         // given
-        List<ItemEntity> itemEntityList = prepareItemEntityList_basic();
+        List<ItemEntity> itemEntityList = this.itemTestDataHelper.prepareItemEntityList_basic(true);
         when(itemRepository.findAll()).thenReturn(itemEntityList);
 
         // when

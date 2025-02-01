@@ -2,14 +2,15 @@ package com.siukatech.poc.react.backend.app.base.data;
 
 import com.siukatech.poc.react.backend.app.base.data.entity.I18nEntity;
 import com.siukatech.poc.react.backend.app.base.data.repository.I18nRepository;
+import com.siukatech.poc.react.backend.app.base.helper.I18nTestDataHelper;
 import com.siukatech.poc.react.backend.core.AbstractJpaTests;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
+import org.mockito.Spy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.List;
-import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,29 +26,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class I18nRepositoryTests extends AbstractJpaTests {
 
     @Autowired
-    public I18nRepository i18nRepository;
+    private I18nRepository i18nRepository;
+
+    @Spy
+    private I18nTestDataHelper i18nTestDataHelper;
 
     private String lastRecordId;
 
 
-    private I18nEntity prepareI18nEntity_basic(boolean withId) {
-        I18nEntity i18nEntity = new I18nEntity();
-//        i18nEntity.setId(1L);
-//        i18nEntity.setMessageKey("testing.title");
-        if (withId) {
-            i18nEntity.setId(UUID.randomUUID().toString());
-        }
-        i18nEntity.setI18nId("testing.title");
-        i18nEntity.setMessageEn("Testing title En");
-        i18nEntity.setMessageTc("Testing title Tc");
-        i18nEntity.setMessageSc("Testing title Sc");
-        i18nEntity.setVersionNo(1L);
-        return i18nEntity;
-    }
-
     @BeforeEach
     public void setup(TestInfo testInfo) {
-        I18nEntity i18nEntity = this.prepareI18nEntity_basic(false);
+        I18nEntity i18nEntity = this.i18nTestDataHelper.prepareI18nEntity_basic(false);
         i18nEntity = this.i18nRepository.save(i18nEntity);
         this.lastRecordId = i18nEntity.getId();
     }
