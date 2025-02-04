@@ -37,11 +37,11 @@ public class MyController extends com.siukatech.poc.react.backend.core.user.cont
         return super.getUserInfo(httpHeaders, authentication);
     }
 
-    @GetMapping("/my/permissions")
-    public ResponseEntity<?> getUserPermissions(@RequestHeader HttpHeaders httpHeaders
+    @GetMapping("/my/permission-info")
+    public ResponseEntity<?> getPermissionInfo(@RequestHeader HttpHeaders httpHeaders
             , @RequestParam String appId
             , Authentication authentication) {
-        return super.getUserPermissions(httpHeaders, appId, authentication);
+        return super.getPermissionInfo(httpHeaders, appId, authentication);
     }
 
     @GetMapping("/my/user-view")
