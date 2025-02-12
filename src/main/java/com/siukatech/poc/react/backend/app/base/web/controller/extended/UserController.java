@@ -3,6 +3,7 @@ package com.siukatech.poc.react.backend.app.base.web.controller.extended;
 import com.siukatech.poc.react.backend.core.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -48,8 +49,11 @@ public class UserController extends com.siukatech.poc.react.backend.core.user.co
 //        return ResponseEntity.ok(publicKeyBase64);
 //    }
     @PostMapping("/users/{targetLoginId}/user-info")
-    public ResponseEntity<?> getUserInfo(@PathVariable(name = "targetLoginId") String reqLoginId) {
-        return super.getUserInfo(reqLoginId);
+    public ResponseEntity<?> getUserInfo(
+            @PathVariable(name = "targetLoginId") String reqLoginId
+            , Authentication authentication
+    ) {
+        return super.getUserInfo(reqLoginId, authentication);
     }
 
 }

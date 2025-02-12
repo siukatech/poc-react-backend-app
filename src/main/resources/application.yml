@@ -126,6 +126,7 @@ app:
     my-user-info: /v1/protected/my/user-info
     my-key-info: /v1/protected/my/key-info
     my-permission-info: /v1/protected/my/permission-info
+    my-user-dossier: /v1/protected/my/user-dossier
   # configuration for database user service
 #  host-name: http://localhost:28080
 #  api:
@@ -138,6 +139,9 @@ logging:
 #  pattern:
 ##    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
 #    level: "%5p [${spring.application.name:}-%X{traceId:-}-%X{spanId:-}]"
+  structured:
+    format:
+      console: ecs
   level:
 #    root: DEBUG
     org.hibernate.SQL: DEBUG
@@ -160,6 +164,7 @@ logging:
     com.siukatech.poc.react.backend.core.security: DEBUG
     com.siukatech.poc.react.backend.core.security.interceptor: DEBUG
     com.siukatech.poc.react.backend.core.security.evaluator: DEBUG
+    com.siukatech.poc.react.backend.core.security.provider: DEBUG
     com.siukatech.poc.react.backend.app: DEBUG
     com.siukatech.poc.react.backend.app.web: TRACE
     com.siukatech.poc.react.backend.core.data.dialect: DEBUG

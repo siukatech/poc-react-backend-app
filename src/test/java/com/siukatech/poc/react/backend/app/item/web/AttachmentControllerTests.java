@@ -9,6 +9,7 @@ import com.siukatech.poc.react.backend.app.item.business.service.AttachmentServi
 import com.siukatech.poc.react.backend.app.item.data.entity.AttachmentEntity;
 import com.siukatech.poc.react.backend.app.item.helper.AttachmentTestDataHelper;
 import com.siukatech.poc.react.backend.app.item.web.controller.AttachmentController;
+import com.siukatech.poc.react.backend.core.global.helper.UserTestDataHelper;
 import com.siukatech.poc.react.backend.core.security.model.MyAuthenticationToken;
 import com.siukatech.poc.react.backend.core.web.annotation.v1.ProtectedApiV1Controller;
 import lombok.extern.slf4j.Slf4j;
@@ -58,6 +59,8 @@ public class AttachmentControllerTests extends AbstractWebTests {
 
     @SpyBean
     private AttachmentTestDataHelper attachmentTestDataHelper;
+    @SpyBean
+    private UserTestDataHelper userTestDataHelper;
 
 
     @BeforeAll
@@ -82,7 +85,8 @@ public class AttachmentControllerTests extends AbstractWebTests {
 
 
     protected MyAuthenticationToken prepareMyAuthenticationToken_basic() {
-        return prepareMyAuthenticationToken("app-user-01", UUID.randomUUID().toString());
+        return prepareMyAuthenticationToken("app-user-01"
+                , UUID.randomUUID().toString(), this.userTestDataHelper);
     }
 
     @Test
