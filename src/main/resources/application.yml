@@ -24,6 +24,11 @@ spring:
     virtual:
       enabled: true
 
+  cache:
+    type: ehcache
+    ehcache:
+      time-to-live: 5m
+
   jpa:
     properties:
       hibernate:
