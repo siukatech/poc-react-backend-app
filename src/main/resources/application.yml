@@ -25,9 +25,23 @@ spring:
       enabled: true
 
   cache:
-    type: ehcache
-    ehcache:
+#    type: ehcache
+#    ehcache:
+#      time-to-live: 5m
+    type: redis
+    redis:
       time-to-live: 5m
+
+  data:
+    redis:
+      host: localhost
+      port: 36379
+#      username: default
+#      password: foobared
+#      sentinel:
+#        username: ${spring.data.redis.username}
+#        password: ${spring.data.redis.password}
+#        master: redis
 
   jpa:
     properties:

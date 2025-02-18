@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 @Data
-public class ItemDto extends ItemEntity {
+public class ItemDto extends ItemEntity implements Serializable {
 }

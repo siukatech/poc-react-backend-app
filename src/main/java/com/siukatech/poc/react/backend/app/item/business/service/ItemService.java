@@ -4,9 +4,11 @@ import com.siukatech.poc.react.backend.app.item.business.dto.ItemDto;
 import com.siukatech.poc.react.backend.app.item.business.form.ItemForm;
 import com.siukatech.poc.react.backend.app.item.data.entity.ItemEntity;
 import com.siukatech.poc.react.backend.app.item.data.repository.ItemRepository;
+import com.siukatech.poc.react.backend.core.caching.config.CachingConfig;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +21,8 @@ import java.util.stream.Collectors;
 @Service
 public class ItemService {
 
+    public static final String CACHE_KEY_findItemAll = "findItemAll_";
+
     private final ModelMapper modelMapper;
     private final ItemRepository itemRepository;
 
@@ -27,6 +31,8 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
+//    @Cacheable(value = {CachingConfig.CACHE_NAME_DEFAULT}
+//            , key = "'" + CACHE_KEY_findItemAll + "'")
     public List<ItemDto> findItemAll() {
         List<ItemEntity> itemEntityList = this.itemRepository.findAll();
         List<ItemDto> itemDtoList = itemEntityList.stream().map(itemEntity -> this.modelMapper.map(itemEntity, ItemDto.class))
