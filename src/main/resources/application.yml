@@ -37,7 +37,7 @@ spring:
       host: localhost
       port: 36379
 #      username: default
-#      password: foobared
+      password: redispass
 #      sentinel:
 #        username: ${spring.data.redis.username}
 #        password: ${spring.data.redis.password}

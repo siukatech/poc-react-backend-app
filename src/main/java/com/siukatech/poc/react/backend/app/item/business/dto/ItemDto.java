@@ -8,5 +8,5 @@ import lombok.ToString;
 import java.io.Serializable;
 
 @Data
-public class ItemDto extends ItemEntity implements Serializable {
+public class ItemDto extends ItemEntity {
 }

@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Service
 public class ItemService {
 
-    public static final String CACHE_KEY_findItemAll = "findItemAll_";
+    public static final String CACHE_KEY_findItemAll = "ItemService.findItemAll_";
 
     private final ModelMapper modelMapper;
     private final ItemRepository itemRepository;
@@ -31,8 +31,8 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
-//    @Cacheable(value = {CachingConfig.CACHE_NAME_DEFAULT}
-//            , key = "'" + CACHE_KEY_findItemAll + "'")
+    @Cacheable(value = {CachingConfig.CACHE_NAME_DEFAULT}
+            , key = "'" + CACHE_KEY_findItemAll + "'")
     public List<ItemDto> findItemAll() {
         List<ItemEntity> itemEntityList = this.itemRepository.findAll();
         List<ItemDto> itemDtoList = itemEntityList.stream().map(itemEntity -> this.modelMapper.map(itemEntity, ItemDto.class))
