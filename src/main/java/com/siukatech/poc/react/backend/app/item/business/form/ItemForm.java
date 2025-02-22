@@ -14,4 +14,5 @@ public class ItemForm extends AbstractForm<String> {
 
     //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     protected LocalDate purchasedDate;
+    protected String description;
 }
