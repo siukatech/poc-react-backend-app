@@ -90,12 +90,14 @@ public class ItemController {
 
     //@CrossOrigin(origins = "*")
 //    @GetMapping("/items")
+    @PermissionControl(appResourceId = "app.item.pageItems", accessRight = "view")
     public ResponseEntity<?> pageItems(@Param("name") String name, Pageable pageable) {
         List<ItemDto> itemDtoList = this.itemService.findItemAll();
         return ResponseEntity.ok(itemDtoList);
     }
 
     @GetMapping("/items/{targetItemId}")
+    @PermissionControl(appResourceId = "app.item.getItemById", accessRight = "view")
     public ResponseEntity<?> getItemById(@PathVariable(required = true) String targetItemId) {
 //        ItemDto itemDto = this.itemRepository.findById(targetItemId)
 //                .map(itemEntity -> this.modelMapper.map(itemEntity, ItemDto.class))
@@ -105,6 +107,7 @@ public class ItemController {
     }
 
     @PostMapping(value = "/items")
+    @PermissionControl(appResourceId = "app.item.createItem", accessRight = "create")
     public ResponseEntity<?> createItem(@Valid @RequestBody ItemForm itemForm) {
         log.debug("createItem - start");
         //
@@ -128,6 +131,7 @@ public class ItemController {
     }
 
     @PutMapping("/items/{targetItemId}")
+    @PermissionControl(appResourceId = "app.item.updateItem", accessRight = "update")
     public ResponseEntity<?> updateItem(@Valid @RequestBody ItemForm itemForm, @PathVariable(required = true) String targetItemId) {
 //        ItemEntity itemEntity = this.itemRepository.findById(targetItemId).orElseThrow(() -> new EntityNotFoundException("targetItemId: %s".formatted(targetItemId)));
 //        ItemEntity itemReq = this.prepareEntityBeforeSave(itemForm, itemEntity);
@@ -176,6 +180,7 @@ public class ItemController {
 //    }
 
     @DeleteMapping("/items/{targetItemId}")
+    @PermissionControl(appResourceId = "app.item.deleteItem", accessRight = "delete")
     public HttpStatus deleteItem(@PathVariable(required = true) String targetItemId) {
 //        ItemEntity itemEntity = this.itemRepository.findById(targetItemId).orElseThrow(() -> new EntityNotFoundException("targetItemId: %s".formatted(targetItemId)));
 //        this.itemRepository.delete(itemEntity);
