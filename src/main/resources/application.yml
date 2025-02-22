@@ -25,6 +25,7 @@ spring:
       enabled: true
 
   cache:
+    cache-names: i18n,item
 #    type: ehcache
 #    ehcache:
 #      time-to-live: 5m

@@ -1,13 +1,14 @@
 package com.siukatech.poc.react.backend.app.item.business.service;
 
+import com.siukatech.poc.react.backend.app.item.business.caching.ItemCachingConfig;
 import com.siukatech.poc.react.backend.app.item.business.dto.ItemDto;
 import com.siukatech.poc.react.backend.app.item.business.form.ItemForm;
 import com.siukatech.poc.react.backend.app.item.data.entity.ItemEntity;
 import com.siukatech.poc.react.backend.app.item.data.repository.ItemRepository;
-import com.siukatech.poc.react.backend.core.caching.config.CachingConfig;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -31,8 +32,10 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
-    @Cacheable(value = {CachingConfig.CACHE_NAME_DEFAULT}
-            , key = "'" + CACHE_KEY_findItemAll + "'")
+    @Cacheable(value = {ItemCachingConfig.CACHE_NAME_ITEM}
+//            , key = "'" + CACHE_KEY_findItemAll + "'"
+            , keyGenerator = "itemCacheKeyGenerator"
+    )
     public List<ItemDto> findItemAll() {
         List<ItemEntity> itemEntityList = this.itemRepository.findAll();
         List<ItemDto> itemDtoList = itemEntityList.stream().map(itemEntity -> this.modelMapper.map(itemEntity, ItemDto.class))
@@ -62,6 +65,9 @@ public class ItemService {
         return itemDtoList;
     }
 
+    @CacheEvict(value = {ItemCachingConfig.CACHE_NAME_ITEM}
+            , keyGenerator = "itemCacheKeyGenerator"
+    )
     public ItemDto findItemById(String targetItemId) {
         ItemDto itemDto = this.itemRepository.findById(targetItemId)
                 .map(itemEntity -> this.modelMapper.map(itemEntity, ItemDto.class))
@@ -69,6 +75,9 @@ public class ItemService {
         return itemDto;
     }
 
+    @CacheEvict(value = {ItemCachingConfig.CACHE_NAME_ITEM}
+            , keyGenerator = "itemCacheKeyGenerator"
+    )
     public ItemDto createItem(ItemForm itemForm) {
         // This converts ItemForm to blank new ItemEntity
         ItemEntity itemReq = this.modelMapper.map(itemForm, ItemEntity.class);
@@ -93,6 +102,9 @@ public class ItemService {
         return itemDto;
     }
 
+    @CacheEvict(value = {ItemCachingConfig.CACHE_NAME_ITEM}
+            , keyGenerator = "itemCacheKeyGenerator"
+    )
     public ItemDto updateItem(ItemForm itemForm, String targetItemId) {
         // findItemById returns ItemDto, not ItemEntity
         // Therefore, itemRepository is required at this point
@@ -127,6 +139,9 @@ public class ItemService {
         return itemDto;
     }
 
+    @CacheEvict(value = {ItemCachingConfig.CACHE_NAME_ITEM}
+            , keyGenerator = "itemCacheKeyGenerator"
+    )
     public void deleteItem(String targetItemId) {
         ItemEntity itemEntity = this.itemRepository.findById(targetItemId).orElseThrow(() -> new EntityNotFoundException("targetItemId: %s".formatted(targetItemId)));
         this.itemRepository.delete(itemEntity);

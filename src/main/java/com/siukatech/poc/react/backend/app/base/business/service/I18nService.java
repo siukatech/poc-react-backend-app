@@ -1,5 +1,6 @@
 package com.siukatech.poc.react.backend.app.base.business.service;
 
+import com.siukatech.poc.react.backend.app.base.business.caching.I18nCachingConfig;
 import com.siukatech.poc.react.backend.app.base.business.dto.I18nDto;
 import com.siukatech.poc.react.backend.app.base.business.form.I18nForm;
 import com.siukatech.poc.react.backend.app.base.data.entity.I18nEntity;
@@ -7,6 +8,8 @@ import com.siukatech.poc.react.backend.app.base.data.repository.I18nRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,6 +29,7 @@ public class I18nService {
         this.i18nRepository = i18nRepository;
     }
 
+    @Cacheable(value = {I18nCachingConfig.CACHE_NAME_I18N}, keyGenerator = "i18nCacheKeyGenerator")
     public Map<String, Map<String, String>> findI18nMap() {
         List<I18nEntity> i18nEntityList = this.i18nRepository.findAll();
         Map<String, String> i18nMapEn = findI18nMap(i18nEntityList, Locale.ENGLISH.toLanguageTag());
@@ -39,9 +43,10 @@ public class I18nService {
         return i18nMap;
     }
 
+    @Cacheable(value = {I18nCachingConfig.CACHE_NAME_I18N}, keyGenerator = "i18nCacheKeyGenerator")
     public Map<String, String> findI18nMap(String langTag) {
         List<I18nEntity> i18nEntityList = this.i18nRepository.findAll();
-        Map<String, String> i18nMap = findI18nMap(i18nEntityList, langTag);
+        Map<String, String> i18nMap = this.findI18nMap(i18nEntityList, langTag);
         return i18nMap;
     }
 
@@ -67,6 +72,11 @@ public class I18nService {
         return i18nMap;
     }
 
+//    @Caching(evict = {
+//            @CacheEvict(value = {CachingConfig.CACHE_NAME_DEFAULT}, keyGenerator = "i18nCacheKeyGenerator")
+//            , @CacheEvict(value = {CachingConfig.CACHE_NAME_DEFAULT}, keyGenerator = "i18nCacheKeyGenerator")
+//    })
+    @CacheEvict(value = {I18nCachingConfig.CACHE_NAME_I18N})
     public I18nDto createI18n(I18nForm i18nForm) {
         log.debug("createI18n - start");
         I18nEntity i18nReq = this.modelMapper.map(i18nForm, I18nEntity.class);
@@ -76,6 +86,7 @@ public class I18nService {
         return this.modelMapper.map(i18nForm, I18nDto.class);
     }
 
+    @CacheEvict(value = {I18nCachingConfig.CACHE_NAME_I18N})
     public I18nDto updateI18n(I18nForm i18nForm, String targetI18nId) {
         I18nEntity i18nEntity = this.i18nRepository.findById(targetI18nId).orElseThrow(() -> new EntityNotFoundException("targetI18nId: %s".formatted(targetI18nId)));
         I18nEntity i18nReq = new I18nEntity();
@@ -87,6 +98,7 @@ public class I18nService {
         return this.modelMapper.map(i18nForm, I18nDto.class);
     }
 
+    @CacheEvict(value = {I18nCachingConfig.CACHE_NAME_I18N})
     public void deleteI18n(String targetI18nId) {
         I18nEntity i18nEntity = this.i18nRepository.findById(targetI18nId).orElseThrow(() -> new EntityNotFoundException("targetI18nId: %s".formatted(targetI18nId)));
         this.i18nRepository.delete(i18nEntity);
