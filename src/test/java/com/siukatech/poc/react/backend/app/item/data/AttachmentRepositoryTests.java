@@ -4,7 +4,7 @@ package com.siukatech.poc.react.backend.app.item.data;
 import com.siukatech.poc.react.backend.app.item.data.entity.AttachmentEntity;
 import com.siukatech.poc.react.backend.app.item.data.repository.AttachmentRepository;
 import com.siukatech.poc.react.backend.app.item.helper.AttachmentTestDataHelper;
-import com.siukatech.poc.react.backend.core.AbstractJpaTests;
+import com.siukatech.poc.react.backend.module.core.AbstractJpaTests;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

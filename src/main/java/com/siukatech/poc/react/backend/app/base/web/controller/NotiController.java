@@ -2,8 +2,8 @@ package com.siukatech.poc.react.backend.app.base.web.controller;
 
 import com.siukatech.poc.react.backend.app.base.business.dto.NotiDto;
 import com.siukatech.poc.react.backend.app.base.business.service.NotiService;
-import com.siukatech.poc.react.backend.core.security.model.MyAuthenticationToken;
-import com.siukatech.poc.react.backend.core.web.annotation.v1.ProtectedApiV1Controller;
+import com.siukatech.poc.react.backend.module.core.security.model.MyAuthenticationToken;
+import com.siukatech.poc.react.backend.module.core.web.annotation.v1.ProtectedApiV1Controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

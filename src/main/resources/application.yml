@@ -26,29 +26,28 @@ spring:
 
   cache:
     cache-names: i18n,item
-#    type: ehcache
-#    ehcache:
-#      time-to-live: 5m
-    type: redis
-    redis:
+    type: ehcache
+    ehcache:
       time-to-live: 5m
-
-  data:
-    redis:
-      host: localhost
-      port: 36379
-#      username: default
-      password: redispass
-#      sentinel:
-#        username: ${spring.data.redis.username}
-#        password: ${spring.data.redis.password}
-#        master: redis
+#    type: redis
+#    redis:
+#      time-to-live: 5m
+#  data:
+#    redis:
+#      host: localhost
+#      port: 36379
+##      username: default
+#      password: redispass
+##      sentinel:
+##        username: ${spring.data.redis.username}
+##        password: ${spring.data.redis.password}
+##        master: redis
 
   jpa:
     properties:
       hibernate:
 #        dialect: org.hibernate.dialect.PostgreSQLDialect
-        dialect: com.siukatech.poc.react.backend.core.data.dialect.MyPostgreSQLDialect
+        dialect: com.siukatech.poc.react.backend.module.core.data.dialect.MyPostgreSQLDialect
         ddl-auto: none
         show-sql: true
         format-sql: true
@@ -179,13 +178,14 @@ logging:
     org.springframework.http.client: TRACE
     org.springframework.web.client.RestTemplate: DEBUG
     org.springframework.web.servlet.DispatcherServlet: DEBUG
-    com.siukatech.poc.react.backend.core: TRACE
-    com.siukatech.poc.react.backend.core.web: TRACE
-    com.siukatech.poc.react.backend.core.security: DEBUG
-    com.siukatech.poc.react.backend.core.security.interceptor: DEBUG
-    com.siukatech.poc.react.backend.core.security.evaluator: DEBUG
-    com.siukatech.poc.react.backend.core.security.provider: DEBUG
+    com.siukatech.poc.react.backend.module.core: TRACE
+    com.siukatech.poc.react.backend.module.core.config: DEBUG
+    com.siukatech.poc.react.backend.module.core.data.dialect: DEBUG
+    com.siukatech.poc.react.backend.module.core.web: TRACE
+    com.siukatech.poc.react.backend.module.core.security: DEBUG
+    com.siukatech.poc.react.backend.module.core.security.interceptor: DEBUG
+    com.siukatech.poc.react.backend.module.core.security.evaluator: DEBUG
+    com.siukatech.poc.react.backend.module.core.security.provider: DEBUG
     com.siukatech.poc.react.backend.app: DEBUG
     com.siukatech.poc.react.backend.app.web: TRACE
-    com.siukatech.poc.react.backend.core.data.dialect: DEBUG
 

@@ -2,7 +2,7 @@ package com.siukatech.poc.react.backend.app.figure.v1.helper;
 
 import com.siukatech.poc.react.backend.app.figure.v1.business.dto.FigureFigmaDto;
 import com.siukatech.poc.react.backend.app.figure.v1.data.entity.FigureFigmaEntity;
-import com.siukatech.poc.react.backend.core.global.helper.AbstractTestDataHelper;
+import com.siukatech.poc.react.backend.module.core.global.helper.AbstractTestDataHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

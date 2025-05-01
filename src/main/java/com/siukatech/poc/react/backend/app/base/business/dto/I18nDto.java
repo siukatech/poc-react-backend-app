@@ -1,6 +1,6 @@
 package com.siukatech.poc.react.backend.app.base.business.dto;
 
-import com.siukatech.poc.react.backend.core.business.dto.AbstractDto;
+import com.siukatech.poc.react.backend.module.core.business.dto.AbstractDto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

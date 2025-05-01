@@ -2,8 +2,8 @@ package com.siukatech.poc.react.backend.app.item.web.controller;
 
 import com.siukatech.poc.react.backend.app.item.business.dto.AttachmentContentDto;
 import com.siukatech.poc.react.backend.app.item.business.service.AttachmentService;
-import com.siukatech.poc.react.backend.core.security.model.MyAuthenticationToken;
-import com.siukatech.poc.react.backend.core.web.annotation.v1.PublicApiV1Controller;
+import com.siukatech.poc.react.backend.module.core.security.model.MyAuthenticationToken;
+import com.siukatech.poc.react.backend.module.core.web.annotation.v1.PublicApiV1Controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;

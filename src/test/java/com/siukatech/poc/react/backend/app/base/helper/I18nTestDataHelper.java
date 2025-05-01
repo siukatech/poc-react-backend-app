@@ -3,7 +3,7 @@ package com.siukatech.poc.react.backend.app.base.helper;
 import com.siukatech.poc.react.backend.app.base.business.dto.I18nDto;
 import com.siukatech.poc.react.backend.app.base.business.form.I18nForm;
 import com.siukatech.poc.react.backend.app.base.data.entity.I18nEntity;
-import com.siukatech.poc.react.backend.core.global.helper.AbstractTestDataHelper;
+import com.siukatech.poc.react.backend.module.core.global.helper.AbstractTestDataHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

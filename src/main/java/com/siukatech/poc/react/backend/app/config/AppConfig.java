@@ -1,6 +1,6 @@
 package com.siukatech.poc.react.backend.app.config;
 
-import com.siukatech.poc.react.backend.core.EnableReactBackend;
+import com.siukatech.poc.react.backend.module.core.EnableReactBackend;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,11 +13,11 @@ import org.springframework.context.annotation.FilterType;
 //        WebConfigImport.class
 //        , SecurityConfigImport.class
 //})
-@ComponentScan(value = {"com.siukatech.poc.react.backend.core.web.controller"
-//        , "com.siukatech.poc.react.backend.core.**.mapper.**"
+@ComponentScan(value = {"com.siukatech.poc.react.backend.module.core.web.controller"
+//        , "com.siukatech.poc.react.backend.module.core.**.mapper.**"
     }
     , excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX
-        , pattern = "com.siukatech.poc.react.backend.core.web.controller.WebController"
+        , pattern = "com.siukatech.poc.react.backend.module.core.web.controller.WebController"
     )
 )
 @EnableReactBackend

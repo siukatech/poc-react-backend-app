@@ -1,17 +1,17 @@
 package com.siukatech.poc.react.backend.app.item.web;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.siukatech.poc.react.backend.core.AbstractUnitTests;
-import com.siukatech.poc.react.backend.core.AbstractWebTests;
+import com.siukatech.poc.react.backend.module.core.AbstractUnitTests;
+import com.siukatech.poc.react.backend.module.core.AbstractWebTests;
 import com.siukatech.poc.react.backend.app.item.business.dto.AttachmentDto;
 import com.siukatech.poc.react.backend.app.item.business.form.AttachmentForm;
 import com.siukatech.poc.react.backend.app.item.business.service.AttachmentService;
 import com.siukatech.poc.react.backend.app.item.data.entity.AttachmentEntity;
 import com.siukatech.poc.react.backend.app.item.helper.AttachmentTestDataHelper;
 import com.siukatech.poc.react.backend.app.item.web.controller.AttachmentController;
-import com.siukatech.poc.react.backend.core.global.helper.UserTestDataHelper;
-import com.siukatech.poc.react.backend.core.security.model.MyAuthenticationToken;
-import com.siukatech.poc.react.backend.core.web.annotation.v1.ProtectedApiV1Controller;
+import com.siukatech.poc.react.backend.module.core.global.helper.UserDtoTestDataHelper;
+import com.siukatech.poc.react.backend.module.core.security.model.MyAuthenticationToken;
+import com.siukatech.poc.react.backend.module.core.web.annotation.v1.ProtectedApiV1Controller;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -60,7 +60,7 @@ public class AttachmentControllerTests extends AbstractWebTests {
     @SpyBean
     private AttachmentTestDataHelper attachmentTestDataHelper;
     @SpyBean
-    private UserTestDataHelper userTestDataHelper;
+    private UserDtoTestDataHelper userDtoTestDataHelper;
 
 
     @BeforeAll
@@ -86,7 +86,7 @@ public class AttachmentControllerTests extends AbstractWebTests {
 
     protected MyAuthenticationToken prepareMyAuthenticationToken_basic() {
         return prepareMyAuthenticationToken("app-user-01"
-                , UUID.randomUUID().toString(), this.userTestDataHelper);
+                , UUID.randomUUID().toString(), this.userDtoTestDataHelper);
     }
 
     @Test

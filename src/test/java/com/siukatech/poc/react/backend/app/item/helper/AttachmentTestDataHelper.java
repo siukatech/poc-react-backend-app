@@ -3,7 +3,7 @@ package com.siukatech.poc.react.backend.app.item.helper;
 import com.siukatech.poc.react.backend.app.item.business.dto.AttachmentDto;
 import com.siukatech.poc.react.backend.app.item.business.form.AttachmentForm;
 import com.siukatech.poc.react.backend.app.item.data.entity.AttachmentEntity;
-import com.siukatech.poc.react.backend.core.global.helper.AbstractTestDataHelper;
+import com.siukatech.poc.react.backend.module.core.global.helper.AbstractTestDataHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.tika.Tika;

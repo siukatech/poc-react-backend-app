@@ -1,6 +1,6 @@
 package com.siukatech.poc.react.backend.app;
 
-import com.siukatech.poc.react.backend.core.web.advice.mapper.ProblemDetailExtMapper;
+import com.siukatech.poc.react.backend.module.core.web.advice.mapper.ProblemDetailExtMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientProperties;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
