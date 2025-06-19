@@ -99,6 +99,7 @@ spring:
             issuer-uri: ${oauth2-client-keycloak}/realms/${client-realm}
             jwk-set-uri: ${oauth2-client-keycloak}/realms/${client-realm}/protocol/openid-connect/certs
             user-name-attribute: preferred_username
+#            user-name-attribute: username
 #            user-info-authentication-method:
 
       resource-server:
