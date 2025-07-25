@@ -86,7 +86,7 @@ public class AttachmentControllerTests extends AbstractWebTests {
 
     protected MyAuthenticationToken prepareMyAuthenticationToken_basic() {
         return prepareMyAuthenticationToken("app-user-01"
-                , UUID.randomUUID().toString(), this.userDtoTestDataHelper);
+                , UUID.randomUUID().toString(), USER_NAME_ATTRIBUTE, this.userDtoTestDataHelper);
     }
 
     @Test
