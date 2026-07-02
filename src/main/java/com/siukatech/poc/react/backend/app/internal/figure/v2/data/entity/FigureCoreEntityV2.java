@@ -1,0 +1,13 @@
+package com.siukatech.poc.react.backend.app.internal.figure.v2.data.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.Data;
+
+@Data
+@Entity(name = "figure_core_v2")
+@Table(name = "figure_base_v2")
+//@PrimaryKeyJoinColumn(name = "id", referencedColumnName = "sid")
+//@JoinColumn(name = "sid", referencedColumnName = "sid")
+public class FigureCoreEntityV2 extends FigureAbstractEntityV2 {
+}

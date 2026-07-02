@@ -7,4 +7,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'react-backend-app'
+rootProject.name = 'react-backend-app-internal'
