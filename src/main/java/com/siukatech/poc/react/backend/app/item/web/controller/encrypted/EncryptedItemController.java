@@ -1,4 +1,4 @@
-package com.siukatech.poc.react.backend.app.base.web.controller.encrypted;
+package com.siukatech.poc.react.backend.app.item.web.controller.encrypted;
 
 import com.siukatech.poc.react.backend.app.item.business.service.ItemService;
 import com.siukatech.poc.react.backend.app.item.web.controller.ItemController;
