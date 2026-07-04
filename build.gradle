@@ -70,7 +70,7 @@ ext {
 }
 
 dependencies {
-//    implementation "com.siukatech.poc:react-backend-core:$coreProjectVersion"
+////    implementation "com.siukatech.poc:react-backend-core:$coreProjectVersion"
     implementation "com.siukatech.poc:react-backend-module-core:$coreProjectVersion"
 
 //	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'

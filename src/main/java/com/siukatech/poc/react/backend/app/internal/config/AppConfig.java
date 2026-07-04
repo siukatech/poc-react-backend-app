@@ -1,10 +1,13 @@
 package com.siukatech.poc.react.backend.app.internal.config;
 
+import com.siukatech.poc.react.backend.app.internal.ReactBackendApp;
 import com.siukatech.poc.react.backend.module.core.EnableReactBackend;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Slf4j
 @Configuration
@@ -20,6 +23,8 @@ import org.springframework.context.annotation.FilterType;
         , pattern = "com.siukatech.poc.react.backend.module.core.web.controller.WebController"
     )
 )
+@EntityScan(basePackageClasses = {ReactBackendApp.class})
+@EnableJpaRepositories(basePackageClasses = {ReactBackendApp.class})
 @EnableReactBackend
 public class AppConfig {
 

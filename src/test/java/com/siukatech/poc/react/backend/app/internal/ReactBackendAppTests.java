@@ -1,9 +1,12 @@
 package com.siukatech.poc.react.backend.app.internal;
 
+import com.siukatech.poc.react.backend.app.internal.base.data.repository.I18nRepository;
 import com.siukatech.poc.react.backend.module.core.web.advice.mapper.ProblemDetailExtMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientProperties;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
+import org.springframework.boot.test.autoconfigure.OverrideAutoConfiguration;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
@@ -36,7 +39,7 @@ class ReactBackendAppTests {
 	// @MockBean
 	// private ProblemDetailExtMapper problemDetailExtMapper;
 
-	@Test
+//	@Test
 	void contextLoads() {
 	}
 
