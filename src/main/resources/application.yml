@@ -124,20 +124,38 @@ spring:
 
 
 management:
+  # Expose health and info endpoints
+  # Optionally, disable a specific endpoint (e.g., shutdown)
+  # management.endpoint.shutdown.enabled=false
   endpoints:
     web:
       exposure:
         include: '*'
-  tracing:
-    sampling:
-      probability: 1.0
-  metrics:
-    distribution:
-      percentiles-histogram:
-        greeting: true
-        http:
-          server:
-            requests: true
+#        include: health,info,metrics,caches,prometheus
+#        exclude: env,beans
+      base-path: /manage
+#    shutdown:
+#      enabled: false
+  endpoint:
+    health:
+#      show-details: always
+      show-components: always
+      # Disable redis health check
+      redis:
+        enabled: false
+    metrics:
+      export:
+        prometheus:
+          enabled: true
+      distribution:
+        percentiles-histogram:
+          greeting: true
+          http:
+            server:
+              requests: true
+    tracing:
+      sampling:
+        probability: 1.0
 
 
 app:
