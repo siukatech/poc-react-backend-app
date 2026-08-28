@@ -111,7 +111,7 @@ public class ItemController {
             @ResourceCheck(
                     resourceType = InternalSecurityConstants.ResourceType.ITEM
                     , accessRight = InternalSecurityConstants.AccessRight.VIEW
-                    , idExpression = "#targetItemId"
+//                    , idExpression = "#targetItemId"
             )
         }
     )
@@ -157,7 +157,7 @@ public class ItemController {
             @ResourceCheck(
                     resourceType = InternalSecurityConstants.ResourceType.ITEM
                     , accessRight = InternalSecurityConstants.AccessRight.UPDATE
-                    , idExpression = "#targetItemId"
+//                    , idExpression = "#targetItemId"
             )
         }
     )
@@ -215,7 +215,7 @@ public class ItemController {
             @ResourceCheck(
                     resourceType = InternalSecurityConstants.ResourceType.ITEM
                     , accessRight = InternalSecurityConstants.AccessRight.DELETE
-                    , idExpression = "#targetItemId"
+//                    , idExpression = "#targetItemId"
             )
     }
     )
