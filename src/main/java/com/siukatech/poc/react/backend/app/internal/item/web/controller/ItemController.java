@@ -1,5 +1,6 @@
 package com.siukatech.poc.react.backend.app.internal.item.web.controller;
 
+import com.siukatech.poc.react.backend.app.internal.item.resourcechecker.ItemResourceChecker;
 import com.siukatech.poc.react.backend.app.internal.security.constant.InternalSecurityConstants;
 import com.siukatech.poc.react.backend.app.internal.item.business.dto.ItemDto;
 import com.siukatech.poc.react.backend.app.internal.item.business.form.ItemForm;
@@ -76,7 +77,7 @@ public class ItemController {
     @GetMapping("/items")
     @PermissionControl(appResourceId = "app.item.listItems"
             , accessRight = InternalSecurityConstants.AccessRight.VIEW
-            , resources = {}
+            , resourceCheck = @ResourceCheck(skipChecker = true)
     )
     public ResponseEntity<?> listItems(@RequestHeader HttpHeaders httpHeaders) {
 //        List<ItemEntity> itemEntityList = this.itemRepository.findAll();
@@ -97,7 +98,7 @@ public class ItemController {
 //    @GetMapping("/items")
     @PermissionControl(appResourceId = "app.item.pageItems"
             , accessRight = InternalSecurityConstants.AccessRight.VIEW
-            , resources = {}
+            , resourceCheck = @ResourceCheck(skipChecker = true)
     )
     public ResponseEntity<?> pageItems(@Param("name") String name, Pageable pageable) {
         List<ItemDto> itemDtoList = this.itemService.findItemAll();
@@ -107,13 +108,14 @@ public class ItemController {
     @GetMapping("/items/{targetItemId}")
     @PermissionControl(appResourceId = "app.item.getItemById"
             , accessRight = InternalSecurityConstants.AccessRight.VIEW
-            , resources = {
-            @ResourceCheck(
-                    resourceType = InternalSecurityConstants.ResourceType.ITEM
-                    , accessRight = InternalSecurityConstants.AccessRight.VIEW
-//                    , idExpression = "#targetItemId"
-            )
-        }
+//            , resources = {
+//            @ResourceCheck(
+//                    resourceType = InternalSecurityConstants.ResourceType.ITEM
+//                    , accessRight = InternalSecurityConstants.AccessRight.VIEW
+////                    , idExpression = "#targetItemId"
+//            )
+//        }
+            , resourceCheck = @ResourceCheck(resourceChecker = ItemResourceChecker.class)
     )
     public ResponseEntity<?> getItemById(@PathVariable(required = true) String targetItemId) {
 //        ItemDto itemDto = this.itemRepository.findById(targetItemId)
@@ -126,7 +128,7 @@ public class ItemController {
     @PostMapping(value = "/items")
     @PermissionControl(appResourceId = "app.item.createItem"
             , accessRight = InternalSecurityConstants.AccessRight.CREATE
-            , resources = {}
+            , resourceCheck = @ResourceCheck(skipChecker = true)
     )
     public ResponseEntity<?> createItem(@Valid @RequestBody ItemForm itemForm) {
         log.debug("createItem - start");
@@ -153,13 +155,14 @@ public class ItemController {
     @PutMapping("/items/{targetItemId}")
     @PermissionControl(appResourceId = "app.item.updateItem"
             , accessRight = InternalSecurityConstants.AccessRight.UPDATE
-            , resources = {
-            @ResourceCheck(
-                    resourceType = InternalSecurityConstants.ResourceType.ITEM
-                    , accessRight = InternalSecurityConstants.AccessRight.UPDATE
-//                    , idExpression = "#targetItemId"
-            )
-        }
+//            , resources = {
+//            @ResourceCheck(
+//                    resourceType = InternalSecurityConstants.ResourceType.ITEM
+//                    , accessRight = InternalSecurityConstants.AccessRight.UPDATE
+////                    , idExpression = "#targetItemId"
+//            )
+//        }
+            , resourceCheck = @ResourceCheck(resourceChecker = ItemResourceChecker.class)
     )
     public ResponseEntity<?> updateItem(@Valid @RequestBody ItemForm itemForm, @PathVariable(required = true) String targetItemId) {
 //        ItemEntity itemEntity = this.itemRepository.findById(targetItemId).orElseThrow(() -> new EntityNotFoundException("targetItemId: %s".formatted(targetItemId)));
@@ -211,13 +214,14 @@ public class ItemController {
     @DeleteMapping("/items/{targetItemId}")
     @PermissionControl(appResourceId = "app.item.deleteItem"
             , accessRight = InternalSecurityConstants.AccessRight.DELETE
-            , resources = {
-            @ResourceCheck(
-                    resourceType = InternalSecurityConstants.ResourceType.ITEM
-                    , accessRight = InternalSecurityConstants.AccessRight.DELETE
-//                    , idExpression = "#targetItemId"
-            )
-    }
+//            , resources = {
+//            @ResourceCheck(
+//                    resourceType = InternalSecurityConstants.ResourceType.ITEM
+//                    , accessRight = InternalSecurityConstants.AccessRight.DELETE
+////                    , idExpression = "#targetItemId"
+//            )
+//        }
+            , resourceCheck = @ResourceCheck(resourceChecker = ItemResourceChecker.class)
     )
     public HttpStatus deleteItem(@PathVariable(required = true) String targetItemId) {
 //        ItemEntity itemEntity = this.itemRepository.findById(targetItemId).orElseThrow(() -> new EntityNotFoundException("targetItemId: %s".formatted(targetItemId)));
